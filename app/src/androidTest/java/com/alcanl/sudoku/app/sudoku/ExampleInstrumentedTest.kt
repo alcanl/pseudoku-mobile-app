@@ -1,4 +1,4 @@
-package com.alcanl.android.app.sudoku
+package com.alcanl.sudoku.app.sudoku
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.alcanl.android.app.sudoku
+package com.alcanl.sudoku.app.sudoku
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.alcanl.android.app.sudoku.global
+package com.alcanl.sudoku.global
 
 fun Array<IntArray>.transpose() : Array<IntArray> {
 

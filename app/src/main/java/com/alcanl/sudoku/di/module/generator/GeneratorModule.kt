@@ -1,16 +1,8 @@
-package com.alcanl.android.app.sudoku.di.module.generator
+package com.alcanl.sudoku.di.module.generator
 
-
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import java.lang.StringBuilder
-@Module
-@InstallIn(ActivityComponent::class)
-class GeneratorModule {
+object GeneratorModule {
     private var mSudoku = Array(9) { IntArray(9) }
-    @Provides
     fun generate() : Array<IntArray>
     {
         fillSudoku()
