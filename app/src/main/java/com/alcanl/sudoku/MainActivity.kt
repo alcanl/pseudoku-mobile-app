@@ -2,9 +2,11 @@ package com.alcanl.sudoku
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
+import com.alcanl.sudoku.entity.SudokuMatrix
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,9 +26,14 @@ class MainActivity : AppCompatActivity() {
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.viewModel = MainActivityListenersViewModel(this)
+        mBinding.matrix = SudokuMatrix()
     }
-    fun tableCellClicked()
+    fun tableCellClicked(view: TextView)
     {
 
+    }
+    fun buttonNewGameClicked()
+    {
+        mBinding.matrix!!.generateNewMatrix()
     }
 }
