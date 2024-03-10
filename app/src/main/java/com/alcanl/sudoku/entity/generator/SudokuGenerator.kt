@@ -1,7 +1,7 @@
-package com.alcanl.sudoku.di.module.generator
+package com.alcanl.sudoku.entity.generator
 
 import java.lang.StringBuilder
-object GeneratorModule {
+object SudokuGenerator {
     private var mSudoku = Array(9) { IntArray(9) }
     fun generate() : Array<IntArray>
     {
