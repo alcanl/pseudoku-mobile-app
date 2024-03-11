@@ -3,10 +3,12 @@ package com.alcanl.sudoku
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.entity.SudokuMatrix
+import com.alcanl.sudoku.entity.gameplay.GamePlay
 import com.alcanl.sudoku.timer.TimeCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var timeCounter: TimeCounter
     @Inject
     lateinit var mSudokuMatrix: SudokuMatrix
+    @Inject
+    lateinit var mGamePlay: GamePlay
     private lateinit var mBinding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -53,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         mBinding.matrix = mSudokuMatrix
     }
     fun tableCellClicked(view: TextView)
+    {
+
+    }
+    fun toggleButtonClicked(toggleButton: ToggleButton)
     {
 
     }

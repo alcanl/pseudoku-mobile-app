@@ -1325,6 +1325,7 @@
             android:layout_height="90dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -1332,14 +1333,28 @@
                 android:id="@+id/textViewTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textview_layout_border_not"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="48dp"
                 android:layout_marginBottom="49dp"
+                android:background="@drawable/textview_layout_border_not"
                 android:text="@{timer}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.112"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.42"
+                app:srcCompat="@drawable/pseudoku_logo_transparent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -1351,6 +1366,107 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
+            <LinearLayout
+                android:id="@+id/linearLayoutButtons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.126">
+
+                <ToggleButton
+                    android:id="@+id/toggleButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_one"
+                    android:textOn="@string/number_one"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_two"
+                    android:textOn="@string/number_two"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_three"
+                    android:textOn="@string/number_three"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_four"
+                    android:textOn="@string/number_four"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_five"
+                    android:textOn="@string/number_five"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_six"
+                    android:textOn="@string/number_six"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_seven"
+                    android:textOn="@string/number_seven"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_eight"
+                    android:textOn="@string/number_eight"
+                    android:textSize="30sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textOff="@string/number_nine"
+                    android:textOn="@string/number_nine"
+                    android:textSize="30sp" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
