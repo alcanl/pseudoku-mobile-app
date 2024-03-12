@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="aqua">#8FF2F1</color>
+    <color name="falseMove">#b02e34</color>
+    <color name="trueMove">#66F297</color>
 </resources>

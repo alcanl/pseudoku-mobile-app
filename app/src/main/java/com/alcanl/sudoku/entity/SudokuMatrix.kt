@@ -11,7 +11,7 @@ class SudokuMatrix {
     private lateinit var mLevel : Level
 
     init {
-        setLeveL()
+        setLeveL(Level.MEDIUM)
         mUnSolvedMatrix = Array(9) { IntArray(9) }
         generateNewMatrix()
 

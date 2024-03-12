@@ -1,5 +1,7 @@
 package com.alcanl.sudoku.global
 
+import android.widget.TextView
+
 fun Array<IntArray>.transpose() : Array<IntArray> {
 
     val t = Array(this.size) { IntArray(this[0].size) }

@@ -12,7 +12,7 @@
             <solid android:color="#A8A3A3"/>
         </shape>
     </item>
-    <item>
+    <item android:id="@+id/textViewColor">
         <shape>
             <solid android:color="@color/ap_white"/>
         </shape>
