@@ -19,7 +19,6 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
     {
         mMoveStack.pop()
     }
-    fun checkNumberCount(number: Int) : Int = mEmptyBoxCounts[number]!!
     fun useHint()
     {
         if (mHintCount <= 0)
@@ -29,6 +28,13 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
     }
     fun checkIfExistHintCount() : Boolean = mHintCount > 0
     fun checkIfExistErrorCount() : Boolean = mErrorCount > 0
+    fun errorDone()
+    {
+        if (mErrorCount <= 0)
+            return
+
+        --mErrorCount
+    }
     fun setWin()
     {
         mResult = true

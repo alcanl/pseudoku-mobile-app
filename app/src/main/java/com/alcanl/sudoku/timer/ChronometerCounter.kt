@@ -1,10 +1,9 @@
 package com.alcanl.sudoku.timer
 
-class TimeCounter {
+class ChronometerCounter {
     private var mSeconds = 0
     private var mMinutes = 0
     private var mHours = 0
-    @Synchronized
     fun handleCounter()
     {
         ++mSeconds
@@ -17,7 +16,6 @@ class TimeCounter {
             mMinutes = 0
         }
     }
-    @Synchronized
     fun clearTimer()
     {
         mSeconds = 0; mMinutes = 0; mHours = 0

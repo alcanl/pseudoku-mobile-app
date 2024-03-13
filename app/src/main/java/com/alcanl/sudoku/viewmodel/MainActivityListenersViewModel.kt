@@ -16,4 +16,20 @@ class MainActivityListenersViewModel(activity: MainActivity) {
     {
         mWeakReference.get()?.toggleButtonClicked(view as ToggleButton)
     }
+    fun handleHintButtonClick()
+    {
+        mWeakReference.get()?.buttonGiveHintClicked()
+    }
+    fun handleBackButtonClick()
+    {
+        mWeakReference.get()?.buttonBackClicked()
+    }
+    fun handleSettingsButtonClick()
+    {
+        mWeakReference.get()?.buttonSettingsClicked()
+    }
+    fun handleUndoButtonClick()
+    {
+        mWeakReference.get()?.buttonUndoClicked()
+    }
 }

@@ -9,4 +9,6 @@
     <string name="number_seven" translatable="false">7</string>
     <string name="number_eight" translatable="false">8</string>
     <string name="number_nine" translatable="false">9</string>
+    <string name="textview_undo_text" translatable="true">Undo</string>
+    <string name="textview_hint_text" translatable="true">Hint</string>
 </resources>

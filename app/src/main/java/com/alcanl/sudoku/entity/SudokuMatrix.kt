@@ -14,17 +14,17 @@ class SudokuMatrix {
         setLeveL(Level.MEDIUM)
         mUnSolvedMatrix = Array(9) { IntArray(9) }
         generateNewMatrix()
-
     }
     fun setLeveL(level: Level = Level.EASY)
     {
         mLevel = level
     }
-    fun checkValue(value: Int, index: Int) = mSolvedMatrix[index / 10][index % 10] == value
+    fun isTrueValue(value: Int, index: Int) = mSolvedMatrix[index / 10][index % 10] == value
     fun generateNewMatrix()
     {
         mSolvedMatrix = SudokuGenerator.generate()
         prepareUnSolvedMatrix()
+        mCounterArray.fill(9)
         calculateNumberCounts()
     }
     fun getValue(index: Int) : String
@@ -32,6 +32,10 @@ class SudokuMatrix {
        return if (mUnSolvedMatrix[index / 10][index % 10] == 0) "" else mUnSolvedMatrix[index / 10][index % 10].toString()
     }
     fun getNumberCounts() : IntArray = mCounterArray
+    fun decreaseNumberCount(number: Int)
+    {
+        --mCounterArray[number - 1]
+    }
     private fun calculateNumberCounts()
     {
         mUnSolvedMatrix.forEach(this::calculateNumberCountsCallback)
@@ -39,7 +43,7 @@ class SudokuMatrix {
     private fun calculateNumberCountsCallback(index: IntArray)
     {
         index.filter {
-            it != 0 }.forEach { ++mCounterArray[it - 1] }
+            it != 0 }.forEach { --mCounterArray[it - 1] }
     }
     private fun prepareUnSolvedMatrix()
     {

@@ -1,6 +1,6 @@
 package com.alcanl.sudoku.di.module.counter
 
-import com.alcanl.sudoku.timer.TimeCounter
+import com.alcanl.sudoku.timer.ChronometerCounter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import javax.inject.Singleton
 object Counter {
     @Provides
     @Singleton
-    fun createCounter() : TimeCounter = TimeCounter()
+    fun createCounter() : ChronometerCounter = ChronometerCounter()
 }
