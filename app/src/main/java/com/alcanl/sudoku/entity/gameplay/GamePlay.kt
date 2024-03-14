@@ -1,12 +1,14 @@
 package com.alcanl.sudoku.entity.gameplay
 
+import com.alcanl.sudoku.entity.level.Level
 import java.util.Stack
 
 
 
 data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: Int = 3, private var mResult: Boolean = false,
                     private var mMoveStack: Stack<Pair<Int, Int>> = Stack(), private var mEmptyBoxCounts: MutableMap<Int, Int> = HashMap(),
-                    private var mGameDuration: Long = 0) {
+                    private var mGameDuration: Long = 0, private val mLevel: Level = Level.MEDIUM,
+                    private var mIsNoteModeActive: Boolean = false) {
 
     init {
         (1..9).forEach { mEmptyBoxCounts[it] = 0 }
@@ -42,5 +44,13 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
     fun setGameDuration(duration: Long)
     {
         mGameDuration = duration
+    }
+    fun getHintCount() = mHintCount.toString()
+    fun getLevel() = mLevel.toString()
+    fun getErrorCount() = "$mErrorCount/3"
+    fun isNoteModeActive() = mIsNoteModeActive
+    fun setNoteMode(active: Boolean)
+    {
+        mIsNoteModeActive = active
     }
 }

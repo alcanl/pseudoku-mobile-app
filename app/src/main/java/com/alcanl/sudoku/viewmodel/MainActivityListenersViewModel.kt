@@ -18,7 +18,7 @@ class MainActivityListenersViewModel(activity: MainActivity) {
     }
     fun handleHintButtonClick()
     {
-        mWeakReference.get()?.buttonGiveHintClicked()
+        mWeakReference.get()?.buttonHintClicked()
     }
     fun handleBackButtonClick()
     {
@@ -31,5 +31,17 @@ class MainActivityListenersViewModel(activity: MainActivity) {
     fun handleUndoButtonClick()
     {
         mWeakReference.get()?.buttonUndoClicked()
+    }
+    fun handleRestartButtonClick()
+    {
+        mWeakReference.get()?.buttonRestartClicked()
+    }
+    fun handleNoteButtonClick()
+    {
+        mWeakReference.get()?.buttonNoteClicked()
+    }
+    fun handleUserButtonClick()
+    {
+        mWeakReference.get()?.buttonUserClicked()
     }
 }

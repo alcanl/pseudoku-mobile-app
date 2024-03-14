@@ -6,6 +6,10 @@
     <data>
         <import type="com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel"/>
         <import type="com.alcanl.sudoku.entity.SudokuMatrix"/>
+        <import type="com.alcanl.sudoku.entity.gameplay.GamePlay"/>
+        <import type="com.alcanl.sudoku.entity.User"/>
+        <variable name="user" type="User" />
+        <variable name="gamePlay" type="GamePlay" />
         <variable name="timer" type="String" />
         <variable name="matrix" type="SudokuMatrix" />
         <variable name="viewModel" type="MainActivityListenersViewModel" />
@@ -22,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="400dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -1030,7 +1035,7 @@
                         android:text="@{matrix.getValue(68)}"
                         android:textColor="@color/ap_black"
                         android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
 
                 </TableRow>
 
@@ -1324,26 +1329,12 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="20dp"
             android:background="@color/cardview_light_background"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textViewTimer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/ap_white"
-                android:text="@{timer}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.872"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.507" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -1356,10 +1347,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/pseudoku_high_logo"
-                tools:srcCompat="@drawable/pseudoku_high_logo" />
+                tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/imageButtonBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:onClick="@{()-> viewModel.handleBackButtonClick()}"
@@ -1369,10 +1360,11 @@
                 app:layout_constraintHorizontal_bias="0.043"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_back" />
+                app:srcCompat="@drawable/icon_back"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/imageButtonSettings"
                 android:layout_width="45dp"
                 android:layout_height="40dp"
                 android:onClick="@{()-> viewModel.handleSettingsButtonClick()}"
@@ -1382,14 +1374,45 @@
                 app:layout_constraintHorizontal_bias="0.153"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_settings" />
+                app:srcCompat="@drawable/icon_settings"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:text="@{user.toString()}"
+                    android:textColor="@color/dark_blue"
+                    android:textAlignment="center"
+                    tools:ignore="RtlCompat" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonUser"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:onClick="@{()->viewModel.handleUserButtonClick()}"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/icon_user"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="95dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -1500,7 +1523,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:background="@color/ap_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -1508,54 +1531,221 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
-            <ImageButton
-                android:id="@+id/imageButtonUndo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/round_button_image"
-                android:onClick="@{()->viewModel.handleUndoButtonClick()}"
-                android:scaleType="fitXY"
-                android:src="@android:drawable/btn_star"
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
+                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.229"
-                tools:srcCompat="@drawable/icon_undo" />
+                app:layout_constraintVertical_bias="0.533">
 
-            <ImageButton
-                android:id="@+id/imageButtonHint"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/round_button_image"
-                android:onClick="@{()->viewModel.handleHintButtonClick()}"
-                android:scaleType="fitXY"
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/round_button_image"
+                    android:onClick="@{()->viewModel.handleUndoButtonClick()}"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/icon_undo"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/textview_undo_text"
+                    android:textSize="12sp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.953"
+                app:layout_constraintHorizontal_bias="0.959"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.229"
-                app:srcCompat="@drawable/icon_hint" />
+                app:layout_constraintVertical_bias="0.533">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/textview_undo_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonUndo" />
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/round_button_image"
+                    android:onClick="@{()->viewModel.handleHintButtonClick()}"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/icon_hint"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/textview_hint_text"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/textview_hint_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="13dp"
+                    android:background="@color/yellow_hint"
+                    android:text="@{gamePlay.hintCount}"
+                    android:textAlignment="center"
+                    android:textColor="@color/ap_black"
+                    android:textSize="11sp"
+                    tools:ignore="RtlCompat" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonHint" />
+                app:layout_constraintHorizontal_bias="0.34"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.533">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/textview_restart_text"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/round_button_image"
+                    android:onClick="@{()->viewModel.handleRestartButtonClick()}"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/icon_restart"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.653"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.533">
+
+                <TextView
+                    android:id="@+id/textViewNoteOn_Off"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="13dp"
+                    android:background="@color/yellow_hint"
+                    android:text="@string/textview_note_mode_inactive_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/ap_black"
+                    android:textSize="11sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/textview_note_text"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/round_button_image"
+                    android:onClick="@{()->viewModel.handleNoteButtonClick()}"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/icon_pencil"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+            </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="@string/textview_difficulty_text"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:text="@{gamePlay.level}"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="@string/textview_error_count_text"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:text="@{gamePlay.errorCount}"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="@string/textview_duration_text"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/textViewTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:text="@{timer}"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

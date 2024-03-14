@@ -168,20 +168,6 @@ class MainActivity : AppCompatActivity() {
         else
             runOnUiThread { tableCellClickedNotSelectedCallback(view) }
     }
-    fun buttonGiveHintClicked()
-    {
-        val random = Random
-        val index = random.nextInt(1 , 9) * 10 + random.nextInt(1, 9)
-        val value = mSudokuMatrix.getValue(index)
-
-        if (value.isEmpty()) {
-            buttonGiveHintClicked()
-            return
-        }
-
-        ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView).text = value
-
-    }
     fun buttonBackClicked()
     {
 
@@ -191,6 +177,31 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun buttonUndoClicked()
+    {
+
+    }
+    fun buttonNoteClicked()
+    {
+
+    }
+    fun buttonHintClicked()
+    {
+        val random = Random
+        val index = random.nextInt(1 , 9) * 10 + random.nextInt(1, 9)
+        val value = mSudokuMatrix.getValue(index)
+
+        if (value.isEmpty()) {
+            buttonHintClicked()
+            return
+        }
+
+        ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView).text = value
+    }
+    fun buttonUserClicked()
+    {
+
+    }
+    fun buttonRestartClicked()
     {
 
     }
