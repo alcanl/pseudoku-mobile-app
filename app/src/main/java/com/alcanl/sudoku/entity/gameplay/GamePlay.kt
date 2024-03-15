@@ -8,7 +8,7 @@ import java.util.Stack
 data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: Int = 3, private var mResult: Boolean = false,
                     private var mMoveStack: Stack<Pair<Int, Int>> = Stack(), private var mEmptyBoxCounts: MutableMap<Int, Int> = HashMap(),
                     private var mGameDuration: Long = 0, private val mLevel: Level = Level.MEDIUM,
-                    private var mIsNoteModeActive: Boolean = false) {
+                    private var mIsNoteModeActive: Boolean = false, private var mScore: Int = 0) {
 
     init {
         (1..9).forEach { mEmptyBoxCounts[it] = 0 }
@@ -53,4 +53,5 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
     {
         mIsNoteModeActive = active
     }
+    fun getCurrentScore() = mScore.toString()
 }

@@ -36,6 +36,10 @@ class SudokuMatrix {
     {
         --mCounterArray[number - 1]
     }
+    fun getHint()
+    {
+
+    }
     private fun calculateNumberCounts()
     {
         mUnSolvedMatrix.forEach(this::calculateNumberCountsCallback)

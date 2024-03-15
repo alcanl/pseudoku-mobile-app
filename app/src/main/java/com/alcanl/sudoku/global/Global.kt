@@ -1,10 +1,16 @@
 package com.alcanl.sudoku.global
 
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
+import com.alcanl.android.app.sudoku.R
+
 const val TURKISH = "tr"
 const val EASY_TR = "Kolay"
 const val MEDIUM_TR = "Orta"
 const val HARD_TR = "Zor"
-const val ENGLISH_TAG = "en"
 const val EASY_LEVEL_COUNT = 37
 const val MEDIUM_LEVEL_COUNT = 32
 const val HARD_LEVEL_COUNT = 27
@@ -18,4 +24,11 @@ fun Array<IntArray>.transpose() : Array<IntArray> {
             t[j][i] = this[i][j]
 
     return t
+}
+
+fun TextView.setColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
+{
+    val drawable = this.background.current as LayerDrawable
+    (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color = AppCompatResources.getColorStateList(context, backgroundColor)
+    this.setTextColor(AppCompatResources.getColorStateList(context, textColor))
 }

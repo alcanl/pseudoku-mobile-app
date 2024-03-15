@@ -1,10 +1,8 @@
 package com.alcanl.sudoku.entity.level
 
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import com.alcanl.sudoku.global.EASY_LEVEL_COUNT
 import com.alcanl.sudoku.global.EASY_TR
-import com.alcanl.sudoku.global.ENGLISH_TAG
 import com.alcanl.sudoku.global.HARD_LEVEL_COUNT
 import com.alcanl.sudoku.global.HARD_TR
 import com.alcanl.sudoku.global.MEDIUM_LEVEL_COUNT
@@ -20,8 +18,7 @@ enum class Level(value: Int, levelTR: String) {
         return mValue
     }
     override fun toString(): String {
-        return if (Locale.current.language.equals(TURKISH, true)) mLevelTr else this.name.capitalize(
-            Locale(ENGLISH_TAG)
-        )
+        return if (Locale.current.language.equals(TURKISH, true)) mLevelTr
+            else this.name[0] + this.name.substring(1).lowercase()
     }
 }

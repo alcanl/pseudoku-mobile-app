@@ -975,7 +975,7 @@
                         android:text="@{matrix.getValue(64)}"
                         android:textColor="@color/ap_black"
                         android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/textView65"
@@ -1338,12 +1338,11 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/pseudoku_high_logo"
@@ -1378,30 +1377,31 @@
                 tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <FrameLayout
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintHorizontal_bias="0.926"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.6">
+                app:layout_constraintVertical_bias="0.457">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@{user.toString()}"
-                    android:textColor="@color/dark_blue"
                     android:textAlignment="center"
-                    tools:ignore="RtlCompat" />
+                    android:textColor="@color/dark_blue"
+                    android:textSize="8sp"
+                    tools:ignore="RtlCompat,SmallSp" />
 
                 <ImageButton
                     android:id="@+id/imageButtonUser"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_gravity="center"
                     android:onClick="@{()->viewModel.handleUserButtonClick()}"
-                    android:layout_gravity="center_horizontal"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/icon_user"
                     tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -1532,8 +1532,8 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
             <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.042"
@@ -1542,14 +1542,14 @@
                 app:layout_constraintVertical_bias="0.533">
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_button_image"
                     android:onClick="@{()->viewModel.handleUndoButtonClick()}"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_undo"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1557,13 +1557,13 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_undo_text"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.959"
@@ -1572,14 +1572,14 @@
                 app:layout_constraintVertical_bias="0.533">
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_button_image"
                     android:onClick="@{()->viewModel.handleHintButtonClick()}"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_hint"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1587,25 +1587,25 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_hint_text"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="13dp"
                     android:background="@color/yellow_hint"
                     android:text="@{gamePlay.hintCount}"
                     android:textAlignment="center"
                     android:textColor="@color/ap_black"
-                    android:textSize="11sp"
-                    tools:ignore="RtlCompat" />
+                    android:textSize="8sp"
+                    tools:ignore="RtlCompat,SmallSp" />
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.34"
@@ -1619,22 +1619,22 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_restart_text"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_button_image"
                     android:onClick="@{()->viewModel.handleRestartButtonClick()}"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_restart"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.653"
@@ -1643,36 +1643,35 @@
                 app:layout_constraintVertical_bias="0.533">
 
                 <TextView
-                    android:id="@+id/textViewNoteOn_Off"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="13dp"
-                    android:background="@color/yellow_hint"
-                    android:text="@string/textview_note_mode_inactive_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/ap_black"
-                    android:textSize="11sp"
-                    tools:ignore="RtlCompat" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_note_text"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_button_image"
                     android:onClick="@{()->viewModel.handleNoteButtonClick()}"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_pencil"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewNoteMode"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:text="@string/textview_note_mode_inactive_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/ap_black"
+                    android:textSize="8sp"
+                    tools:ignore="RtlCompat,SmallSp,TextSizeCheck" />
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1692,60 +1691,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 android:text="@string/textview_difficulty_text"
                 android:textColor="@color/ap_gray"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp,TextContrastCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@{gamePlay.level}"
                 android:textColor="@color/ap_gray"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 android:text="@string/textview_error_count_text"
                 android:textColor="@color/ap_gray"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp,TextContrastCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@{gamePlay.errorCount}"
                 android:textColor="@color/ap_gray"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:textAlignment="viewEnd"
-                android:layout_weight="1"
-                android:text="@string/textview_duration_text"
+                android:layout_weight="0"
+                android:text="@string/textview_score_text"
                 android:textColor="@color/ap_gray"
                 android:textSize="10sp"
-                tools:ignore="RtlCompat" />
+                tools:ignore="RtlCompat,SmallSp,TextContrastCheck" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="@{gamePlay.currentScore}"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp"
+                tools:ignore="RtlCompat,SmallSp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:text="@string/textview_duration_text"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/ap_gray"
+                android:textSize="10sp"
+                tools:ignore="RtlCompat,SmallSp,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/textViewTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="0"
                 android:text="@{timer}"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/ap_gray"
                 android:textSize="10sp"
-                tools:ignore="RtlCompat" />
+                tools:ignore="RtlCompat,SmallSp" />
+
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,5 @@
 package com.alcanl.sudoku
 
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,14 +8,16 @@ import android.view.View
 import android.widget.TableRow
 import android.widget.TextView
 import android.widget.ToggleButton
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.children
 import androidx.core.view.get
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.entity.SudokuMatrix
+import com.alcanl.sudoku.entity.User
 import com.alcanl.sudoku.entity.gameplay.GamePlay
+import com.alcanl.sudoku.global.setColor
 import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,13 +36,16 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var chronometerCounter: ChronometerCounter
     @Inject
-    lateinit var mSudokuMatrix: SudokuMatrix
+    lateinit var sudokuMatrix: SudokuMatrix
     @Inject
-    lateinit var mGamePlay: GamePlay
+    lateinit var gamePlay: GamePlay
+    @Inject
+    lateinit var user: User
+    private lateinit var mBinding : ActivityMainBinding
     private var mIsAnySelectedTextView = false
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
-    private lateinit var mBinding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -66,11 +69,14 @@ class MainActivity : AppCompatActivity() {
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.viewModel = MainActivityListenersViewModel(this)
-        mBinding.matrix = mSudokuMatrix
+        mBinding.matrix = sudokuMatrix
+        mBinding.gamePlay = gamePlay
+        mBinding.user = user
     }
     private fun tableCellClickedSelectedCallback(view: TextView)
     {
-        setTextViewColor(view, com.androidplot.R.color.ap_white, com.androidplot.R.color.ap_black)
+        view.setColor(this)
+        runOnUiThread { setLineBackground(resources.getResourceEntryName(view.id).substring(8).toInt()) }
         view.isSelected = false
         mIsAnySelectedTextView = false
         mSelectedTextView = null
@@ -78,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     private fun tableCellClickedNotSelectedCallback(view: TextView)
     {
         mSelectedTextView = view
-        setTextViewColor(view, R.color.aqua, com.androidplot.R.color.ap_white)
+        view.setColor(this, R.color.aqua, com.androidplot.R.color.ap_white)
         mIsAnySelectedTextView = true
         view.isSelected = true
 
@@ -87,26 +93,20 @@ class MainActivity : AppCompatActivity() {
             evaluateTheMove(view, mSelectedToggleButton!!)
         }
     }
-    private fun setTextViewColor(view: TextView, backgroundColor: Int, textColor: Int)
-    {
-        val drawable = view.background.current as LayerDrawable
-        (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color = AppCompatResources.getColorStateList(this, backgroundColor)
-        view.setTextColor(AppCompatResources.getColorStateList(this, textColor))
-    }
     @Synchronized
     private fun trueMoveCallback(view: TextView)
     {
-        setTextViewColor(view, R.color.trueMove, com.androidplot.R.color.ap_white)
+        view.setColor(this, R.color.trueMove, com.androidplot.R.color.ap_white)
 
         val value = mSelectedToggleButton!!.text.toString().toInt()
         view.isClickable = false
         clearSelects()
 
-        mSudokuMatrix.decreaseNumberCount(value)
-        if (mSudokuMatrix.getNumberCounts()[value - 1] == 0)
+        sudokuMatrix.decreaseNumberCount(value)
+        if (sudokuMatrix.getNumberCounts()[value - 1] == 0)
             mBinding.linearLayoutButtons.children.elementAt(value - 1).visibility = View.INVISIBLE
 
-        Handler(Looper.myLooper()!!).postDelayed({setTextViewColor(view, com.androidplot.R.color.ap_white, com.androidplot.R.color.ap_black)}, 2000)
+        Handler(Looper.myLooper()!!).postDelayed({view.setColor(this)}, 2000)
     }
     private fun clearSelects()
     {
@@ -117,15 +117,14 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun falseMoveCallback(view: TextView)
     {
-        setTextViewColor(view, R.color.falseMove, com.androidplot.R.color.ap_white)
+        view.setColor(this, R.color.falseMove, com.androidplot.R.color.ap_white)
         clearSelects()
         Handler(Looper.myLooper()!!).postDelayed(
-            {setTextViewColor(view,
-                com.androidplot.R.color.ap_white, com.androidplot.R.color.ap_black)
-                mGamePlay.apply {
+            {view.setColor(this)
+                gamePlay.apply {
                     if (checkIfExistErrorCount()) {
                         errorDone()
-                        setTextViewColor(view, com.androidplot.R.color.ap_white, com.androidplot.R.color.ap_black)
+                        view.setColor(this@MainActivity)
                         view.text = ""
                     }
                     else
@@ -137,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     {
         val value = toggleButton.text.toString().toInt()
         val index = resources.getResourceEntryName(view.id).substring(8).toInt()
-        if (mSudokuMatrix.isTrueValue(value, index))
+        if (sudokuMatrix.isTrueValue(value, index))
             runOnUiThread { trueMoveCallback(mSelectedTextView!!) }
         else
             runOnUiThread { falseMoveCallback(mSelectedTextView!!) }
@@ -145,6 +144,21 @@ class MainActivity : AppCompatActivity() {
     private fun stopGame()
     {
 
+    }
+    private fun setLineBackground(index: Int)
+    {
+        var tableRow: TableRow
+        var textView: TextView
+        for (i in 0..<mBinding.tableLayoutMain.size) {
+            tableRow = mBinding.tableLayoutMain[i] as TableRow
+            for (k in 0..<tableRow.size) {
+                textView = tableRow[k] as TextView
+                if (index != i * 10 + k && index % 10 == k || index / 10 == i)
+                    textView.setColor(this, backgroundColor = R.color.line_color)
+                else
+                    textView.setColor(this)
+            }
+        }
     }
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
@@ -154,10 +168,6 @@ class MainActivity : AppCompatActivity() {
             mSelectedTextView!!.text = toggleButton.text
             evaluateTheMove(mSelectedTextView!!, toggleButton)
         }
-    }
-    fun buttonNewGameClicked()
-    {
-        mBinding.matrix!!.generateNewMatrix()
     }
     fun tableCellClicked(view: TextView)
     {
@@ -182,20 +192,29 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonNoteClicked()
     {
-
+        val current = gamePlay.isNoteModeActive()
+        gamePlay.setNoteMode(!current)
+        mBinding.textViewNoteMode.text = getText(
+            if (current)
+                R.string.textview_note_mode_active_text
+            else
+                R.string.textview_note_mode_inactive_text)
     }
     fun buttonHintClicked()
     {
-        val random = Random
-        val index = random.nextInt(1 , 9) * 10 + random.nextInt(1, 9)
-        val value = mSudokuMatrix.getValue(index)
+        runOnUiThread {
+            val random = Random
+            val index = random.nextInt(1, 9) * 10 + random.nextInt(1, 9)
+            val value = sudokuMatrix.getValue(index)
 
-        if (value.isEmpty()) {
-            buttonHintClicked()
-            return
+            if (value.isEmpty()) {
+                buttonHintClicked()
+                return@runOnUiThread
+            }
+
+            ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView).text =
+                value
         }
-
-        ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView).text = value
     }
     fun buttonUserClicked()
     {

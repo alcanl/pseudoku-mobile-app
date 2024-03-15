@@ -12,10 +12,11 @@
     <string name="textview_restart_text" translatable="true">Restart</string>
     <string name="textview_undo_text" translatable="true">Undo</string>
     <string name="textview_hint_text" translatable="true">Hint</string>
-    <string name="textview_difficulty_text" translatable="true">Difficulty:</string>
-    <string name="textview_error_count_text" translatable="true">Mistakes:</string>
-    <string name="textview_duration_text" translatable="true">Duration:</string>
+    <string name="textview_difficulty_text" translatable="true">Difficulty: </string>
+    <string name="textview_error_count_text" translatable="true">Mistakes: </string>
+    <string name="textview_duration_text" translatable="true">Duration: </string>
     <string name="textview_note_text" translatable="true">Note</string>
     <string name="textview_note_mode_active_text" translatable="true">On</string>
     <string name="textview_note_mode_inactive_text" translatable="true">Off</string>
+    <string name="textview_score_text" translatable="true">Score: </string>
 </resources>
