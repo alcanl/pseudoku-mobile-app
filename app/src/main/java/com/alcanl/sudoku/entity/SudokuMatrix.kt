@@ -7,6 +7,7 @@ import kotlin.random.Random
 class SudokuMatrix {
     private lateinit var mSolvedMatrix: Array<IntArray>
     private val mUnSolvedMatrix: Array<IntArray>
+    private lateinit var mSolvingMatrix : Array<IntArray>
     private val mCounterArray : IntArray = IntArray(9)
     private lateinit var mLevel : Level
 
@@ -26,6 +27,7 @@ class SudokuMatrix {
         prepareUnSolvedMatrix()
         mCounterArray.fill(9)
         calculateNumberCounts()
+        mSolvingMatrix = mUnSolvedMatrix.clone()
     }
     fun getValue(index: Int) : String
     {
@@ -73,6 +75,14 @@ class SudokuMatrix {
         }
 
         unSolvedMap.keys.forEach { mUnSolvedMatrix[it / 10][it % 10] = unSolvedMap[it]!! }
+    }
+    fun setCell(index: Int, value: Int)
+    {
+        mSolvingMatrix[index / 10][index % 10] = value
+    }
+    fun clearCell(index: Int)
+    {
+        setCell(index, 0)
     }
 
 }

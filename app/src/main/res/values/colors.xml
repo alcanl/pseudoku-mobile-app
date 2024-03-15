@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="aqua">#8FF2F1</color>
     <color name="falseMove">#b02e34</color>
-    <color name="trueMove">#66F297</color>
+    <color name="trueMove">#3486eb</color>
     <color name="yellow_hint">#ecf542</color>
     <color name="dark_blue">#2441B4</color>
     <color name="line_color">#c3e8e3</color>

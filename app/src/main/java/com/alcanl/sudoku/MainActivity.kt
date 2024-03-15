@@ -17,6 +17,8 @@ import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.entity.SudokuMatrix
 import com.alcanl.sudoku.entity.User
 import com.alcanl.sudoku.entity.gameplay.GamePlay
+import com.alcanl.sudoku.global.disableNoteMode
+import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.setColor
 import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var user: User
     private lateinit var mBinding : ActivityMainBinding
-    private var mIsAnySelectedTextView = false
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     {
         super.onCreate(savedInstanceState)
         initialize()
+        tableCellClicked(mBinding.textView0)
     }
     private fun initialize()
     {
@@ -72,59 +74,52 @@ class MainActivity : AppCompatActivity() {
         mBinding.gamePlay = gamePlay
         mBinding.user = user
     }
-    private fun tableCellClickedSelectedCallback(view: TextView)
+    private fun tableCellClickedCallback(textView: TextView)
     {
-        view.setColor(this)
-        runOnUiThread { setLineBackground(resources.getResourceEntryName(view.id).substring(8).toInt()) }
-        view.isSelected = false
-        mIsAnySelectedTextView = false
-        mSelectedTextView = null
-    }
-    private fun tableCellClickedNotSelectedCallback(view: TextView)
-    {
-        mSelectedTextView = view
-        view.setColor(this, R.color.aqua, com.androidplot.R.color.ap_white)
-        mIsAnySelectedTextView = true
-        view.isSelected = true
-
-        if (mSelectedToggleButton != null && mSelectedToggleButton!!.isSelected) {
-            view.text  = mSelectedToggleButton?.text?.toString()
-            evaluateTheMove(view, mSelectedToggleButton!!)
+        if (gamePlay.isNoteModeActive()) {
+            tableCellClickedCallbackNoteModeOn(textView)
+            return
         }
+        mSelectedTextView = textView
+        runOnUiThread { setLineBackground(resources.getResourceEntryName(textView.id)
+            .substring(8).toInt()) }
+    }
+    private fun tableCellClickedCallbackNoteModeOn(textView: TextView)
+    {
+        textView.enableNoteMode(this)
     }
     @Synchronized
-    private fun trueMoveCallback(view: TextView)
+    private fun trueMoveCallback(textView: TextView)
     {
-        view.setColor(this, R.color.trueMove, com.androidplot.R.color.ap_white)
+        textView.setTextColor(getColor(R.color.trueMove))
 
         val value = mSelectedToggleButton!!.text.toString().toInt()
-        view.isClickable = false
-        clearSelects()
+        textView.isClickable = false
 
         sudokuMatrix.decreaseNumberCount(value)
+        sudokuMatrix.setCell(resources.getResourceEntryName(textView.id).substring(8).toInt(), value)
+
         if (sudokuMatrix.getNumberCounts()[value - 1] == 0)
             mBinding.linearLayoutButtons.children.elementAt(value - 1).visibility = View.INVISIBLE
 
-        Handler(Looper.myLooper()!!).postDelayed({view.setColor(this)}, 2000)
+        Handler(Looper.myLooper()!!).postDelayed({textView.setTextColor(getColor(com.androidplot.R.color.ap_black))}, 2000)
     }
     private fun clearSelects()
     {
-        mIsAnySelectedTextView = false
         mSelectedTextView = null
         mSelectedToggleButton = null
     }
     @Synchronized
     private fun falseMoveCallback(view: TextView)
     {
-        view.setColor(this, R.color.falseMove, com.androidplot.R.color.ap_white)
+        view.setTextColor(getColor(R.color.falseMove))
         clearSelects()
         Handler(Looper.myLooper()!!).postDelayed(
-            {view.setColor(this)
-                gamePlay.apply {
+            { gamePlay.apply {
                     if (checkIfExistErrorCount()) {
                         errorDone()
-                        view.setColor(this@MainActivity)
                         view.text = ""
+                        view.setTextColor(getColor(com.androidplot.R.color.ap_black))
                     }
                     else
                         stopGame()
@@ -152,7 +147,9 @@ class MainActivity : AppCompatActivity() {
             tableRow = mBinding.tableLayoutMain[i] as TableRow
             for (k in 0..<tableRow.size) {
                 textView = tableRow[k] as TextView
-                if (index != i * 10 + k && index % 10 == k || index / 10 == i)
+                if (index == i * 10 + k)
+                    textView.setColor(this, backgroundColor = R.color.aqua)
+                else if (index % 10 == k || index / 10 == i)
                     textView.setColor(this, backgroundColor = R.color.line_color)
                 else
                     textView.setColor(this)
@@ -161,21 +158,18 @@ class MainActivity : AppCompatActivity() {
     }
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
-        mSelectedToggleButton = toggleButton
+        if (mSelectedTextView == null || gamePlay.isNoteModeActive())
+            return
 
-        if (mSelectedTextView != null) {
-            mSelectedTextView!!.text = toggleButton.text
-            evaluateTheMove(mSelectedTextView!!, toggleButton)
-        }
+        if (mSelectedTextView?.isSelected!!)
+            mSelectedTextView?.disableNoteMode(this)
+
+        mSelectedTextView!!.text = toggleButton.text
+        evaluateTheMove(mSelectedTextView!!, toggleButton)
     }
     fun tableCellClicked(view: TextView)
     {
-        if (view.isSelected)
-            runOnUiThread { tableCellClickedSelectedCallback(view) }
-        else if (mIsAnySelectedTextView)
-            return
-        else
-            runOnUiThread { tableCellClickedNotSelectedCallback(view) }
+        runOnUiThread { tableCellClickedCallback(view) }
     }
     fun buttonBackClicked()
     {
@@ -187,25 +181,40 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonUndoClicked()
     {
+        val (index, value, isTrue) = gamePlay.useUndo()
+        val textView = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
 
+        mBinding.apply {
+            tableCellClicked(textView)
+            textView.setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
+            textView.text = value
+        }
     }
     fun buttonNoteClicked()
     {
         val current = gamePlay.isNoteModeActive()
-        gamePlay.setNoteMode(!current)
         mBinding.textViewNoteMode.text = getText(
             if (current)
                 R.string.textview_note_mode_active_text
             else
                 R.string.textview_note_mode_inactive_text)
+        gamePlay.setNoteMode(!current)
+
+
     }
     fun buttonHintClicked()
     {
-        runOnUiThread {
-            val pair = sudokuMatrix.getHint()
+        if (!gamePlay.checkIfExistHintCount())
+            return
 
-            ((mBinding.tableLayoutMain[pair.first / 10] as TableRow)[pair.first % 10] as TextView)
-                .text = pair.second
+        runOnUiThread {
+            val (index, value) = sudokuMatrix.getHint()
+
+            ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView)
+                .text = value
+
+            gamePlay.saveMove(Triple(index, value, true))
+            gamePlay.useHint()
         }
     }
     fun buttonUserClicked()
