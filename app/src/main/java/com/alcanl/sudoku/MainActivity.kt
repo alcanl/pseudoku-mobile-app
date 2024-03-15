@@ -25,7 +25,6 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -203,17 +202,10 @@ class MainActivity : AppCompatActivity() {
     fun buttonHintClicked()
     {
         runOnUiThread {
-            val random = Random
-            val index = random.nextInt(1, 9) * 10 + random.nextInt(1, 9)
-            val value = sudokuMatrix.getValue(index)
+            val pair = sudokuMatrix.getHint()
 
-            if (value.isEmpty()) {
-                buttonHintClicked()
-                return@runOnUiThread
-            }
-
-            ((mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView).text =
-                value
+            ((mBinding.tableLayoutMain[pair.first / 10] as TableRow)[pair.first % 10] as TextView)
+                .text = pair.second
         }
     }
     fun buttonUserClicked()

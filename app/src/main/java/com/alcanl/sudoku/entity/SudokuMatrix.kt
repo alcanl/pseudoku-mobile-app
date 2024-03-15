@@ -36,9 +36,18 @@ class SudokuMatrix {
     {
         --mCounterArray[number - 1]
     }
-    fun getHint()
+    fun getHint() : Pair<Int, String>
     {
+        val random = Random
+        var index : Int
+        var value : Int
 
+        do {
+            index = random.nextInt(1,9) * 10 + random.nextInt(1, 9)
+            value = mUnSolvedMatrix[index / 10][index % 10]
+        } while (value != 0)
+
+        return Pair(index, mSolvedMatrix[index / 10][index % 10].toString())
     }
     private fun calculateNumberCounts()
     {
