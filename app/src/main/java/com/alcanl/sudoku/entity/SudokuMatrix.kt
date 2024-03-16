@@ -10,17 +10,18 @@ class SudokuMatrix {
     private lateinit var mSolvingMatrix : Array<IntArray>
     private val mCounterArray : IntArray = IntArray(9)
     private lateinit var mLevel : Level
-
     init {
-        setLeveL(Level.MEDIUM)
+        setLeveL()
         mUnSolvedMatrix = Array(9) { IntArray(9) }
         generateNewMatrix()
     }
+    private fun isCompletedCallback(intArray: IntArray) = intArray.none { it == 0 }
     fun setLeveL(level: Level = Level.EASY)
     {
         mLevel = level
     }
     fun isTrueValue(value: Int, index: Int) = mSolvedMatrix[index / 10][index % 10] == value
+    fun isAvailableValueOver(value: Int) = mCounterArray[value - 1] == 0
     fun generateNewMatrix()
     {
         mSolvedMatrix = SudokuGenerator.generate()
@@ -31,12 +32,15 @@ class SudokuMatrix {
     }
     fun getValue(index: Int) : String
     {
-       return if (mUnSolvedMatrix[index / 10][index % 10] == 0) "" else mUnSolvedMatrix[index / 10][index % 10].toString()
+       return if (mSolvingMatrix[index / 10][index % 10] == 0) "" else mSolvingMatrix[index / 10][index % 10].toString()
     }
-    fun getNumberCounts() : IntArray = mCounterArray
     fun decreaseNumberCount(number: Int)
     {
         --mCounterArray[number - 1]
+    }
+    fun increaseNumberCount(number: Int)
+    {
+        ++mCounterArray[number - 1]
     }
     fun getHint() : Pair<Int, String>
     {
@@ -83,6 +87,10 @@ class SudokuMatrix {
     fun clearCell(index: Int)
     {
         setCell(index, 0)
+    }
+    fun isCompleted() : Boolean
+    {
+        return mSolvingMatrix.none { isCompletedCallback(it)}
     }
 
 }

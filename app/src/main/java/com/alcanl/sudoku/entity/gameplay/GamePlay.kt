@@ -5,14 +5,11 @@ import java.util.Stack
 
 
 
-data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: Int = 3, private var mResult: Boolean = false,
-                    private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack(), private var mEmptyBoxCounts: MutableMap<Int, Int> = HashMap(),
+data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: Int = 0, private var mResult: Boolean = false,
+                    private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack(),
                     private var mGameDuration: Long = 0, private val mLevel: Level = Level.MEDIUM,
                     private var mIsNoteModeActive: Boolean = false, private var mScore: Int = 0) {
 
-    init {
-        (1..9).forEach { mEmptyBoxCounts[it] = 0 }
-    }
     fun saveMove(triple: Triple<Int, String, Boolean>)
     {
         mMoveStack.push(triple)
@@ -29,23 +26,23 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
         --mHintCount
     }
     fun checkIfExistHintCount() : Boolean = mHintCount > 0
-    fun checkIfExistErrorCount() : Boolean = mErrorCount > 0
+    fun checkIfExistErrorCount() : Boolean = mErrorCount <= 3
     fun errorDone()
     {
-        if (mErrorCount <= 0)
+        if (mErrorCount >= 3)
             return
 
-        --mErrorCount
+        ++mErrorCount
     }
-    fun setWin()
+    fun isWin(result: Boolean)
     {
-        mResult = true
+        mResult = result
     }
     fun setGameDuration(duration: Long)
     {
         mGameDuration = duration
     }
-    fun getHintCount() = mHintCount.toString()
+    fun getHintCount() = "$mHintCount"
     fun getLevel() = mLevel.toString()
     fun getErrorCount() = "$mErrorCount/3"
     fun isNoteModeActive() = mIsNoteModeActive

@@ -5,7 +5,9 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.view.Gravity
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.databinding.BindingAdapter
 import com.alcanl.android.app.sudoku.R
 
 const val TURKISH = "tr"
@@ -46,4 +48,11 @@ fun TextView.disableNoteMode(context: Context)
     this.gravity = Gravity.CENTER
     this.setTextColor(context.getColor(com.androidplot.R.color.ap_black))
     this.isSelected = false
+}
+fun TextView.getMoveInfo(toggleButton: ToggleButton) : Pair<Int, String>
+{
+    val index = resources.getResourceEntryName(this.id).substring(8).toInt()
+    val value = toggleButton.text.toString()
+
+    return Pair(index, value)
 }
