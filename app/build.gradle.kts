@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -49,19 +50,17 @@ android {
 }
 
 dependencies {
-
+    val roomVersion = "2.6.1"
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.androidplot:androidplot-core:1.5.10")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("com.google.dagger:hilt-android-gradle-plugin:2.50")
-    implementation("com.github.wisalmuhammad:Android-Battery-View:1.0.0")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
@@ -73,7 +72,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.3")
     implementation("androidx.compose.material:material:1.6.3")
 }
-
 
 kapt {
     correctErrorTypes = true

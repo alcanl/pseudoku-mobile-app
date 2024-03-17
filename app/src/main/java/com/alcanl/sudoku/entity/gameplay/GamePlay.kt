@@ -28,7 +28,7 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
         mHintMove = true
     }
     fun checkIfExistHintCount() : Boolean = mHintCount > 0
-    fun checkIfExistErrorCount() : Boolean = mErrorCount <= 3
+    fun checkIfExistErrorCount() : Boolean = mErrorCount < 3
     fun errorDone()
     {
         if (mErrorCount >= 3)

@@ -139,17 +139,17 @@ class MainActivity : AppCompatActivity() {
     {
         textView.setTextColor(getColor(R.color.falseMove))
         val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
-        gamePlay.apply {
-            if (checkIfExistErrorCount()) {
+        if (gamePlay.checkIfExistErrorCount()) {
+            sudokuMatrix.setCell(index, value.toInt())
+            gamePlay.apply {
                 errorDone()
                 getIncorrectMoveScore()
-                sudokuMatrix.setCell(index, value.toInt())
-                mBinding.invalidateAll()
                 saveMove(Triple(index, value, false))
             }
-            else
-                stopGame()
+            mBinding.invalidateAll()
         }
+        else
+            stopGame()
     }
     @Synchronized
     private fun buttonRestartCallback()
