@@ -102,14 +102,8 @@ class MainActivity : AppCompatActivity() {
         textView.setTextColor(getColor(R.color.trueMove))
         val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
         textView.isClickable = false
-
-        sudokuMatrix.apply {
-            setCell(index, value.toInt())
-            decreaseNumberCount(value.toInt())
-            if (isAvailableValueCountOver(value.toInt()))
-                mBinding.linearLayoutButtons.children.elementAt(value.toInt() - 1).visibility = View.INVISIBLE
-        }
-        gamePlay.saveMove(Triple(index, value, true))
+        handleCorrectMoveOnMatrix(index, value)
+        handleCorrectMoveOnGamePlay(index, value)
         mBinding.invalidateAll()
         mSelectedTextView = null
 
@@ -120,6 +114,26 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.myLooper()!!).postDelayed({textView.setTextColor(getColor(com.androidplot.R.color.ap_black))}, 2000)
     }
+    private fun handleCorrectMoveOnMatrix(index: Int, value: String)
+    {
+        sudokuMatrix.apply {
+            setCell(index, value.toInt())
+            decreaseNumberCount(value.toInt())
+            if (isAvailableValueCountOver(value.toInt()))
+                mBinding.linearLayoutButtons.children.elementAt(value.toInt() - 1).visibility = View.INVISIBLE
+        }
+    }
+    private fun handleCorrectMoveOnGamePlay(index: Int, value: String)
+    {
+        gamePlay.apply {
+            saveMove(Triple(index, value, true))
+            if (!isHintMove()) {
+                getCorrectMoveScore()
+            }
+            else
+                clearHintMove()
+        }
+    }
     @Synchronized
     private fun falseMoveCallback(textView: TextView)
     {
@@ -128,6 +142,7 @@ class MainActivity : AppCompatActivity() {
         gamePlay.apply {
             if (checkIfExistErrorCount()) {
                 errorDone()
+                getIncorrectMoveScore()
                 sudokuMatrix.setCell(index, value.toInt())
                 mBinding.invalidateAll()
                 saveMove(Triple(index, value, false))
@@ -280,11 +295,11 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonBackClicked()
     {
-
+        TODO("Not implemented yet")
     }
     fun buttonSettingsClicked()
     {
-
+        TODO("Not implemented yet")
     }
     fun buttonUndoClicked()
     {
@@ -306,7 +321,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonUserClicked()
     {
-
+        TODO("Not implemented yet")
     }
 
     fun buttonRestartClicked()

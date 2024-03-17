@@ -9,6 +9,7 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
                     private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack(),
                     private var mGameDuration: Long = 0, private val mLevel: Level = Level.MEDIUM,
                     private var mIsNoteModeActive: Boolean = false, private var mScore: Int = 0) {
+    private var mHintMove = false
 
     fun saveMove(triple: Triple<Int, String, Boolean>)
     {
@@ -24,6 +25,7 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
             return
 
         --mHintCount
+        mHintMove = true
     }
     fun checkIfExistHintCount() : Boolean = mHintCount > 0
     fun checkIfExistErrorCount() : Boolean = mErrorCount <= 3
@@ -60,5 +62,15 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
         mIsNoteModeActive = false
         mMoveStack.clear()
         mScore = 0
+    }
+    fun clearHintMove() { mHintMove = false }
+    fun isHintMove() = mHintMove
+    fun getCorrectMoveScore()
+    {
+        mScore += 50
+    }
+    fun getIncorrectMoveScore()
+    {
+        mScore -= 100
     }
 }
