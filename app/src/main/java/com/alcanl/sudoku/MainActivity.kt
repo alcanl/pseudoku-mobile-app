@@ -11,6 +11,7 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.children
+import androidx.core.view.forEach
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
     private lateinit var mBinding : ActivityMainBinding
+    private lateinit var mCounter : Thread
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -66,8 +68,11 @@ class MainActivity : AppCompatActivity() {
     }
     private fun counterCallback()
     {
-        chronometerCounter.handleCounter()
-        mBinding.timer = chronometerCounter.toString()
+        mCounter = Thread.currentThread()
+        if (!mCounter.isInterrupted) {
+            chronometerCounter.handleCounter()
+            mBinding.timer = chronometerCounter.toString()
+        }
     }
     private fun initBinding()
     {
@@ -101,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         sudokuMatrix.apply {
             setCell(index, value.toInt())
             decreaseNumberCount(value.toInt())
-            if (isAvailableValueOver(value.toInt()))
+            if (isAvailableValueCountOver(value.toInt()))
                 mBinding.linearLayoutButtons.children.elementAt(value.toInt() - 1).visibility = View.INVISIBLE
         }
         gamePlay.saveMove(Triple(index, value, true))
@@ -126,14 +131,69 @@ class MainActivity : AppCompatActivity() {
                 sudokuMatrix.setCell(index, value.toInt())
                 mBinding.invalidateAll()
                 saveMove(Triple(index, value, false))
-                Handler(Looper.myLooper()!!).postDelayed(
-                    { textView.setTextColor(getColor(com.androidplot.R.color.ap_black))
-                        sudokuMatrix.clearCell(index)
-                        mBinding.invalidateAll()
-                    }, 2000)
             }
             else
                 stopGame()
+        }
+    }
+    @Synchronized
+    private fun buttonRestartCallback()
+    {
+        gamePlay.createNewGamePlay()
+        chronometerCounter.clearTimer()
+        sudokuMatrix.resetCurrentMatrix()
+        runOnUiThread(this::clearTableBackgroundCallback)
+        mBinding.invalidateAll()
+    }
+    private fun clearTableBackgroundCallback()
+    {
+        mBinding.tableLayoutMain.children.forEach { view ->
+            (view as TableRow).forEach {
+                (it as TextView).setColor(this@MainActivity)
+            }
+        }
+    }
+    @Synchronized
+    private fun buttonHintCallback()
+    {
+        if (!gamePlay.checkIfExistHintCount())
+            return
+
+        gamePlay.useHint()
+        val (index, value) = sudokuMatrix.getHint()
+        val textView = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
+        mSelectedToggleButton = mBinding.linearLayoutButtons[value.toInt() - 1] as ToggleButton
+
+        runOnUiThread {
+            tableCellClickedCallback(textView)
+            trueMoveCallback(textView)
+            mBinding.invalidateAll()
+        }
+    }
+    @Synchronized
+    private fun buttonUndoCallback()
+    {
+        try {
+            val (index, value, isTrue) = gamePlay.useUndo()
+            val textView =
+                (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
+            sudokuMatrix.apply {
+                clearCell(index)
+                increaseNumberCount(value.toInt())
+            }
+            runOnUiThread {
+                mSelectedTextView?.text = ""
+                mBinding.apply {
+                    tableCellClicked(textView)
+                    textView.setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
+                    textView.isClickable = true
+                    invalidateAll()
+                }
+            }
+        } catch (_: EmptyStackException) {
+            runOnUiThread {
+                Toast.makeText(this, "No Any Move Info", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun evaluateTheMove(view: TextView, toggleButton: ToggleButton)
@@ -147,6 +207,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun stopGame()
     {
+        gamePlay.apply {
+            isWin(false)
+            setGameDuration(chronometerCounter.toString())
+        }
+        mCounter.interrupt()
+
         AlertDialog.Builder(this@MainActivity)
             .setCancelable(false)
             .setTitle("Game Over")
@@ -173,7 +239,29 @@ class MainActivity : AppCompatActivity() {
     }
     private fun handleWin()
     {
-
+        gamePlay.isWin(true)
+        gamePlay.setGameDuration(chronometerCounter.toString())
+        AlertDialog.Builder(this)
+            .setCancelable(false)
+            .setPositiveButton("Yes") {_,_ -> startNewGame()}
+            .setNegativeButton("No") {_,_ -> finish()}
+            .setTitle("Congratulations, Its a win!")
+            .setMessage("Do you want to play a new game?")
+            .create().show()
+    }
+    private fun startNewGame()
+    {
+        threadPool.execute {
+            gamePlay.createNewGamePlay()
+            sudokuMatrix.generateNewMatrix()
+            mCounter.interrupt()
+            chronometerCounter.clearTimer()
+            initCounter()
+            mSelectedTextView = null
+            mSelectedToggleButton = null
+            runOnUiThread(this::clearTableBackgroundCallback)
+            mBinding.invalidateAll()
+        }
     }
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
@@ -200,24 +288,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonUndoClicked()
     {
-        try {
-            mSelectedTextView?.text = ""
-            val (index, value, isTrue) = gamePlay.useUndo()
-            val textView =
-                (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
-            sudokuMatrix.apply {
-                clearCell(index)
-                increaseNumberCount(value.toInt())
-            }
-            mBinding.apply {
-                tableCellClicked(textView)
-                textView.setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
-                textView.isClickable = true
-                invalidateAll()
-            }
-        } catch (_: EmptyStackException) {
-            Toast.makeText(this, "No Any Move Info", Toast.LENGTH_SHORT).show()
-        }
+        threadPool.execute(this::buttonUndoCallback)
     }
     fun buttonNoteClicked()
     {
@@ -231,26 +302,15 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonHintClicked()
     {
-        if (!gamePlay.checkIfExistHintCount())
-            return
-
-        gamePlay.useHint()
-        val (index, value) = sudokuMatrix.getHint()
-        val textView = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
-        mSelectedToggleButton = mBinding.linearLayoutButtons[value.toInt() - 1] as ToggleButton
-
-        runOnUiThread {
-            tableCellClickedCallback(textView)
-            trueMoveCallback(textView)
-            mBinding.invalidateAll()
-        }
+        threadPool.execute(this::buttonHintCallback)
     }
     fun buttonUserClicked()
     {
 
     }
+
     fun buttonRestartClicked()
     {
-
+        threadPool.execute(this::buttonRestartCallback)
     }
 }

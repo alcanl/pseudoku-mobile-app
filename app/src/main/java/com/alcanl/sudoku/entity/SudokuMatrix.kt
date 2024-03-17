@@ -5,14 +5,14 @@ import com.alcanl.sudoku.entity.level.Level
 import kotlin.random.Random
 
 class SudokuMatrix {
-    private lateinit var mSolvedMatrix: Array<IntArray>
-    private val mUnSolvedMatrix: Array<IntArray>
+
     private lateinit var mSolvingMatrix : Array<IntArray>
-    private val mCounterArray : IntArray = IntArray(9)
+    private lateinit var mSolvedMatrix: Array<IntArray>
+    private lateinit var mUnSolvedMatrix : Array<IntArray>
     private lateinit var mLevel : Level
+    private val mCounterArray : IntArray = IntArray(9)
     init {
         setLeveL()
-        mUnSolvedMatrix = Array(9) { IntArray(9) }
         generateNewMatrix()
     }
     private fun isCompletedCallback(intArray: IntArray) = intArray.none { it == 0 }
@@ -21,14 +21,15 @@ class SudokuMatrix {
         mLevel = level
     }
     fun isTrueValue(value: Int, index: Int) = mSolvedMatrix[index / 10][index % 10] == value
-    fun isAvailableValueOver(value: Int) = mCounterArray[value - 1] == 0
+    fun isAvailableValueCountOver(value: Int) = mCounterArray[value - 1] == 0
     fun generateNewMatrix()
     {
         mSolvedMatrix = SudokuGenerator.generate()
         prepareUnSolvedMatrix()
+        prepareSolvingMatrix()
         mCounterArray.fill(9)
         calculateNumberCounts()
-        mSolvingMatrix = mUnSolvedMatrix.clone()
+
     }
     fun getValue(index: Int) : String
     {
@@ -50,14 +51,14 @@ class SudokuMatrix {
 
         do {
             index = random.nextInt(1,9) * 10 + random.nextInt(1, 9)
-            value = mUnSolvedMatrix[index / 10][index % 10]
+            value = mSolvingMatrix[index / 10][index % 10]
         } while (value != 0)
 
         return Pair(index, mSolvedMatrix[index / 10][index % 10].toString())
     }
     private fun calculateNumberCounts()
     {
-        mUnSolvedMatrix.forEach(this::calculateNumberCountsCallback)
+        mSolvingMatrix.forEach(this::calculateNumberCountsCallback)
     }
     private fun calculateNumberCountsCallback(index: IntArray)
     {
@@ -66,6 +67,7 @@ class SudokuMatrix {
     }
     private fun prepareUnSolvedMatrix()
     {
+        mUnSolvedMatrix = Array(9) { IntArray(9) }
         val random = Random
         var index1 : Int
         var index2 : Int
@@ -80,6 +82,12 @@ class SudokuMatrix {
 
         unSolvedMap.keys.forEach { mUnSolvedMatrix[it / 10][it % 10] = unSolvedMap[it]!! }
     }
+    private fun prepareSolvingMatrix()
+    {
+        mSolvingMatrix = Array(9) { IntArray(9) }
+        var index = 0
+        mUnSolvedMatrix.forEach { it.copyInto(mSolvingMatrix[index++]) }
+    }
     fun setCell(index: Int, value: Int)
     {
         mSolvingMatrix[index / 10][index % 10] = value
@@ -90,7 +98,12 @@ class SudokuMatrix {
     }
     fun isCompleted() : Boolean
     {
-        return mSolvingMatrix.none { isCompletedCallback(it)}
+        return mSolvingMatrix.none { !isCompletedCallback(it) }
+    }
+    fun resetCurrentMatrix()
+    {
+        prepareSolvingMatrix()
+        calculateNumberCounts()
     }
 
 }

@@ -38,9 +38,9 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
     {
         mResult = result
     }
-    fun setGameDuration(duration: Long)
+    fun setGameDuration(duration: String)
     {
-        mGameDuration = duration
+        mGameDuration = duration.substring(0,2).toLong() * 3600 + duration.substring(3, 5).toLong() * 60 + duration.substring(6).toLong()
     }
     fun getHintCount() = "$mHintCount"
     fun getLevel() = mLevel.toString()
@@ -51,4 +51,14 @@ data class GamePlay(private var mHintCount : Int = 3, private var mErrorCount: I
         mIsNoteModeActive = active
     }
     fun getCurrentScore() = mScore.toString()
+    fun createNewGamePlay()
+    {
+        mHintCount = 3
+        mResult = false
+        mGameDuration = 0
+        mErrorCount = 0
+        mIsNoteModeActive = false
+        mMoveStack.clear()
+        mScore = 0
+    }
 }
