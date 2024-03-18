@@ -1,7 +1,7 @@
-package com.alcanl.sudoku.repository.entity
+package com.alcanl.sudoku.service
 
-import com.alcanl.sudoku.repository.entity.generator.SudokuGenerator
-import com.alcanl.sudoku.repository.entity.level.Level
+import com.alcanl.sudoku.service.generator.SudokuGenerator
+import com.alcanl.sudoku.repository.entity.gameplay.level.Level
 import kotlin.random.Random
 
 class SudokuMatrix {
@@ -16,6 +16,38 @@ class SudokuMatrix {
         generateNewMatrix()
     }
     private fun isCompletedCallback(intArray: IntArray) = intArray.none { it == 0 }
+    private fun calculateNumberCounts()
+    {
+        mSolvingMatrix.forEach(this::calculateNumberCountsCallback)
+    }
+    private fun calculateNumberCountsCallback(index: IntArray)
+    {
+        index.filter {
+            it != 0 }.forEach { --mCounterArray[it - 1] }
+    }
+    private fun prepareUnSolvedMatrix()
+    {
+        mUnSolvedMatrix = Array(9) { IntArray(9) }
+        val random = Random
+        var index1 : Int
+        var index2 : Int
+        val unSolvedMap = HashMap<Int,Int>()
+
+        while (unSolvedMap.size != mLevel.getValue()) {
+            index1 = random.nextInt(0, 9)
+            index2 = random.nextInt(0, 9)
+            if (!unSolvedMap.containsKey(index1 * 10 + index2))
+                unSolvedMap[index1 * 10 + index2] = mSolvedMatrix[index1][index2]
+        }
+
+        unSolvedMap.keys.forEach { mUnSolvedMatrix[it / 10][it % 10] = unSolvedMap[it]!! }
+    }
+    private fun prepareSolvingMatrix()
+    {
+        mSolvingMatrix = Array(9) { IntArray(9) }
+        var index = 0
+        mUnSolvedMatrix.forEach { it.copyInto(mSolvingMatrix[index++]) }
+    }
     fun setLeveL(level: Level = Level.EASY)
     {
         mLevel = level
@@ -55,38 +87,6 @@ class SudokuMatrix {
         } while (value != 0)
 
         return Pair(index, mSolvedMatrix[index / 10][index % 10].toString())
-    }
-    private fun calculateNumberCounts()
-    {
-        mSolvingMatrix.forEach(this::calculateNumberCountsCallback)
-    }
-    private fun calculateNumberCountsCallback(index: IntArray)
-    {
-        index.filter {
-            it != 0 }.forEach { --mCounterArray[it - 1] }
-    }
-    private fun prepareUnSolvedMatrix()
-    {
-        mUnSolvedMatrix = Array(9) { IntArray(9) }
-        val random = Random
-        var index1 : Int
-        var index2 : Int
-        val unSolvedMap = HashMap<Int,Int>()
-
-        while (unSolvedMap.size != mLevel.getValue()) {
-            index1 = random.nextInt(0, 9)
-            index2 = random.nextInt(0, 9)
-            if (!unSolvedMap.containsKey(index1 * 10 + index2))
-                unSolvedMap[index1 * 10 + index2] = mSolvedMatrix[index1][index2]
-        }
-
-        unSolvedMap.keys.forEach { mUnSolvedMatrix[it / 10][it % 10] = unSolvedMap[it]!! }
-    }
-    private fun prepareSolvingMatrix()
-    {
-        mSolvingMatrix = Array(9) { IntArray(9) }
-        var index = 0
-        mUnSolvedMatrix.forEach { it.copyInto(mSolvingMatrix[index++]) }
     }
     fun setCell(index: Int, value: Int)
     {

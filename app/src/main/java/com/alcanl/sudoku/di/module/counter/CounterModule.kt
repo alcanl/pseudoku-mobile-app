@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object Counter {
+object CounterModule {
     @Provides
     @Singleton
     fun createCounter() : ChronometerCounter = ChronometerCounter()

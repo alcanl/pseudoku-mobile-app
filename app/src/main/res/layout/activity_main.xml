@@ -5,13 +5,13 @@
 
     <data>
         <import type="com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel"/>
-        <import type="com.alcanl.sudoku.repository.entity.SudokuMatrix"/>
-        <import type="com.alcanl.sudoku.repository.entity.gameplay.GamePlay"/>
+        <import type="com.alcanl.sudoku.service.SudokuMatrix"/>
+        <import type="com.alcanl.sudoku.repository.entity.gameplay.GameInfo"/>
         <import type="com.alcanl.sudoku.repository.entity.User"/>
         <variable name="user" type="com.alcanl.sudoku.repository.entity.User" />
-        <variable name="gamePlay" type="com.alcanl.sudoku.repository.entity.gameplay.GamePlay" />
+        <variable name="gamePlay" type="com.alcanl.sudoku.repository.entity.gameplay.GameInfo" />
         <variable name="timer" type="String" />
-        <variable name="matrix" type="com.alcanl.sudoku.repository.entity.SudokuMatrix" />
+        <variable name="matrix" type="com.alcanl.sudoku.service.SudokuMatrix" />
         <variable name="viewModel" type="MainActivityListenersViewModel" />
     </data>
 

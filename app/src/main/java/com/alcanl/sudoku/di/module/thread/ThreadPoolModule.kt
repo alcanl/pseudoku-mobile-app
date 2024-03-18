@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ThreadPool {
+object ThreadPoolModule {
     @Provides
     @Singleton
     fun createThreadPool() : ExecutorService = Executors.newCachedThreadPool()

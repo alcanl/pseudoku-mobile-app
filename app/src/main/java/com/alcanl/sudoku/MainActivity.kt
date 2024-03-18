@@ -17,9 +17,9 @@ import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
-import com.alcanl.sudoku.repository.entity.SudokuMatrix
+import com.alcanl.sudoku.service.SudokuMatrix
 import com.alcanl.sudoku.repository.entity.User
-import com.alcanl.sudoku.repository.entity.gameplay.GamePlay
+import com.alcanl.sudoku.repository.entity.gameplay.GameInfo
 import com.alcanl.sudoku.global.disableNoteMode
 import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.getMoveInfo
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var sudokuMatrix: SudokuMatrix
     @Inject
-    lateinit var gamePlay: GamePlay
+    lateinit var gameInfo: GameInfo
     @Inject
     lateinit var user: User
     private var mSelectedTextView : TextView? = null
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.viewModel = MainActivityListenersViewModel(this)
         mBinding.matrix = sudokuMatrix
-        mBinding.gamePlay = gamePlay
+        mBinding.gamePlay = gameInfo
         mBinding.user = user
     }
     private fun tableCellClickedCallback(textView: TextView)
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         runOnUiThread { setLineBackground(resources.getResourceEntryName(textView.id)
             .substring(8).toInt()) }
 
-        if (gamePlay.isNoteModeActive())
+        if (gameInfo.isNoteModeActive())
             tableCellClickedCallbackNoteModeOn(textView)
 
     }
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun handleCorrectMoveOnGamePlay(index: Int, value: String)
     {
-        gamePlay.apply {
+        gameInfo.apply {
             saveMove(Triple(index, value, true))
             if (!isHintMove()) {
                 getCorrectMoveScore()
@@ -139,9 +139,9 @@ class MainActivity : AppCompatActivity() {
     {
         textView.setTextColor(getColor(R.color.falseMove))
         val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
-        if (gamePlay.checkIfExistErrorCount()) {
+        if (gameInfo.checkIfExistErrorCount()) {
             sudokuMatrix.setCell(index, value.toInt())
-            gamePlay.apply {
+            gameInfo.apply {
                 errorDone()
                 getIncorrectMoveScore()
                 saveMove(Triple(index, value, false))
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun buttonRestartCallback()
     {
-        gamePlay.createNewGamePlay()
+        gameInfo.createNewGamePlay()
         chronometerCounter.clearTimer()
         sudokuMatrix.resetCurrentMatrix()
         runOnUiThread(this::clearTableBackgroundCallback)
@@ -171,10 +171,10 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun buttonHintCallback()
     {
-        if (!gamePlay.checkIfExistHintCount())
+        if (!gameInfo.checkIfExistHintCount())
             return
 
-        gamePlay.useHint()
+        gameInfo.useHint()
         val (index, value) = sudokuMatrix.getHint()
         val textView = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
         mSelectedToggleButton = mBinding.linearLayoutButtons[value.toInt() - 1] as ToggleButton
@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonUndoCallback()
     {
         try {
-            val (index, value, isTrue) = gamePlay.useUndo()
+            val (index, value, isTrue) = gameInfo.useUndo()
             val textView =
                 (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
             sudokuMatrix.apply {
@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun stopGame()
     {
-        gamePlay.apply {
+        gameInfo.apply {
             isWin(false)
             setGameDuration(chronometerCounter.toString())
         }
@@ -254,8 +254,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun handleWin()
     {
-        gamePlay.isWin(true)
-        gamePlay.setGameDuration(chronometerCounter.toString())
+        gameInfo.isWin(true)
+        gameInfo.setGameDuration(chronometerCounter.toString())
         AlertDialog.Builder(this)
             .setCancelable(false)
             .setPositiveButton("Yes") {_,_ -> startNewGame()}
@@ -267,7 +267,7 @@ class MainActivity : AppCompatActivity() {
     private fun startNewGame()
     {
         threadPool.execute {
-            gamePlay.createNewGamePlay()
+            gameInfo.createNewGamePlay()
             sudokuMatrix.generateNewMatrix()
             mCounter.interrupt()
             chronometerCounter.clearTimer()
@@ -280,7 +280,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
-        if (mSelectedTextView == null || gamePlay.isNoteModeActive())
+        if (mSelectedTextView == null || gameInfo.isNoteModeActive())
             return
 
         if (mSelectedTextView?.isSelected!!)
@@ -307,8 +307,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonNoteClicked()
     {
-        val onOrOff = !gamePlay.isNoteModeActive()
-        gamePlay.setNoteMode(onOrOff)
+        val onOrOff = !gameInfo.isNoteModeActive()
+        gameInfo.setNoteMode(onOrOff)
         mBinding.textViewNoteMode.text = getText(
             if (onOrOff)
                 R.string.textview_note_mode_active_text

@@ -1,4 +1,4 @@
-package com.alcanl.sudoku.repository.entity.generator
+package com.alcanl.sudoku.service.generator
 
 import java.lang.StringBuilder
 object SudokuGenerator {

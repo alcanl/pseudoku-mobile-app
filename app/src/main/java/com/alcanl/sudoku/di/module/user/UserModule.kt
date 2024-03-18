@@ -9,8 +9,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class UserModule {
+object UserModule {
     @Provides
     @Singleton
-    fun createUser() : User = User("Alican", "Keçici", 1, 0, 0, "alican.kecici@gmail.com", 0)
+    fun createUser() : User = User("alcanl","1234","Alican", "Keçici", eMail = "alican.kecici@gmail.com")
 }
