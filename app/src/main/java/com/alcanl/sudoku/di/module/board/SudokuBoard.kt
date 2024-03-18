@@ -1,6 +1,6 @@
 package com.alcanl.sudoku.di.module.board
 
-import com.alcanl.sudoku.entity.SudokuMatrix
+import com.alcanl.sudoku.repository.entity.SudokuMatrix
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

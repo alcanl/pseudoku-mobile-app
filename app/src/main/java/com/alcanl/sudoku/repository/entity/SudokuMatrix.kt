@@ -1,7 +1,7 @@
-package com.alcanl.sudoku.entity
+package com.alcanl.sudoku.repository.entity
 
-import com.alcanl.sudoku.entity.generator.SudokuGenerator
-import com.alcanl.sudoku.entity.level.Level
+import com.alcanl.sudoku.repository.entity.generator.SudokuGenerator
+import com.alcanl.sudoku.repository.entity.level.Level
 import kotlin.random.Random
 
 class SudokuMatrix {

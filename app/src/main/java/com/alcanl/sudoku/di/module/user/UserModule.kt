@@ -1,6 +1,6 @@
 package com.alcanl.sudoku.di.module.user
 
-import com.alcanl.sudoku.entity.User
+import com.alcanl.sudoku.repository.entity.User
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -17,9 +17,9 @@ import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
-import com.alcanl.sudoku.entity.SudokuMatrix
-import com.alcanl.sudoku.entity.User
-import com.alcanl.sudoku.entity.gameplay.GamePlay
+import com.alcanl.sudoku.repository.entity.SudokuMatrix
+import com.alcanl.sudoku.repository.entity.User
+import com.alcanl.sudoku.repository.entity.gameplay.GamePlay
 import com.alcanl.sudoku.global.disableNoteMode
 import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.getMoveInfo

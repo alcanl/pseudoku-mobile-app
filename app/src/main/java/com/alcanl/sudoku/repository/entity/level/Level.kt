@@ -1,4 +1,4 @@
-package com.alcanl.sudoku.entity.level
+package com.alcanl.sudoku.repository.entity.level
 
 import androidx.compose.ui.text.intl.Locale
 import com.alcanl.sudoku.global.EASY_LEVEL_COUNT

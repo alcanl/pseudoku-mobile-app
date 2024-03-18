@@ -1,6 +1,6 @@
-package com.alcanl.sudoku.entity.gameplay
+package com.alcanl.sudoku.repository.entity.gameplay
 
-import com.alcanl.sudoku.entity.level.Level
+import com.alcanl.sudoku.repository.entity.level.Level
 import java.util.Stack
 
 
