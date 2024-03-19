@@ -6,10 +6,10 @@
     <data>
         <import type="com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel"/>
         <import type="com.alcanl.sudoku.service.SudokuMatrix"/>
-        <import type="com.alcanl.sudoku.repository.entity.gameplay.GameInfo"/>
+        <import type="com.alcanl.sudoku.repository.entity.gameinfo.GameInfo"/>
         <import type="com.alcanl.sudoku.repository.entity.User"/>
         <variable name="user" type="com.alcanl.sudoku.repository.entity.User" />
-        <variable name="gamePlay" type="com.alcanl.sudoku.repository.entity.gameplay.GameInfo" />
+        <variable name="gamePlay" type="com.alcanl.sudoku.repository.entity.gameinfo.GameInfo" />
         <variable name="timer" type="String" />
         <variable name="matrix" type="com.alcanl.sudoku.service.SudokuMatrix" />
         <variable name="viewModel" type="MainActivityListenersViewModel" />
@@ -1694,7 +1694,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="@{gamePlay.level}"
+                android:text="@{gamePlay.level.toString()}"
                 android:textColor="@color/ap_gray"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />

@@ -3,7 +3,7 @@ package com.alcanl.sudoku.repository.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.alcanl.sudoku.repository.entity.gameplay.GameInfo
+import java.io.Serializable
 import java.time.LocalDate
 
 @Entity(tableName = "users")
@@ -15,8 +15,7 @@ data class User(@PrimaryKey @ColumnInfo("user_name")var username: String = "",
                 @ColumnInfo("register_date") var registerDate : LocalDate = LocalDate.now(),
                 @ColumnInfo("e_mail") var eMail: String = "",
                 var level: Int = 1,
-                var games: MutableList<GameInfo>? = null
-){
+) : Serializable {
     override fun toString(): String {
         return String.format("$name $surName")
     }

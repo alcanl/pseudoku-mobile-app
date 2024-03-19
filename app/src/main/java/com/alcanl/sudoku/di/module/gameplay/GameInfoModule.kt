@@ -1,6 +1,6 @@
 package com.alcanl.sudoku.di.module.gameplay
 
-import com.alcanl.sudoku.repository.entity.gameplay.GameInfo
+import com.alcanl.sudoku.repository.entity.gameinfo.GameInfo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

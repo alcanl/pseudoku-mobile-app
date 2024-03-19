@@ -19,7 +19,7 @@ import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.service.SudokuMatrix
 import com.alcanl.sudoku.repository.entity.User
-import com.alcanl.sudoku.repository.entity.gameplay.GameInfo
+import com.alcanl.sudoku.repository.entity.gameinfo.GameInfo
 import com.alcanl.sudoku.global.disableNoteMode
 import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.getMoveInfo

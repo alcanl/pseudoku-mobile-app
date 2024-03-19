@@ -11,10 +11,11 @@ import com.alcanl.sudoku.repository.entity.User
 interface IUserDao {
     @Query("""SELECT * FROM users u WHERE u.user_name = :username AND u.password = :password""")
     fun findByUserNameAndPassword(username: String, password: String) : User?
-    fun existByUserNameAndPassword(username: String, password: String) = findByUserNameAndPassword(username, password) != null
+    @Query("""SELECT EXISTS(SELECT * FROM users u WHERE u.user_name = :username AND u.password = :password)""")
+    fun existByUserNameAndPassword(username: String, password: String) : Boolean
     @Insert
     fun save(user: User)
-    @Query("""SELECT * FROM users u WHERE u.user_name = :username""")
+    @Query("""SELECT EXISTS(SELECT * FROM users u WHERE u.user_name = :username)""")
     fun existById(username: String) : Boolean
     @Delete
     fun delete(user: User)

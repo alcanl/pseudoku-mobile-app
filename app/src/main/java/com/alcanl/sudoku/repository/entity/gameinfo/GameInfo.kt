@@ -1,23 +1,25 @@
-package com.alcanl.sudoku.repository.entity.gameplay
+package com.alcanl.sudoku.repository.entity.gameinfo
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.alcanl.sudoku.repository.entity.gameplay.level.Level
+import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
+import java.io.Serializable
 import java.util.Stack
 @Entity("game_info")
-data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 1,
+data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
                     @ColumnInfo("hint_count")var hintCount : Int = 3,
                     @ColumnInfo("mistake_count")var errorCount: Int = 0,
-                    @ColumnInfo("duration")var gameDuration: Long = 0,
+                    @ColumnInfo("duration")var gameDuration: Long = 0L,
+                    @ColumnInfo("user_name")var username: String = "",
                     var score: Int = 0,
                     var result: Boolean = false,
                     var level: Level = Level.MEDIUM,
                     @Ignore private var mIsNoteModeActive: Boolean = false,
                     @Ignore private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack()
-                    ) {
-    private var mHintMove = false
+                    ) : Serializable {
+    @Ignore private var mHintMove = false
 
     fun saveMove(triple: Triple<Int, String, Boolean>)
     {
@@ -52,9 +54,7 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 1,
     {
         gameDuration = duration.substring(0,2).toLong() * 3600 + duration.substring(3, 5).toLong() * 60 + duration.substring(6).toLong()
     }
-    fun getHintCount() = "$hintCount"
-    fun getLevel() = level.toString()
-    fun getErrorCount() = "$errorCount/3"
+
     fun isNoteModeActive() = mIsNoteModeActive
     fun setNoteMode(active: Boolean)
     {

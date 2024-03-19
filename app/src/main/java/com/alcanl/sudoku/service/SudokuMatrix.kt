@@ -1,7 +1,7 @@
 package com.alcanl.sudoku.service
 
 import com.alcanl.sudoku.service.generator.SudokuGenerator
-import com.alcanl.sudoku.repository.entity.gameplay.level.Level
+import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
 import kotlin.random.Random
 
 class SudokuMatrix {
