@@ -61,6 +61,8 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
         mIsNoteModeActive = active
     }
     fun getCurrentScore() = score.toString()
+    fun getCurrentErrorCount() = "3/$errorCount"
+    fun getCurrentHintCount() = "$hintCount"
     fun createNewGamePlay()
     {
         hintCount = 3

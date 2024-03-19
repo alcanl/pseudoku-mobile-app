@@ -9,9 +9,9 @@
         <import type="com.alcanl.sudoku.repository.entity.gameinfo.GameInfo"/>
         <import type="com.alcanl.sudoku.repository.entity.User"/>
         <variable name="user" type="com.alcanl.sudoku.repository.entity.User" />
-        <variable name="gamePlay" type="com.alcanl.sudoku.repository.entity.gameinfo.GameInfo" />
+        <variable name="gamePlay" type="GameInfo" />
         <variable name="timer" type="String" />
-        <variable name="matrix" type="com.alcanl.sudoku.service.SudokuMatrix" />
+        <variable name="matrix" type="SudokuMatrix" />
         <variable name="viewModel" type="MainActivityListenersViewModel" />
     </data>
 
@@ -1588,7 +1588,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="13dp"
                     android:background="@color/yellow_hint"
-                    android:text="@{gamePlay.hintCount}"
+                    android:text="@{gamePlay.currentHintCount}"
                     android:textAlignment="center"
                     android:textColor="@color/ap_black"
                     android:textSize="8sp"
@@ -1715,7 +1715,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="@{gamePlay.errorCount}"
+                android:text="@{gamePlay.currentErrorCount}"
                 android:textColor="@color/ap_gray"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
@@ -1734,7 +1734,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="@{gamePlay.currentScore}"
+                android:text="@{gamePlay.currentScore.toString()}"
                 android:textColor="@color/ap_gray"
                 android:textSize="10sp"
                 tools:ignore="RtlCompat,SmallSp" />
