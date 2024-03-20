@@ -12,9 +12,9 @@ interface IGameInfoDao {
     @Insert
     fun save(gameInfo: GameInfo)
     @Query("""SELECT * FROM game_info gi WHERE gi.id = :id""")
-    fun findById(id: Long) : List<GameInfo>?
+    fun findById(id: Long) : GameInfo
     @Transaction
     @Query("""SELECT * FROM users u WHERE u.user_name = :username""")
-    fun findByUsername(username: String) : List<UserToGameInfo>?
+    fun findByUsername(username: String) : UserToGameInfo?
 
 }

@@ -17,7 +17,7 @@
         tools:ignore="DiscouragedApi">
         <activity
             android:name="com.alcanl.sudoku.SplashActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name="com.alcanl.sudoku.MainActivity"
             android:exported="true">

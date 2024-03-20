@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.TableRow
 import android.widget.TextView
@@ -17,6 +18,7 @@ import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
+import com.alcanl.sudoku.di.module.gameplay.GameInfoModule
 import com.alcanl.sudoku.service.SudokuMatrix
 import com.alcanl.sudoku.repository.entity.User
 import com.alcanl.sudoku.repository.entity.gameinfo.GameInfo
@@ -24,6 +26,8 @@ import com.alcanl.sudoku.global.disableNoteMode
 import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.getMoveInfo
 import com.alcanl.sudoku.global.setColor
+import com.alcanl.sudoku.repository.dal.SudokuApplicationHelper
+import com.alcanl.sudoku.service.SudokuApplicationDataService
 import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +51,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var gameInfo: GameInfo
     @Inject
     lateinit var user: User
+    @Inject
+    lateinit var service: SudokuApplicationDataService
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
     private lateinit var mBinding : ActivityMainBinding
@@ -154,7 +160,7 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun buttonRestartCallback()
     {
-        gameInfo.createNewGamePlay()
+        gameInfo.restart()
         chronometerCounter.clearTimer()
         sudokuMatrix.resetCurrentMatrix()
         runOnUiThread(this::clearTableBackgroundCallback)
@@ -267,7 +273,7 @@ class MainActivity : AppCompatActivity() {
     private fun startNewGame()
     {
         threadPool.execute {
-            gameInfo.createNewGamePlay()
+            gameInfo = GameInfoModule.createGameInfo()
             sudokuMatrix.generateNewMatrix()
             mCounter.interrupt()
             chronometerCounter.clearTimer()

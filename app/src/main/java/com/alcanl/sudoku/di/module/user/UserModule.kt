@@ -12,5 +12,5 @@ import javax.inject.Singleton
 object UserModule {
     @Provides
     @Singleton
-    fun createUser() : User = User("alcanl","1234","Alican", "Keçici", eMail = "alican.kecici@gmail.com")
+    fun createUser() : User = User()
 }
