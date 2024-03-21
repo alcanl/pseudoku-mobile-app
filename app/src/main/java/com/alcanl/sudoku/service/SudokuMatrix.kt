@@ -61,11 +61,10 @@ class SudokuMatrix {
         prepareSolvingMatrix()
         mCounterArray.fill(9)
         calculateNumberCounts()
-
     }
     fun getValue(index: Int) : String
     {
-       return if (mSolvingMatrix[index / 10][index % 10] == 0) "" else mSolvingMatrix[index / 10][index % 10].toString()
+       return if (mSolvingMatrix[index / 10][index % 10] == 0) " " else mSolvingMatrix[index / 10][index % 10].toString()
     }
     fun decreaseNumberCount(number: Int)
     {
