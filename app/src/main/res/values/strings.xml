@@ -19,4 +19,8 @@
     <string name="textview_note_mode_active_text" translatable="true">On</string>
     <string name="textview_note_mode_inactive_text" translatable="true">Off</string>
     <string name="textview_score_text" translatable="true">Score: </string>
+    <string name="button_login_text" translatable="true">Login</string>
+    <string name="button_signup_text" translatable="true">Sign Up</string>
+    <string name="textview_username_hint" translatable="true">Username</string>
+    <string name="textview_password_hint" translatable="true">Password</string>
 </resources>

@@ -87,6 +87,9 @@ class MainActivity : AppCompatActivity() {
     }
     private fun tableCellClickedCallback(textView: TextView)
     {
+        if (mSelectedTextView != null && !gameInfo.checkLastMove())
+            mSelectedTextView?.text = " "
+
         mSelectedTextView = textView
         runOnUiThread { setLineBackground(resources.getResourceEntryName(textView.id)
             .substring(8).toInt()) }

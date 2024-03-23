@@ -6,6 +6,7 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
 import java.io.Serializable
+import java.util.EmptyStackException
 import java.util.Stack
 @Entity("game_info")
 data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
@@ -82,5 +83,13 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
     fun getIncorrectMoveScore()
     {
         score -= 100
+    }
+    fun checkLastMove() : Boolean
+    {
+        return try {
+            mMoveStack.peek().third
+        } catch (_: EmptyStackException) {
+            true
+        }
     }
 }
