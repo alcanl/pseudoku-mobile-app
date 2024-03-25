@@ -1,5 +1,6 @@
 package com.alcanl.sudoku
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -47,18 +48,26 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var gameInfo: GameInfo
     @Inject
-    lateinit var user: User
-    @Inject
     lateinit var applicationService: SudokuApplicationDataService
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
+    private lateinit var mUser : User
     private lateinit var mBinding : ActivityMainBinding
     private lateinit var mCounter : Thread
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        getUserInfo()
         initialize()
+    }
+    @Suppress("DEPRECATION")
+    private fun getUserInfo()
+    {
+        mUser = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
+            intent.getSerializableExtra("user") as User
+        else
+            intent.getSerializableExtra("user", User::class.java)!!
     }
     private fun initialize()
     {
@@ -83,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.viewModel = MainActivityListenersViewModel(this)
         mBinding.matrix = sudokuMatrix
         mBinding.gamePlay = gameInfo
-        mBinding.user = user
+        mBinding.user = mUser
     }
     private fun tableCellClickedCallback(textView: TextView)
     {

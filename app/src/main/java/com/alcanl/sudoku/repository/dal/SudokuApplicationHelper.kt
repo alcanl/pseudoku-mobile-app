@@ -22,6 +22,14 @@ class SudokuApplicationHelper @Inject constructor() {
             throw RepositoryException(ex)
         }
     }
+    fun existUserByEmail(eMail: String) : Boolean
+    {
+        try {
+            return userDao.existByEmail(eMail)
+        } catch (ex: Throwable) {
+            throw RepositoryException(ex)
+        }
+    }
     fun existByUsernameAndPassword(username: String, password: String) : Boolean
     {
         try {
@@ -30,10 +38,26 @@ class SudokuApplicationHelper @Inject constructor() {
             throw RepositoryException(ex)
         }
     }
+    fun existByEmailAndPassword(eMail: String, password: String) : Boolean
+    {
+        try {
+            return userDao.existByEmailAndPassword(eMail, password)
+        } catch (ex: Throwable) {
+            throw RepositoryException(ex)
+        }
+    }
     fun findUserByUsernameAndPassword(username: String, password: String) : User?
     {
         try {
             return userDao.findByUserNameAndPassword(username, password)
+        } catch (ex: Throwable) {
+            throw RepositoryException(ex)
+        }
+    }
+    fun findUserByEmailAndPassword(eMail: String, password: String) : User?
+    {
+        try {
+            return userDao.findByEmailAndPassword(eMail, password)
         } catch (ex: Throwable) {
             throw RepositoryException(ex)
         }

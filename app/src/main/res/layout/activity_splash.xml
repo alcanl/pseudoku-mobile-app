@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/pseudoku_high_logo"
+            app:srcCompat="@drawable/pseudoku_main_logo"
             tools:ignore="ContentDescription"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="-5dp" />

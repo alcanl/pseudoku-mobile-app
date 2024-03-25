@@ -8,8 +8,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/animated_background_main"
         tools:context="com.alcanl.sudoku.LoginActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,16 +21,19 @@
             android:layout_marginTop="80dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/table_background"
+            android:background="@drawable/background"
+            android:backgroundTint="#F8FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="1.0">
 
             <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,101 +41,168 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/pseudoku_high_logo"
+                app:srcCompat="@drawable/pseudoku_main_logo"
                 tools:ignore="ContentDescription" />
 
             <Button
+                android:id="@+id/button2"
                 android:layout_width="206dp"
                 android:layout_height="53dp"
                 android:backgroundTint="@color/theme_blue"
-                android:text="@string/button_login_text"
+                android:fontFamily="@font/abeezee"
                 android:onClick="@{()-> viewModel.handleLoginButton()}"
+                android:text="@string/button_login_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.739" />
+                app:layout_constraintVertical_bias="0.628" />
 
             <AutoCompleteTextView
                 android:id="@+id/textViewUsername"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/edittext_background"
+                android:fontFamily="@font/abeezee"
                 android:hint="@string/textview_username_hint"
                 android:textAlignment="center"
-                android:textColorHint="@color/ap_white"
+                android:textColor="@color/ap_black"
+                android:textColorHint="@color/ap_gray"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.426" />
+                app:layout_constraintVertical_bias="0.371" />
 
             <Button
+                android:id="@+id/button"
                 android:layout_width="206dp"
                 android:layout_height="53dp"
                 android:backgroundTint="@color/theme_blue"
-                android:text="@string/button_signup_text"
+                android:fontFamily="@font/abeezee"
                 android:onClick="@{()-> viewModel.handleSignUpButton()}"
+                android:text="@string/button_signup_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.823" />
+                app:layout_constraintVertical_bias="0.97" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTextPassword"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:autofillHints="password"
                 android:background="@drawable/edittext_background"
                 android:ems="10"
+                android:fontFamily="@font/abeezee"
                 android:hint="@string/textview_password_hint"
                 android:inputType="textPassword"
                 android:textAlignment="center"
-                android:textColorHint="@color/ap_white"
+                android:textColor="@color/ap_black"
+                android:textColorHint="@color/ap_gray"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
+                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.964">
+                app:layout_constraintVertical_bias="0.793">
 
                 <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/buttonGoogleAuth"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#00FFFFFF"
-                    android:scaleType="fitXY"
+                    android:background="@drawable/border_button"
                     android:onClick="@{()-> viewModel.handleGoogleButton()}"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_google"
                     tools:ignore="ContentDescription,InefficientWeight,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="65dp"
                     tools:layout_editor_absoluteY="775dp" />
 
                 <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:backgroundTint="#00FFFFFF"
+                    android:id="@+id/buttonFacebookAuth"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border_button"
+                    android:onClick="@{()-> viewModel.handleFacebookButton()}"
+                    android:padding="5dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_facebook"
-                    android:onClick="@{()-> viewModel.handleFacebookButton()}"
                     tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_or_text"
+                android:textAlignment="center"
+                android:textColor="@color/ap_gray"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/textview_username_text"
+                android:textColor="@color/ap_black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewUsername"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/textview_password_text"
+                android:textColor="@color/ap_black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/textview_do_not_have_account_text"
+                android:textColor="@color/ap_gray"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

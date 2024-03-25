@@ -21,6 +21,10 @@
     <string name="textview_score_text" translatable="true">Score: </string>
     <string name="button_login_text" translatable="true">Login</string>
     <string name="button_signup_text" translatable="true">Sign Up</string>
-    <string name="textview_username_hint" translatable="true">Username</string>
-    <string name="textview_password_hint" translatable="true">Password</string>
+    <string name="textview_username_hint" translatable="true">Enter Username or Email</string>
+    <string name="textview_username_text" translatable="true">Username or Email</string>
+    <string name="textview_password_hint" translatable="true">Enter Password</string>
+    <string name="textview_password_text" translatable="true">Password</string>
+    <string name="textview_do_not_have_account_text" translatable="true">Don\'t Have an Account?</string>
+    <string name="textview_or_text" translatable="true">------------------------------or------------------------------</string>
 </resources>

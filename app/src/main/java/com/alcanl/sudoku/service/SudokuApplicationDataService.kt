@@ -5,7 +5,6 @@ import com.alcanl.sudoku.repository.dal.SudokuApplicationHelper
 import com.alcanl.sudoku.repository.entity.User
 import com.alcanl.sudoku.repository.entity.gameinfo.GameInfo
 import com.alcanl.sudoku.repository.entity.relation.UserToGameInfo
-import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 
 class SudokuApplicationDataService @Inject constructor(
@@ -13,10 +12,19 @@ class SudokuApplicationDataService @Inject constructor(
 ) {
     private val mSudokuApplicationHelper = sudokuApplicationHelper
 
-    fun checkAndSaveUser(user: User)
+    fun checkAndSaveUserByUsername(user: User)
     {
         try {
             if (!mSudokuApplicationHelper.existUserByUsername(user.username))
+                mSudokuApplicationHelper.saveUser(user)
+        } catch (ex: RepositoryException) {
+            throw ServiceException(ex)
+        }
+    }
+    fun checkAndSaveUserByEmail(user: User)
+    {
+        try {
+            if (!mSudokuApplicationHelper.existUserByEmail(user.eMail))
                 mSudokuApplicationHelper.saveUser(user)
         } catch (ex: RepositoryException) {
             throw ServiceException(ex)
@@ -36,6 +44,17 @@ class SudokuApplicationDataService @Inject constructor(
         try {
             if (mSudokuApplicationHelper.existByUsernameAndPassword(username, password))
                 return mSudokuApplicationHelper.findUserByUsernameAndPassword(username, password)
+
+            return null
+        } catch (ex: RepositoryException) {
+            throw ServiceException(ex)
+        }
+    }
+    fun findUserByEmailAndPassword(eMail: String, password: String): User?
+    {
+        try {
+            if (mSudokuApplicationHelper.existByEmailAndPassword(eMail, password))
+                return mSudokuApplicationHelper.findUserByEmailAndPassword(eMail, password)
 
             return null
         } catch (ex: RepositoryException) {

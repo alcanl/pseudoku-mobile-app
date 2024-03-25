@@ -4,10 +4,12 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.view.Gravity
+import android.view.animation.Animation.AnimationListener
+import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.databinding.BindingAdapter
 import com.alcanl.android.app.sudoku.R
 
 const val TURKISH = "tr"
@@ -18,16 +20,6 @@ const val EASY_LEVEL_COUNT = 37
 const val MEDIUM_LEVEL_COUNT = 32
 const val HARD_LEVEL_COUNT = 27
 
-fun Array<IntArray>.transpose() : Array<IntArray> {
-
-    val t = Array(this.size) { IntArray(this[0].size) }
-
-    for (i in this.indices)
-        for (j in this[i].indices)
-            t[j][i] = this[i][j]
-
-    return t
-}
 
 fun TextView.setColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
 {
@@ -55,4 +47,12 @@ fun TextView.getMoveInfo(toggleButton: ToggleButton) : Pair<Int, String>
     val value = toggleButton.text.toString()
 
     return Pair(index, value)
+}
+fun ImageButton.setAnimation(context: Context, animationListener: AnimationListener)
+{
+    this.apply {
+        startAnimation(
+            AnimationUtils.loadAnimation(context,
+                R.anim.alpha_blink_anim).also { it.setAnimationListener(animationListener) })
+    }
 }

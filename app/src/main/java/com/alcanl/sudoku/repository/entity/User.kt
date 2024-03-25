@@ -17,6 +17,6 @@ data class User(@PrimaryKey @ColumnInfo("user_name")var username: String = "",
                 var level: Int = 1,
 ) : Serializable {
     override fun toString(): String {
-        return String.format("$name $surName")
+        return username.ifBlank { eMail }
     }
 }
