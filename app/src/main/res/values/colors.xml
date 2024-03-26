@@ -9,4 +9,6 @@
     <color name="dark_blue">#2441B4</color>
     <color name="line_color">#c3e8e3</color>
     <color name="theme_blue">#101c5c</color>
+    <color name="theme_dark_blue">#091F5B</color>
+    <color name="theme_dark_white">#FFF9EF</color>
 </resources>

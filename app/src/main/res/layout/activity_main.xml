@@ -1345,7 +1345,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/pseudoku_high_logo"
+                app:srcCompat="@drawable/pseudoku_main_logo"
                 tools:ignore="ContentDescription" />
 
             <ImageButton

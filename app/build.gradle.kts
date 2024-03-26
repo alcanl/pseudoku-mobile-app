@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.activity:activity:1.8.0")
+
     val roomVersion = "2.6.1"
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -59,6 +59,8 @@ dependencies {
     implementation("com.androidplot:androidplot-core:1.5.10")
     implementation("com.google.dagger:hilt-android-gradle-plugin:2.51")
     implementation("androidx.room:room-runtime:$roomVersion")
+    implementation ("com.facebook.android:facebook-login:latest.release")
+    implementation("androidx.activity:activity-ktx:1.8.2")
     ksp("androidx.room:room-compiler:$roomVersion")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -70,8 +72,8 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.3")
-    implementation("androidx.compose.material:material:1.6.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.6.4")
+    implementation("androidx.compose.material:material:1.6.4")
 }
 
 kapt {

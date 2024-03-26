@@ -174,6 +174,7 @@ class MainActivity : AppCompatActivity() {
         chronometerCounter.clearTimer()
         sudokuMatrix.resetCurrentMatrix()
         runOnUiThread(this::clearTableBackgroundCallback)
+        runOnUiThread(this::clearToggleButtons)
         mBinding.invalidateAll()
     }
     private fun clearTableBackgroundCallback()
@@ -292,9 +293,13 @@ class MainActivity : AppCompatActivity() {
             mSelectedTextView = null
             mSelectedToggleButton = null
             runOnUiThread(this::clearTableBackgroundCallback)
-            runOnUiThread {mBinding.linearLayoutButtons.children.forEach { (it as ToggleButton).visibility = View.VISIBLE }}
+            runOnUiThread(this::clearToggleButtons)
             mBinding.invalidateAll()
         }
+    }
+    private fun clearToggleButtons()
+    {
+        mBinding.linearLayoutButtons.children.forEach { (it as ToggleButton).visibility = View.VISIBLE }
     }
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {

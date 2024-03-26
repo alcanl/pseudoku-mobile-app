@@ -12,23 +12,31 @@ class SudokuApplicationDataService @Inject constructor(
 ) {
     private val mSudokuApplicationHelper = sudokuApplicationHelper
 
-    fun checkAndSaveUserByUsername(user: User)
+    fun checkAndSaveUserByUsername(user: User) : Boolean
     {
+        var result = false
         try {
-            if (!mSudokuApplicationHelper.existUserByUsername(user.username))
+            if (!mSudokuApplicationHelper.existUserByUsername(user.username)) {
                 mSudokuApplicationHelper.saveUser(user)
+                result = true
+            }
         } catch (ex: RepositoryException) {
             throw ServiceException(ex)
         }
+        return result
     }
-    fun checkAndSaveUserByEmail(user: User)
+    fun checkAndSaveUserByEmail(user: User) : Boolean
     {
+        var result = false
         try {
-            if (!mSudokuApplicationHelper.existUserByEmail(user.eMail))
+            if (!mSudokuApplicationHelper.existUserByEmail(user.eMail)) {
                 mSudokuApplicationHelper.saveUser(user)
+                result = true
+            }
         } catch (ex: RepositoryException) {
             throw ServiceException(ex)
         }
+        return result
     }
     fun saveGameInfo(gameInfo: GameInfo)
     {

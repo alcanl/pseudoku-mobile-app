@@ -19,7 +19,10 @@ const val HARD_TR = "Zor"
 const val EASY_LEVEL_COUNT = 37
 const val MEDIUM_LEVEL_COUNT = 32
 const val HARD_LEVEL_COUNT = 27
-
+const val WHAT_INVALID_USER_DATA = 1
+const val WHAT_EMPTY_USER_DATA = 2
+const val WHAT_ALREADY_TAKEN_USERNAME_OR_EMAIL = 3
+const val WHAT_SERVICE_EX = 4
 
 fun TextView.setColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
 {

@@ -26,5 +26,10 @@
     <string name="textview_password_hint" translatable="true">Enter Password</string>
     <string name="textview_password_text" translatable="true">Password</string>
     <string name="textview_do_not_have_account_text" translatable="true">Don\'t Have an Account?</string>
-    <string name="textview_or_text" translatable="true">------------------------------or------------------------------</string>
+    <string name="textview_or_text" translatable="true">------------------or------------------</string>
+    <string name="facebook_app_id">976387400583458</string>
+    <string name="facebook_client_token">1e1a99dbf21cff07b10918bb1ec0ef46</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+
+
 </resources>
