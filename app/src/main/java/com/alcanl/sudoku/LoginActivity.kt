@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.widget.Toast
@@ -15,8 +16,10 @@ import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityLoginBinding
 import com.alcanl.sudoku.global.WHAT_ALREADY_TAKEN_USERNAME_OR_EMAIL
 import com.alcanl.sudoku.global.WHAT_EMPTY_USER_DATA
+import com.alcanl.sudoku.global.WHAT_HIDE_LOADING
 import com.alcanl.sudoku.global.WHAT_INVALID_USER_DATA
 import com.alcanl.sudoku.global.WHAT_SERVICE_EX
+import com.alcanl.sudoku.global.WHAT_SHOW_LOADING
 import com.alcanl.sudoku.global.setAnimation
 import com.alcanl.sudoku.repository.entity.User
 import com.alcanl.sudoku.service.ServiceException
@@ -91,11 +94,14 @@ class LoginActivity : AppCompatActivity() {
     {
         val bundle = Bundle()
         bundle.putSerializable("user", user)
-        Intent(this, MainActivity::class.java).apply {
-            putExtras(bundle)
-            startActivity(this)
-            finish()
-        }
+        mHandler.postDelayed( {
+            Intent(this, MainActivity::class.java).apply {
+                putExtras(bundle)
+                startActivity(this)
+                finish()
+            }
+        }, 2000)
+
     }
     private fun googleButtonAnimationListener() : AnimationListener
     {
@@ -132,6 +138,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginButtonClickedCallback()
     {
         try {
+            mHandler.sendEmptyMessage(WHAT_SHOW_LOADING)
             val userInfo = getUserInfo() ?: return
 
             val user = if (mUsernameLogin)
@@ -142,15 +149,21 @@ class LoginActivity : AppCompatActivity() {
             if (user != null)
                 finalizeLoginProcess(user)
             else
-                mHandler.sendEmptyMessage(WHAT_INVALID_USER_DATA)
+                mHandler.apply {
+                    postDelayed( { sendEmptyMessage(WHAT_INVALID_USER_DATA)
+                        sendEmptyMessage(WHAT_HIDE_LOADING) }, 2000) }
 
         } catch (_: ServiceException) {
-            mHandler.sendEmptyMessage(WHAT_SERVICE_EX)
+            mHandler.apply {
+                postDelayed({ sendEmptyMessage(WHAT_SERVICE_EX)
+                    sendEmptyMessage(WHAT_HIDE_LOADING)}, 2000)
+            }
         }
 
     }
     private fun signUpButtonClickedCallback()
     {
+        mHandler.sendEmptyMessage(WHAT_SHOW_LOADING)
         val userInfo = getUserInfo() ?: return
         val result: Boolean
         try {
@@ -162,9 +175,13 @@ class LoginActivity : AppCompatActivity() {
             if (result)
                 finalizeLoginProcess(userInfo)
             else
-                mHandler.sendEmptyMessage(WHAT_ALREADY_TAKEN_USERNAME_OR_EMAIL)
+                mHandler.apply {
+                    postDelayed({ sendEmptyMessage(WHAT_ALREADY_TAKEN_USERNAME_OR_EMAIL)
+                        sendEmptyMessage(WHAT_HIDE_LOADING)}, 2000)
+                }
         } catch (_: ServiceException) {
-            mHandler.sendEmptyMessage(WHAT_SERVICE_EX)
+            mHandler.apply { postDelayed({sendEmptyMessage(WHAT_SERVICE_EX)
+                sendEmptyMessage(WHAT_HIDE_LOADING)}, 2000) }
         }
     }
     private class LoginActivityHandler(activity: LoginActivity) : Handler(Looper.myLooper()!!) {
@@ -191,6 +208,8 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(activity, "Username already in use", Toast.LENGTH_LONG).show()
                     activity.clearEditTexts()
                 }
+                WHAT_SHOW_LOADING -> activity.mBinding.frameLayoutLoading.visibility = View.VISIBLE
+                WHAT_HIDE_LOADING -> activity.mBinding.frameLayoutLoading.visibility = View.GONE
             }
         }
     }

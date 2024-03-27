@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.content.res.AppCompatResources
 import com.alcanl.android.app.sudoku.R
+import com.alcanl.sudoku.MainActivity
 
 const val TURKISH = "tr"
 const val EASY_TR = "Kolay"
@@ -23,9 +24,13 @@ const val WHAT_INVALID_USER_DATA = 1
 const val WHAT_EMPTY_USER_DATA = 2
 const val WHAT_ALREADY_TAKEN_USERNAME_OR_EMAIL = 3
 const val WHAT_SERVICE_EX = 4
+const val WHAT_SHOW_LOADING = 5
+const val WHAT_HIDE_LOADING = 6
 
 fun TextView.setColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
 {
+    if ((context as MainActivity).gameInfo.activeTheme() == BoardTheme.THEME_DEFAULT)
+        ;
     val drawable = this.background.current as LayerDrawable
     (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color = AppCompatResources.getColorStateList(context, backgroundColor)
     this.setTextColor(AppCompatResources.getColorStateList(context, textColor))

@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.alcanl.sudoku.global.BoardTheme
+import com.alcanl.sudoku.global.BoardTheme.*
 import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
 import java.io.Serializable
 import java.util.EmptyStackException
@@ -17,6 +19,7 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
                     var score: Int = 0,
                     var result: Boolean = false,
                     var level: Level = Level.MEDIUM,
+                    @Ignore private var mActiveTheme: BoardTheme = THEME_DEFAULT,
                     @Ignore private var mIsNoteModeActive: Boolean = false,
                     @Ignore private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack()
                     ) : Serializable {
@@ -92,4 +95,9 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
             true
         }
     }
+    fun setBoardTheme(boardTheme: BoardTheme)
+    {
+        mActiveTheme = boardTheme
+    }
+    fun activeTheme() = mActiveTheme
 }

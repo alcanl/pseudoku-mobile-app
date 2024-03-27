@@ -18,6 +18,7 @@ class SudokuMatrix {
     private fun isCompletedCallback(intArray: IntArray) = intArray.none { it == 0 }
     private fun calculateNumberCounts()
     {
+        mCounterArray.fill(9)
         mSolvingMatrix.forEach(this::calculateNumberCountsCallback)
     }
     private fun calculateNumberCountsCallback(index: IntArray)
@@ -59,7 +60,6 @@ class SudokuMatrix {
         mSolvedMatrix = SudokuGenerator.generate()
         prepareUnSolvedMatrix()
         prepareSolvingMatrix()
-        mCounterArray.fill(9)
         calculateNumberCounts()
     }
     fun getValue(index: Int) : String

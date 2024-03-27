@@ -77,7 +77,8 @@
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.371" />
+                app:layout_constraintVertical_bias="0.371"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <Button
                 android:id="@+id/button"
@@ -114,7 +115,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -139,7 +141,7 @@
                     android:padding="5dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_google"
-                    tools:ignore="ContentDescription,InefficientWeight,SpeakableTextPresentCheck"
+                    tools:ignore="ContentDescription,InefficientWeight,SpeakableTextPresentCheck,TouchTargetSizeCheck"
                     tools:layout_editor_absoluteX="65dp"
                     tools:layout_editor_absoluteY="775dp" />
 
@@ -153,7 +155,7 @@
                     android:padding="5dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/icon_facebook"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </LinearLayout>
 
             <TextView
@@ -167,7 +169,8 @@
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -178,7 +181,7 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/textViewUsername"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintHorizontal_bias="0.12"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -190,7 +193,7 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -202,8 +205,30 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutLoading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/ap_white"
+            android:backgroundTint="#9CFFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.razzaghimahdi78.dotsloading.circle.LoadingCircleRotation
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dots_color="@color/theme_dark_blue"
+                android:layout_gravity="center"
+                app:dots_duration="800"
+                app:dots_size="5dp" />
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

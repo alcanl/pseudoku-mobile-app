@@ -1,5 +1,6 @@
 package com.alcanl.sudoku
 
+import android.app.Dialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,11 +29,13 @@ import com.alcanl.sudoku.global.setColor
 import com.alcanl.sudoku.service.SudokuApplicationDataService
 import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.EmptyStackException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
+import com.alcanl.sudoku.global.BoardTheme.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -53,13 +56,23 @@ class MainActivity : AppCompatActivity() {
     private var mSelectedToggleButton : ToggleButton? = null
     private lateinit var mUser : User
     private lateinit var mBinding : ActivityMainBinding
-    private lateinit var mCounter : Thread
+    private lateinit var mChronometerCounterThread : Thread
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         getUserInfo()
         initialize()
+    }
+    override fun onResume()
+    {
+        super.onResume()
+        chronometerCounter.resume()
+    }
+    override fun onPause()
+    {
+        super.onPause()
+        chronometerCounter.pause()
     }
     @Suppress("DEPRECATION")
     private fun getUserInfo()
@@ -76,12 +89,12 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initCounter()
     {
-        scheduledThreadPool.scheduleAtFixedRate({ counterCallback() }, 0, 1, TimeUnit.SECONDS)
+        scheduledThreadPool.scheduleAtFixedRate({ chronometerCounterCallback() }, 0, 1, TimeUnit.SECONDS)
     }
-    private fun counterCallback()
+    private fun chronometerCounterCallback()
     {
-        mCounter = Thread.currentThread()
-        if (!mCounter.isInterrupted) {
+        mChronometerCounterThread = Thread.currentThread()
+        if (!mChronometerCounterThread.isInterrupted && !chronometerCounter.isPaused()) {
             chronometerCounter.handleCounter()
             mBinding.timer = chronometerCounter.toString()
         }
@@ -116,7 +129,6 @@ class MainActivity : AppCompatActivity() {
     {
         textView.setTextColor(getColor(R.color.trueMove))
         val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
-        textView.isClickable = false
         handleCorrectMoveOnMatrix(index, value)
         handleCorrectMoveOnGamePlay(index, value)
         mBinding.invalidateAll()
@@ -162,6 +174,7 @@ class MainActivity : AppCompatActivity() {
                 saveMove(Triple(index, value, false))
             }
             mBinding.invalidateAll()
+            textView.isClickable = true
             mSelectedToggleButton = null
         }
         else
@@ -243,7 +256,7 @@ class MainActivity : AppCompatActivity() {
             isWin(false)
             setGameDuration(chronometerCounter.toString())
         }
-        mCounter.interrupt()
+        mChronometerCounterThread.interrupt()
 
         AlertDialog.Builder(this@MainActivity)
             .setCancelable(false)
@@ -287,7 +300,7 @@ class MainActivity : AppCompatActivity() {
         threadPool.execute {
             gameInfo = GameInfo()
             sudokuMatrix.generateNewMatrix()
-            mCounter.interrupt()
+            mChronometerCounterThread.interrupt()
             chronometerCounter.clearTimer()
             initCounter()
             mSelectedTextView = null
@@ -322,7 +335,13 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonSettingsClicked()
     {
-        TODO("Not implemented yet")
+        val settingsDialog = Dialog(this, R.style.DialogStyle)
+        settingsDialog.apply {
+            setContentView(R.layout.dialog_settings_layout)
+            window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+            setTitle("Select Theme")
+            show()
+        }
     }
     fun buttonUndoClicked()
     {
@@ -350,5 +369,13 @@ class MainActivity : AppCompatActivity() {
     fun buttonRestartClicked()
     {
         threadPool.execute(this::buttonRestartCallback)
+    }
+    fun buttonSetThemeClicked(button: MaterialButton)
+    {
+        when (resources.getResourceEntryName(button.id)) {
+            THEME_DEFAULT.toString() -> gameInfo.setBoardTheme(THEME_DEFAULT)
+            THEME_DARK.toString() -> gameInfo.setBoardTheme(THEME_DARK)
+            THEME_LIGHT.toString() -> gameInfo.setBoardTheme(THEME_LIGHT)
+        }
     }
 }
