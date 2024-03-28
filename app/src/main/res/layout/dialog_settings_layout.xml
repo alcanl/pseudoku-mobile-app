@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="com.alcanl.sudoku.viewmodel.SettingsListenersViewModel"/>
-        <variable name="viewModel" type="SettingsListenersViewModel" />
+        <variable name="viewModelDialog" type="SettingsListenersViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -24,12 +24,12 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/theme_dark_blue"
+            android:backgroundTint="@color/off_white"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:onClick="@{(view) -> viewModel.handleButtonThemeSelect(view)}"
+            android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
             app:iconPadding="0dp" />
@@ -39,12 +39,12 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorBlacky"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:onClick="@{(view) -> viewModel.handleButtonThemeSelect(view)}"
+            android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
             app:iconPadding="0dp" />
@@ -54,12 +54,12 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/colorLightBackground"
+            android:backgroundTint="@color/colorLightThemeBackground"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:onClick="@{(view) -> viewModel.handleButtonThemeSelect(view)}"
+            android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
             app:iconPadding="0dp" />

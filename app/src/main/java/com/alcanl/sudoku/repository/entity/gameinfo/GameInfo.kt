@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.alcanl.sudoku.global.BoardTheme
-import com.alcanl.sudoku.global.BoardTheme.*
+import com.alcanl.sudoku.global.theme.BoardTheme
+import com.alcanl.sudoku.global.theme.BoardTheme.*
 import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
 import java.io.Serializable
 import java.util.EmptyStackException

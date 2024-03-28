@@ -36,6 +36,10 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlacky">#3A3A3A</color>
     <color name="colorGreen">#44BF4D</color>
-
     <color name="colorLightBackground">#E8E8E8</color>
+    <color name="colorDarkThemeSelected">#706a37</color>
+    <color name="colorDarkThemeLine">#e0daa4</color>
+    <color name="colorLightThemeBackground">#c6cfb4</color>
+    <color name="colorLightThemeSelected">#292e1f</color>
+    <color name="colorLightThemeLine">#4d573b</color>
 </resources>
