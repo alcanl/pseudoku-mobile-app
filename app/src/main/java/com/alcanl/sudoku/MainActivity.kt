@@ -122,11 +122,11 @@ class MainActivity : AppCompatActivity() {
             mSelectedTextView?.text = " "
 
         mSelectedTextView = textView
-        runOnUiThread { setLineBackground(resources.getResourceEntryName(textView.id)
+        runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedTextView!!.id)
             .substring(8).toInt()) }
 
         if (gameInfo.isNoteModeActive())
-            tableCellClickedCallbackNoteModeOn(textView)
+            tableCellClickedCallbackNoteModeOn(mSelectedTextView!!)
 
     }
     private fun tableCellClickedCallbackNoteModeOn(textView: TextView)
@@ -250,10 +250,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private fun evaluateTheMove(view: TextView, toggleButton: ToggleButton)
+    private fun evaluateTheMove()
     {
-        val value = toggleButton.text.toString().toInt()
-        val index = resources.getResourceEntryName(view.id).substring(8).toInt()
+        val value = mSelectedToggleButton!!.text.toString().toInt()
+        val index = resources.getResourceEntryName(mSelectedTextView!!.id).substring(8).toInt()
         if (sudokuMatrix.isTrueValue(value, index))
             runOnUiThread { trueMoveCallback(mSelectedTextView!!) }
         else
@@ -342,7 +342,7 @@ class MainActivity : AppCompatActivity() {
             mSelectedTextView?.disableNoteMode(this)
 
         mSelectedToggleButton = toggleButton
-        evaluateTheMove(mSelectedTextView!!, toggleButton)
+        evaluateTheMove()
     }
     fun tableCellClicked(textView: TextView)
     {
@@ -354,7 +354,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonSettingsClicked()
     {
-        mSettingsDialog = SettingsDialog(this)
+        mSettingsDialog = SettingsDialog(this).apply { show() }
     }
     fun buttonUndoClicked()
     {
