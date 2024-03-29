@@ -1,6 +1,5 @@
 package com.alcanl.sudoku
 
-import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -19,22 +18,15 @@ import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
-import com.alcanl.android.app.sudoku.databinding.DialogSettingsLayoutBinding
+import com.alcanl.sudoku.dialog.SettingsDialog
+import com.alcanl.sudoku.dialog.UserDialog
 import com.alcanl.sudoku.global.clearColor
 import com.alcanl.sudoku.global.disableNoteMode
 import com.alcanl.sudoku.global.enableNoteMode
 import com.alcanl.sudoku.global.getMoveInfo
-import com.alcanl.sudoku.global.setDrawableBottom
-import com.alcanl.sudoku.global.setDrawableLeft
-import com.alcanl.sudoku.global.setDrawableLeftAndBottom
-import com.alcanl.sudoku.global.setDrawableLeftAndTop
-import com.alcanl.sudoku.global.setDrawableNot
-import com.alcanl.sudoku.global.setDrawableRight
-import com.alcanl.sudoku.global.setDrawableRightAndBottom
-import com.alcanl.sudoku.global.setDrawableRightAndTop
-import com.alcanl.sudoku.global.setDrawableTop
 import com.alcanl.sudoku.global.setLineColor
 import com.alcanl.sudoku.global.setSelectedColor
+import com.alcanl.sudoku.global.setTheme
 import com.alcanl.sudoku.global.theme.BoardTheme
 import com.alcanl.sudoku.global.theme.BoardTheme.*
 import com.alcanl.sudoku.repository.entity.User
@@ -43,7 +35,6 @@ import com.alcanl.sudoku.service.SudokuApplicationDataService
 import com.alcanl.sudoku.service.SudokuMatrix
 import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
-import com.alcanl.sudoku.viewmodel.SettingsListenersViewModel
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.EmptyStackException
@@ -69,6 +60,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var applicationService: SudokuApplicationDataService
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
+    private lateinit var mUserDialog: UserDialog
+    private lateinit var mSettingsDialog : SettingsDialog
     private lateinit var mUser : User
     private lateinit var mBinding : ActivityMainBinding
     private lateinit var mChronometerCounterThread : Thread
@@ -101,6 +94,7 @@ class MainActivity : AppCompatActivity() {
     {
         initBinding()
         initCounter()
+        mSettingsDialog = SettingsDialog(this)
     }
     private fun initCounter()
     {
@@ -329,37 +323,14 @@ class MainActivity : AppCompatActivity() {
     {
         mBinding.linearLayoutButtons.children.forEach { (it as ToggleButton).visibility = View.VISIBLE }
     }
-    private fun setTheme(theme: BoardTheme)
+    @Synchronized
+    private fun setThemeCallback(theme: BoardTheme)
     {
-        for (i in 0..< mBinding.tableLayoutMain.size) {
-            val tableRow = mBinding.tableLayoutMain[i] as TableRow
-            for (k in 0..< tableRow.size) {
-                val textView = tableRow[k] as TextView
-                if (i % 3 == 0) {
-                    if (k % 3 == 0)
-                        textView.setDrawableLeftAndTop(this, theme)
-                    else if (k % 3 == 2)
-                        textView.setDrawableRightAndTop(this, theme)
-                    else
-                        textView.setDrawableTop(this, theme)
-                }
-                else if (i % 3 == 2) {
-                    if (k % 3 == 0)
-                        textView.setDrawableLeftAndBottom(this, theme)
-                    else if (k % 3 == 2)
-                        textView.setDrawableRightAndBottom(this, theme)
-                    else
-                        textView.setDrawableBottom(this, theme)
-                }
-                else
-                    if (k % 3 == 0)
-                        textView.setDrawableLeft(this, theme)
-                    else if (k % 3 == 2)
-                        textView.setDrawableRight(this, theme)
-                    else
-                        textView.setDrawableNot(this, theme)
-            }
-        }
+        mBinding.tableLayoutMain.setTheme(this, theme)
+
+        if (mSelectedTextView != null)
+            setLineBackground(resources.getResourceEntryName(mSelectedTextView!!.id)
+                .substring(8).toInt())
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
@@ -383,16 +354,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonSettingsClicked()
     {
-        val settingsDialog = Dialog(this, R.style.DialogStyle)
-        settingsDialog.apply {
-            window?.setBackgroundDrawableResource(R.drawable.dialog_background)
-            setTitle("Select Theme")
-            val binding: DialogSettingsLayoutBinding = DataBindingUtil.inflate(settingsDialog.layoutInflater,
-                R.layout.dialog_settings_layout, null, false)
-            binding.viewModelDialog = SettingsListenersViewModel(this@MainActivity)
-            setContentView(binding.root)
-            show()
-        }
+        mSettingsDialog = SettingsDialog(this)
     }
     fun buttonUndoClicked()
     {
@@ -414,21 +376,20 @@ class MainActivity : AppCompatActivity() {
     }
     fun buttonUserClicked()
     {
-        TODO("Not implemented yet")
+        mUserDialog = UserDialog(this).apply { show() }
     }
-
     fun buttonRestartClicked()
     {
         threadPool.execute(this::buttonRestartCallback)
     }
     fun buttonSetThemeClicked(button: MaterialButton)
     {
+        mSettingsDialog.dismiss()
         when (resources.getResourceEntryName(button.id)) {
             THEME_DEFAULT.toString() -> gameInfo.setBoardTheme(THEME_DEFAULT)
             THEME_DARK.toString() -> gameInfo.setBoardTheme(THEME_DARK)
             THEME_LIGHT.toString() -> gameInfo.setBoardTheme(THEME_LIGHT)
         }
-
-        runOnUiThread { setTheme(gameInfo.activeTheme()) }
+        runOnUiThread { setThemeCallback(gameInfo.activeTheme()) }
     }
 }

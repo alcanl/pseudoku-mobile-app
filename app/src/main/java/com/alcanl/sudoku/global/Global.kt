@@ -7,9 +7,13 @@ import android.view.Gravity
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.get
+import androidx.core.view.size
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.sudoku.MainActivity
 import com.alcanl.sudoku.global.theme.BoardTheme
@@ -36,7 +40,7 @@ private fun TextView.setDefaultColor(context: Context, backgroundColor: Int =  c
         AppCompatResources.getColorStateList(context, backgroundColor)
     this.setTextColor(AppCompatResources.getColorStateList(context, textColor))
 }
-private fun TextView.setLightColor(context: Context, backgroundColor: Int =  R.color.colorLightBackground, textColor: Int = com.androidplot.R.color.ap_black)
+private fun TextView.setLightColor(context: Context, backgroundColor: Int =  R.color.colorLightThemeBackground, textColor: Int = com.androidplot.R.color.ap_white)
 {
     val drawable = this.background.current as LayerDrawable
     (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color =
@@ -57,6 +61,96 @@ private fun TextView.updateTextColor(context: Context, theme: BoardTheme)
         THEME_DEFAULT -> context.getColor(com.androidplot.R.color.ap_black)
         else -> context.getColor(com.androidplot.R.color.ap_white)
     })
+}
+private fun TextView.setDrawableLeftAndTop(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_left_top_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_left_top_light
+            else -> R.drawable.textview_layout_border_left_top
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableLeft(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_left_only_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_left_only_light
+            else -> R.drawable.textview_layout_border_left_only
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableLeftAndBottom(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_left_bottom_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_left_bottom_light
+            else -> R.drawable.textview_layout_border_left_bottom
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableRightAndTop(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_right_top_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_right_top_light
+            else -> R.drawable.textview_layout_border_right_top
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableRight(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_right_only_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_right_only_light
+            else -> R.drawable.textview_layout_border_right_only
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableRightAndBottom(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_right_bottom_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_right_bottom_light
+            else -> R.drawable.textview_layout_border_right_bottom
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableBottom(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_bottom_only_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_bottom_only_light
+            else -> R.drawable.textview_layout_border_bottom_only
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableTop(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_top_only_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_top_only_light
+            else -> R.drawable.textview_layout_border_top_only
+        })
+    this.updateTextColor(context, theme)
+}
+private fun TextView.setDrawableNot(context: Context, theme: BoardTheme)
+{
+    this.background = AppCompatResources.getDrawable(context,
+        when (theme) {
+            THEME_DARK -> R.drawable.textview_layout_border_not_dark
+            THEME_LIGHT -> R.drawable.textview_layout_border_not_light
+            else -> R.drawable.textview_layout_border_not
+        })
+    this.updateTextColor(context, theme)
 }
 fun TextView.enableNoteMode(context: Context)
 {
@@ -111,94 +205,36 @@ fun TextView.clearColor(context: Context)
         THEME_DEFAULT -> this.setDefaultColor(context)
     }
 }
-fun TextView.setDrawableLeftAndTop(context: Context, theme: BoardTheme)
+fun TableLayout.setTheme(context: Context, theme: BoardTheme)
 {
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_left_top_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_left_top_light
-            else -> R.drawable.textview_layout_border_left_top
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableLeft(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_left_only_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_left_only_light
-            else -> R.drawable.textview_layout_border_left_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableLeftAndBottom(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_left_bottom_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_left_bottom_light
-            else -> R.drawable.textview_layout_border_left_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableRightAndTop(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_right_top_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_right_top_light
-            else -> R.drawable.textview_layout_border_right_top
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableRight(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_right_only_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_right_only_light
-            else -> R.drawable.textview_layout_border_right_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableRightAndBottom(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_right_bottom_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_right_bottom_light
-            else -> R.drawable.textview_layout_border_right_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableBottom(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_bottom_only_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_bottom_only_light
-            else -> R.drawable.textview_layout_border_bottom_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableTop(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_top_only_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_top_only_light
-            else -> R.drawable.textview_layout_border_top_only
-        })
-    this.updateTextColor(context, theme)
-}
-fun TextView.setDrawableNot(context: Context, theme: BoardTheme)
-{
-    this.background = AppCompatResources.getDrawable(context,
-        when (theme) {
-            THEME_DARK -> R.drawable.textview_layout_border_not_dark
-            THEME_LIGHT -> R.drawable.textview_layout_border_not_light
-            else -> R.drawable.textview_layout_border_not
-        })
-    this.updateTextColor(context, theme)
+    for (i in 0..< this.size) {
+        val tableRow = this[i] as TableRow
+        for (k in 0..< tableRow.size) {
+            val textView = tableRow[k] as TextView
+            if (i % 3 == 0) {
+                if (k % 3 == 0)
+                    textView.setDrawableLeftAndTop(context, theme)
+                else if (k % 3 == 2)
+                    textView.setDrawableRightAndTop(context, theme)
+                else
+                    textView.setDrawableTop(context, theme)
+            }
+            else if (i % 3 == 2) {
+                if (k % 3 == 0)
+                    textView.setDrawableLeftAndBottom(context, theme)
+                else if (k % 3 == 2)
+                    textView.setDrawableRightAndBottom(context, theme)
+                else
+                    textView.setDrawableBottom(context, theme)
+            }
+            else
+                if (k % 3 == 0)
+                    textView.setDrawableLeft(context, theme)
+                else if (k % 3 == 2)
+                    textView.setDrawableRight(context, theme)
+                else
+                    textView.setDrawableNot(context, theme)
+        }
+    }
 }
 
