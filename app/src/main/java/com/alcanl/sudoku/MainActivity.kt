@@ -46,18 +46,25 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     @Inject
     lateinit var threadPool: ExecutorService
+
     @Inject
     lateinit var scheduledThreadPool: ScheduledExecutorService
+
     @Inject
     lateinit var chronometerCounter: ChronometerCounter
+
     @Inject
     lateinit var sudokuMatrix: SudokuMatrix
+
     @Inject
     lateinit var gameInfo: GameInfo
+
     @Inject
     lateinit var applicationService: SudokuApplicationDataService
+
     private var mSelectedTextView : TextView? = null
     private var mSelectedToggleButton : ToggleButton? = null
     private lateinit var mUserDialog: UserDialog
@@ -98,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initCounter()
     {
-        scheduledThreadPool.scheduleAtFixedRate({ chronometerCounterCallback() }, 0, 1, TimeUnit.SECONDS)
+        scheduledThreadPool.scheduleWithFixedDelay({ chronometerCounterCallback() }, 0, 1, TimeUnit.SECONDS)
     }
     private fun chronometerCounterCallback()
     {

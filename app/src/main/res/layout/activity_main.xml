@@ -50,35 +50,66 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/textView0"
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/textview_layout_border_left_top"
-                        android:clickable="@{matrix.getValue(0).isBlank()}"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
-                        android:text="@{matrix.getValue(0)}"
-                        android:textColor="@color/ap_black"
-                        android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        android:layout_weight="1" >
 
-                    <TextView
-                        android:id="@+id/textView1"
+                        <TextView
+                            android:id="@+id/textView0"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textview_layout_border_left_top"
+                            android:clickable="@{matrix.getValue(0).isBlank()}"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
+                            android:text="@{matrix.getValue(0)}"
+                            android:textColor="@color/ap_black"
+                            android:textSize="30sp"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/textViewHint0"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_gravity="bottom | right"
+                            android:textColor="@color/ap_gray"
+                            android:textSize="8sp"
+                            tools:ignore="RtlHardcoded,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/textview_layout_border_top_only"
-                        android:clickable="@{matrix.getValue(1).isBlank()}"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
-                        android:text="@{matrix.getValue(1)}"
-                        android:textColor="@color/ap_black"
-                        android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/textview_layout_border_top_only"
+                            android:clickable="@{matrix.getValue(1).isBlank()}"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
+                            android:text="@{matrix.getValue(1)}"
+                            android:textColor="@color/ap_black"
+                            android:textSize="30sp"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <TextView
+                            android:id="@+id/textViewHint1"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_gravity="bottom | right"
+                            android:textColor="@color/ap_gray"
+                            android:textSize="8sp"
+                            tools:ignore="RtlHardcoded,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/textView2"
@@ -915,7 +946,7 @@
                         android:text="@{matrix.getValue(60)}"
                         android:textColor="@color/ap_black"
                         android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/textView61"
@@ -945,7 +976,7 @@
                         android:text="@{matrix.getValue(62)}"
                         android:textColor="@color/ap_black"
                         android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/textView63"
@@ -1444,7 +1475,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_two"
                     android:textOn="@string/number_two"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1453,7 +1485,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_three"
                     android:textOn="@string/number_three"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1462,7 +1495,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_four"
                     android:textOn="@string/number_four"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1471,7 +1505,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_five"
                     android:textOn="@string/number_five"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1480,7 +1515,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_six"
                     android:textOn="@string/number_six"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1489,7 +1525,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_seven"
                     android:textOn="@string/number_seven"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -1498,7 +1535,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_eight"
                     android:textOn="@string/number_eight"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"

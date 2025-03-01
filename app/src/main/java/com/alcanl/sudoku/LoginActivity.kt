@@ -32,18 +32,25 @@ import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+
     @Inject
     lateinit var applicationService: SudokuApplicationDataService
+
     @Inject
     lateinit var threadPool: ExecutorService
+
     private var mUsernameLogin = true
+
     private lateinit var mHandler: LoginActivityHandler
+
     private lateinit var mBinding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         initialize()
     }
+
     private fun initBackgroundAnimation()
     {
         val animatedDrawable = mBinding.layoutMain.background as AnimationDrawable
