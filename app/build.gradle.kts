@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.alcanl.android.app.sudoku"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.alcanl.android.app.sudoku"
@@ -61,10 +61,12 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("com.androidplot:androidplot-core:1.5.10")
-    implementation("com.google.dagger:hilt-android-gradle-plugin:2.51.1")
+    implementation("com.androidplot:androidplot-core:1.5.11")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.8")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.8")
+    implementation("com.google.dagger:hilt-android-gradle-plugin:2.55")
     implementation("androidx.room:room-runtime:$roomVersion")
-    implementation ("com.facebook.android:facebook-login:latest.release")
+    implementation ("com.facebook.android:facebook-login:18.0.2")
     implementation("androidx.activity:activity-ktx:1.10.1")
     ksp("androidx.room:room-compiler:$roomVersion")
     testImplementation("junit:junit:4.13.2")
@@ -72,8 +74,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test:rules:1.6.1")
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.55")
+    kapt("com.google.dagger:hilt-compiler:2.55")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
