@@ -3,7 +3,6 @@ package com.alcanl.sudoku
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TableRow
@@ -12,7 +11,6 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.core.view.get
 import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
@@ -22,10 +20,15 @@ import com.alcanl.sudoku.dialog.SettingsDialog
 import com.alcanl.sudoku.dialog.UserDialog
 import com.alcanl.sudoku.dialog.showLoseAndPlayAgainDialog
 import com.alcanl.sudoku.dialog.showWinAndPlayAgainDialog
+import com.alcanl.sudoku.global.FRAME_LAYOUT_ID_START_INDEX
+import com.alcanl.sudoku.global.ONE_SPACE_STRING
+import com.alcanl.sudoku.global.extension.clearFrame
 import com.alcanl.sudoku.global.extension.clearColor
-import com.alcanl.sudoku.global.extension.disableNoteMode
-import com.alcanl.sudoku.global.extension.enableNoteMode
+import com.alcanl.sudoku.global.extension.clearTableBackground
 import com.alcanl.sudoku.global.extension.getMoveInfo
+import com.alcanl.sudoku.global.extension.getSelectedFrame
+import com.alcanl.sudoku.global.extension.markAsFalseMove
+import com.alcanl.sudoku.global.extension.markAsTrueMove
 import com.alcanl.sudoku.global.extension.markTheNote
 import com.alcanl.sudoku.global.extension.setLineColor
 import com.alcanl.sudoku.global.extension.setSelectedColor
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var applicationService: SudokuApplicationDataService
+
+    @Inject
+    lateinit var handler: Handler
 
     private var mSelectedCell : FrameLayout? = null
     private var mSelectedToggleButton : ToggleButton? = null
@@ -124,25 +130,17 @@ class MainActivity : AppCompatActivity() {
     private fun tableCellClickedCallback(frameLayout: FrameLayout)
     {
         if (mSelectedCell != null && !gameInfo.checkLastMove())
-            (mSelectedCell?.get(0) as TextView).text = " "
+            (mSelectedCell?.get(0) as TextView).text = ONE_SPACE_STRING
 
         mSelectedCell = frameLayout
         runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-            .substring(11).toInt()) }
-
-        if (gameInfo.isNoteModeActive())
-            tableCellClickedCallbackNoteModeOn(mSelectedCell!!)
-
+            .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()) }
     }
-    private fun tableCellClickedCallbackNoteModeOn(frameLayout: FrameLayout)
-    {
-        (frameLayout[0] as TextView).enableNoteMode(this)
-    }
+
     @Synchronized
     private fun trueMoveCallback(frameLayout: FrameLayout)
     {
-        val mainTextView = frameLayout[0] as TextView
-        mainTextView.setTextColor(getColor(R.color.trueMove))
+        frameLayout.markAsTrueMove(this, handler)
         val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
         handleCorrectMoveOnMatrix(index, value)
         handleCorrectMoveOnGamePlay(index, value)
@@ -153,8 +151,6 @@ class MainActivity : AppCompatActivity() {
             handleWin()
             return
         }
-
-        Handler(Looper.myLooper()!!).postDelayed({mainTextView.setTextColor(getColor(com.androidplot.R.color.ap_black))}, 2000)
     }
     private fun handleCorrectMoveOnMatrix(index: Int, value: String)
     {
@@ -179,10 +175,9 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun falseMoveCallback(frameLayout: FrameLayout)
     {
-        val textView = frameLayout[0] as TextView
-        textView.setTextColor(getColor(R.color.falseMove))
-
+        frameLayout.markAsFalseMove(this)
         val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
+
         if (gameInfo.checkIfExistErrorCount()) {
             sudokuMatrix.setCell(index, value.toInt())
             gameInfo.apply {
@@ -190,9 +185,8 @@ class MainActivity : AppCompatActivity() {
                 getIncorrectMoveScore()
                 saveMove(Triple(index, value, false))
             }
-            mBinding.invalidateAll()
             mSelectedToggleButton = null
-            Handler(Looper.getMainLooper()).postDelayed( {sudokuMatrix.clearCell(index)}, 2000 )
+            handler.postDelayed({sudokuMatrix.clearCell(index); mBinding.invalidateAll()}, 2000 )
         }
         else
             stopGame()
@@ -203,18 +197,11 @@ class MainActivity : AppCompatActivity() {
         gameInfo.restart()
         chronometerCounter.restartCounter()
         sudokuMatrix.resetCurrentMatrix()
-        runOnUiThread(this::clearTableBackgroundCallback)
+        runOnUiThread { mBinding.tableLayoutMain.clearTableBackground(this) }
         runOnUiThread(this::clearToggleButtons)
         mBinding.invalidateAll()
     }
-    private fun clearTableBackgroundCallback()
-    {
-        mBinding.tableLayoutMain.children.forEach { view ->
-            (view as TableRow).forEach {
-                (it as FrameLayout).clearColor(this@MainActivity)
-            }
-        }
-    }
+
     @Synchronized
     private fun buttonHintCallback()
     {
@@ -237,20 +224,22 @@ class MainActivity : AppCompatActivity() {
     {
         try {
             val (index, value, isTrue) = gameInfo.useUndo()
-            val frameLayout =
-                (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as FrameLayout
+            val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
+
             sudokuMatrix.apply {
                 clearCell(index)
                 increaseNumberCount(value.toInt())
             }
             runOnUiThread {
-                (mSelectedCell?.get(0) as TextView).text = " "
-                mBinding.apply {
-                    tableCellClicked(frameLayout)
-                    (frameLayout[0] as TextView).setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
-                    frameLayout.isClickable = true
-                    invalidateAll()
-                }
+                mSelectedCell?.clearFrame()
+                tableCellClicked(frameLayout)
+                if (isTrue)
+                    frameLayout.markAsTrueMove(this@MainActivity, null)
+                else
+                    frameLayout.markAsFalseMove(this@MainActivity)
+
+                frameLayout.isClickable = true
+                mBinding.invalidateAll()
             }
         } catch (_: EmptyStackException) {
             runOnUiThread {
@@ -261,7 +250,8 @@ class MainActivity : AppCompatActivity() {
     private fun evaluateTheMove()
     {
         val value = mSelectedToggleButton!!.text.toString().toInt()
-        val index = resources.getResourceEntryName(mSelectedCell!!.id).substring(11).toInt()
+        val index = resources.getResourceEntryName(mSelectedCell!!.id)
+            .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()
         if (sudokuMatrix.isTrueValue(value, index))
             runOnUiThread { trueMoveCallback(mSelectedCell!!) }
         else
@@ -310,7 +300,7 @@ class MainActivity : AppCompatActivity() {
             initCounter()
             mSelectedCell = null
             mSelectedToggleButton = null
-            runOnUiThread(this::clearTableBackgroundCallback)
+            runOnUiThread { mBinding.tableLayoutMain.clearTableBackground(this) }
             runOnUiThread(this::clearToggleButtons)
             mBinding.invalidateAll()
         }
@@ -326,7 +316,7 @@ class MainActivity : AppCompatActivity() {
 
         if (mSelectedCell != null)
             setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-                .substring(11).toInt())
+                .substring(FRAME_LAYOUT_ID_START_INDEX).toInt())
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
@@ -338,8 +328,6 @@ class MainActivity : AppCompatActivity() {
             mSelectedCell?.markTheNote(toggleButton)
             return
         }
-        if (mSelectedCell?.isSelected!!)
-            (mSelectedCell?.get(0) as TextView).disableNoteMode(this)
 
         mSelectedToggleButton = toggleButton
         evaluateTheMove()

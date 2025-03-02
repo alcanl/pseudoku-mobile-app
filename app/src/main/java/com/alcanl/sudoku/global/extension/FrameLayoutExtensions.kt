@@ -3,6 +3,7 @@ package com.alcanl.sudoku.global.extension
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
+import android.os.Handler
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.ToggleButton
@@ -10,6 +11,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.get
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.sudoku.MainActivity
+import com.alcanl.sudoku.global.EMPTY_STRING
+import com.alcanl.sudoku.global.FRAME_LAYOUT_ID_START_INDEX
+import com.alcanl.sudoku.global.ONE_SPACE_STRING
 import com.alcanl.sudoku.global.theme.BoardTheme
 import com.alcanl.sudoku.global.theme.BoardTheme.THEME_DARK
 import com.alcanl.sudoku.global.theme.BoardTheme.THEME_DEFAULT
@@ -139,7 +143,8 @@ fun FrameLayout.setDrawableNot(context: Context, theme: BoardTheme)
 
 fun FrameLayout.getMoveInfo(toggleButton: ToggleButton) : Pair<Int, String>
 {
-    val index = resources.getResourceEntryName(this.id).substring(11).toInt()
+    val index = resources.getResourceEntryName(this.id)
+        .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()
     val value = toggleButton.text.toString()
 
     return Pair(index, value)
@@ -175,4 +180,24 @@ fun FrameLayout.clearColor(context: Context)
 fun FrameLayout.markTheNote(toggleButton: ToggleButton)
 {
     (this[1] as TextView).text = toggleButton.text
+}
+
+fun FrameLayout.markAsTrueMove(context: Context, handler: Handler?)
+{
+    (this[0] as TextView).setTextColor(context.getColor(R.color.trueMove))
+    handler?.postDelayed({(this[0] as TextView)
+        .setTextColor(context.getColor(com.androidplot.R.color.ap_black))}, 2500)
+
+    if ((this[1] as TextView).text.isNotBlank())
+        (this[1] as TextView).text = EMPTY_STRING
+}
+
+fun FrameLayout.markAsFalseMove(context: Context)
+{
+    (this[0] as TextView).setTextColor(context.getColor(R.color.falseMove))
+}
+
+fun FrameLayout?.clearFrame()
+{
+    (this?.get(0) as TextView).text = ONE_SPACE_STRING
 }

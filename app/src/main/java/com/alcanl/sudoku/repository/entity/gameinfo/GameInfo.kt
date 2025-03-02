@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.alcanl.sudoku.global.FALSE_SCORE_PER_MOVE
+import com.alcanl.sudoku.global.TRUE_SCORE_PER_MOVE
 import com.alcanl.sudoku.global.theme.BoardTheme
 import com.alcanl.sudoku.global.theme.BoardTheme.*
 import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
@@ -81,11 +83,11 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
     fun isHintMove() = mHintMove
     fun getCorrectMoveScore()
     {
-        score += 50
+        score += TRUE_SCORE_PER_MOVE
     }
     fun getIncorrectMoveScore()
     {
-        score -= 100
+        score -= FALSE_SCORE_PER_MOVE
     }
     fun checkLastMove() : Boolean
     {

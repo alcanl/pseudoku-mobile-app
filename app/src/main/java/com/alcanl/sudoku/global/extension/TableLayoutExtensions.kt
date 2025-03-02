@@ -4,6 +4,8 @@ import android.content.Context
 import android.widget.FrameLayout
 import android.widget.TableLayout
 import android.widget.TableRow
+import androidx.core.view.children
+import androidx.core.view.forEach
 import androidx.core.view.get
 import androidx.core.view.size
 import com.alcanl.sudoku.global.theme.BoardTheme
@@ -39,4 +41,18 @@ fun TableLayout.setTheme(context: Context, theme: BoardTheme)
                     frameLayout.setDrawableNot(context, theme)
         }
     }
+}
+
+fun TableLayout.clearTableBackground(context: Context)
+{
+    this.children.forEach { view ->
+        (view as TableRow).forEach {
+            (it as FrameLayout).clearColor(context)
+        }
+    }
+}
+
+fun TableLayout.getSelectedFrame(index: Int) : FrameLayout
+{
+    return (this[index / 10] as TableRow)[index % 10] as FrameLayout
 }
