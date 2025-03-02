@@ -15,6 +15,7 @@
         <variable name="viewModel" type="MainActivityListenersViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,6 +70,7 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -98,6 +100,7 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -126,6 +129,8 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -154,6 +159,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -181,6 +187,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -208,6 +215,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -235,6 +243,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -262,6 +271,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -289,6 +299,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -322,6 +333,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -349,6 +361,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -376,6 +389,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -403,6 +417,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -430,6 +445,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -457,6 +473,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -484,6 +501,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -511,6 +529,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -538,6 +557,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -571,6 +591,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -598,6 +619,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -625,6 +647,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -652,6 +675,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -679,6 +703,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -706,6 +731,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -733,6 +759,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -760,6 +787,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -787,6 +815,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -820,6 +849,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -847,6 +877,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -874,6 +905,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -901,6 +933,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -928,6 +961,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -955,6 +989,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -982,6 +1017,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1009,6 +1045,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1036,6 +1073,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1069,6 +1107,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1096,6 +1135,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1123,6 +1163,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1150,6 +1191,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1177,6 +1219,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1204,6 +1247,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1231,6 +1275,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1258,6 +1303,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1285,6 +1331,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1317,6 +1364,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1344,6 +1392,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1371,6 +1420,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1398,6 +1448,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1425,6 +1476,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1452,6 +1504,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1479,6 +1532,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1506,6 +1560,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1532,7 +1587,8 @@
                             android:text="@{matrix.getValue(58)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
-                            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                            tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1566,6 +1622,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1593,6 +1650,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1620,6 +1678,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1647,6 +1706,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1673,7 +1733,8 @@
                             android:text="@{matrix.getValue(64)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
-                            tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                            tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1700,6 +1761,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1727,6 +1789,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1754,6 +1817,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1781,6 +1845,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1813,6 +1878,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1840,6 +1906,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1867,6 +1934,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1894,6 +1962,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1921,6 +1990,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1948,6 +2018,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -1975,6 +2046,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2002,6 +2074,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2029,6 +2102,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2062,6 +2136,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2089,6 +2164,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2116,6 +2192,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2143,6 +2220,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2170,6 +2248,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2197,6 +2276,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2224,6 +2304,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2251,6 +2332,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -2278,6 +2360,7 @@
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
