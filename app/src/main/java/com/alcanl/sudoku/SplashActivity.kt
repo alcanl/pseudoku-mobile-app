@@ -8,16 +8,11 @@ import android.os.CountDownTimer
 import androidx.databinding.DataBindingUtil
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivitySplashBinding
-import com.alcanl.sudoku.service.SudokuApplicationDataService
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var service: SudokuApplicationDataService
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

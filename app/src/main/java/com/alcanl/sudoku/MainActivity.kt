@@ -10,7 +10,6 @@ import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -21,13 +20,15 @@ import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.dialog.SettingsDialog
 import com.alcanl.sudoku.dialog.UserDialog
-import com.alcanl.sudoku.global.clearColor
-import com.alcanl.sudoku.global.disableNoteMode
-import com.alcanl.sudoku.global.enableNoteMode
-import com.alcanl.sudoku.global.getMoveInfo
-import com.alcanl.sudoku.global.setLineColor
-import com.alcanl.sudoku.global.setSelectedColor
-import com.alcanl.sudoku.global.setTheme
+import com.alcanl.sudoku.dialog.showLoseAndPlayAgainDialog
+import com.alcanl.sudoku.dialog.showWinAndPlayAgainDialog
+import com.alcanl.sudoku.global.extension.clearColor
+import com.alcanl.sudoku.global.extension.disableNoteMode
+import com.alcanl.sudoku.global.extension.enableNoteMode
+import com.alcanl.sudoku.global.extension.getMoveInfo
+import com.alcanl.sudoku.global.extension.setLineColor
+import com.alcanl.sudoku.global.extension.setSelectedColor
+import com.alcanl.sudoku.global.extension.setTheme
 import com.alcanl.sudoku.global.theme.BoardTheme
 import com.alcanl.sudoku.global.theme.BoardTheme.*
 import com.alcanl.sudoku.repository.entity.User
@@ -274,12 +275,7 @@ class MainActivity : AppCompatActivity() {
             setGameDuration(chronometerCounter.toString())
         }
 
-        AlertDialog.Builder(this@MainActivity)
-            .setCancelable(false)
-            .setTitle("Game Over")
-            .setNeutralButton("OK") { _, _ -> }
-            .setMessage("Sorry, You made 3 mistakes and nothing left.")
-            .create().show()
+        showLoseAndPlayAgainDialog(this, ::startNewGame) { finish() }
     }
     private fun setLineBackground(index: Int)
     {
@@ -303,13 +299,7 @@ class MainActivity : AppCompatActivity() {
         gameInfo.isWin(true)
         gameInfo.setGameDuration(chronometerCounter.toString())
         threadPool.execute { applicationService.saveGameInfo(gameInfo) }
-        AlertDialog.Builder(this)
-            .setCancelable(false)
-            .setPositiveButton("Yes") {_,_ -> startNewGame()}
-            .setNegativeButton("No") {_,_ -> finish()}
-            .setTitle("Congratulations, Its a win!")
-            .setMessage("Do you want to play a new game?")
-            .create().show()
+        showWinAndPlayAgainDialog(this, ::startNewGame) { finish() }
     }
     private fun startNewGame()
     {

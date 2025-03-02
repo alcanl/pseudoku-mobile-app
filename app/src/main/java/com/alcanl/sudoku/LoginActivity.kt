@@ -20,7 +20,7 @@ import com.alcanl.sudoku.global.WHAT_HIDE_LOADING
 import com.alcanl.sudoku.global.WHAT_INVALID_USER_DATA
 import com.alcanl.sudoku.global.WHAT_SERVICE_EX
 import com.alcanl.sudoku.global.WHAT_SHOW_LOADING
-import com.alcanl.sudoku.global.setAnimation
+import com.alcanl.sudoku.global.extension.setAnimation
 import com.alcanl.sudoku.repository.entity.User
 import com.alcanl.sudoku.service.ServiceException
 import com.alcanl.sudoku.service.SudokuApplicationDataService
