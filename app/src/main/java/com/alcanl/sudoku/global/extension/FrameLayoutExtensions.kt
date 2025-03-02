@@ -171,3 +171,8 @@ fun FrameLayout.clearColor(context: Context)
         THEME_DEFAULT -> this.setDefaultColor(context)
     }
 }
+
+fun FrameLayout.markTheNote(toggleButton: ToggleButton)
+{
+    (this[1] as TextView).text = toggleButton.text
+}

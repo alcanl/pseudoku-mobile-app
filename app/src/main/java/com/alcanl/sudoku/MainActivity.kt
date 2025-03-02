@@ -26,6 +26,7 @@ import com.alcanl.sudoku.global.extension.clearColor
 import com.alcanl.sudoku.global.extension.disableNoteMode
 import com.alcanl.sudoku.global.extension.enableNoteMode
 import com.alcanl.sudoku.global.extension.getMoveInfo
+import com.alcanl.sudoku.global.extension.markTheNote
 import com.alcanl.sudoku.global.extension.setLineColor
 import com.alcanl.sudoku.global.extension.setSelectedColor
 import com.alcanl.sudoku.global.extension.setTheme
@@ -179,8 +180,8 @@ class MainActivity : AppCompatActivity() {
     private fun falseMoveCallback(frameLayout: FrameLayout)
     {
         val textView = frameLayout[0] as TextView
-
         textView.setTextColor(getColor(R.color.falseMove))
+
         val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
         if (gameInfo.checkIfExistErrorCount()) {
             sudokuMatrix.setCell(index, value.toInt())
@@ -190,8 +191,8 @@ class MainActivity : AppCompatActivity() {
                 saveMove(Triple(index, value, false))
             }
             mBinding.invalidateAll()
-            frameLayout.isClickable = true
             mSelectedToggleButton = null
+            Handler(Looper.getMainLooper()).postDelayed( {sudokuMatrix.clearCell(index)}, 2000 )
         }
         else
             stopGame()
@@ -330,31 +331,40 @@ class MainActivity : AppCompatActivity() {
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
-        if (mSelectedCell == null || gameInfo.isNoteModeActive())
+        if (mSelectedCell == null)
             return
 
+        if (gameInfo.isNoteModeActive()) {
+            mSelectedCell?.markTheNote(toggleButton)
+            return
+        }
         if (mSelectedCell?.isSelected!!)
             (mSelectedCell?.get(0) as TextView).disableNoteMode(this)
 
         mSelectedToggleButton = toggleButton
         evaluateTheMove()
     }
+
     fun tableCellClicked(frameLayout: FrameLayout)
     {
         runOnUiThread { tableCellClickedCallback(frameLayout) }
     }
+
     fun buttonBackClicked()
     {
         TODO("Not implemented yet")
     }
+
     fun buttonSettingsClicked()
     {
         mSettingsDialog = SettingsDialog(this).apply { show() }
     }
+
     fun buttonUndoClicked()
     {
         threadPool.execute(this::buttonUndoCallback)
     }
+
     fun buttonNoteClicked()
     {
         val onOrOff = !gameInfo.isNoteModeActive()
@@ -365,18 +375,22 @@ class MainActivity : AppCompatActivity() {
             else
                 R.string.textview_note_mode_inactive_text)
     }
+
     fun buttonHintClicked()
     {
         threadPool.execute(this::buttonHintCallback)
     }
+
     fun buttonUserClicked()
     {
         mUserDialog = UserDialog(this).apply { show() }
     }
+
     fun buttonRestartClicked()
     {
         threadPool.execute(this::buttonRestartCallback)
     }
+
     fun buttonSetThemeClicked(button: MaterialButton)
     {
         mSettingsDialog.dismiss()
