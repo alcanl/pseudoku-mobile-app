@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
@@ -39,8 +40,6 @@ import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.EmptyStackException
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -49,9 +48,6 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var threadPool: ExecutorService
-
-    @Inject
-    lateinit var scheduledThreadPool: ScheduledExecutorService
 
     @Inject
     lateinit var chronometerCounter: ChronometerCounter
@@ -65,13 +61,12 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var applicationService: SudokuApplicationDataService
 
-    private var mSelectedTextView : TextView? = null
+    private var mSelectedCell : FrameLayout? = null
     private var mSelectedToggleButton : ToggleButton? = null
     private lateinit var mUserDialog: UserDialog
     private lateinit var mSettingsDialog : SettingsDialog
     private lateinit var mUser : User
     private lateinit var mBinding : ActivityMainBinding
-    private lateinit var mChronometerCounterThread : Thread
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -82,12 +77,20 @@ class MainActivity : AppCompatActivity() {
     override fun onResume()
     {
         super.onResume()
-        chronometerCounter.resume()
+
+        chronometerCounter.apply {
+            if (isCounterPaused())
+                resumeCounter()
+        }
     }
     override fun onPause()
     {
         super.onPause()
-        chronometerCounter.pause()
+
+        chronometerCounter.apply {
+            if (!isCounterPaused())
+                pauseCounter()
+        }
     }
     @Suppress("DEPRECATION")
     private fun getUserInfo()
@@ -105,16 +108,9 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initCounter()
     {
-        scheduledThreadPool.scheduleWithFixedDelay({ chronometerCounterCallback() }, 0, 1, TimeUnit.SECONDS)
+        chronometerCounter.startAndVisualizeCounter(mBinding)
     }
-    private fun chronometerCounterCallback()
-    {
-        mChronometerCounterThread = Thread.currentThread()
-        if (!mChronometerCounterThread.isInterrupted && !chronometerCounter.isPaused()) {
-            chronometerCounter.handleCounter()
-            mBinding.timer = chronometerCounter.toString()
-        }
-    }
+
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -123,39 +119,40 @@ class MainActivity : AppCompatActivity() {
         mBinding.gamePlay = gameInfo
         mBinding.user = mUser
     }
-    private fun tableCellClickedCallback(textView: TextView)
+    private fun tableCellClickedCallback(frameLayout: FrameLayout)
     {
-        if (mSelectedTextView != null && !gameInfo.checkLastMove())
-            mSelectedTextView?.text = " "
+        if (mSelectedCell != null && !gameInfo.checkLastMove())
+            (mSelectedCell?.get(0) as TextView).text = " "
 
-        mSelectedTextView = textView
-        runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedTextView!!.id)
+        mSelectedCell = frameLayout
+        runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
             .substring(8).toInt()) }
 
         if (gameInfo.isNoteModeActive())
-            tableCellClickedCallbackNoteModeOn(mSelectedTextView!!)
+            tableCellClickedCallbackNoteModeOn(mSelectedCell!!)
 
     }
-    private fun tableCellClickedCallbackNoteModeOn(textView: TextView)
+    private fun tableCellClickedCallbackNoteModeOn(frameLayout: FrameLayout)
     {
-        textView.enableNoteMode(this)
+        (frameLayout[0] as TextView).enableNoteMode(this)
     }
     @Synchronized
-    private fun trueMoveCallback(textView: TextView)
+    private fun trueMoveCallback(frameLayout: FrameLayout)
     {
-        textView.setTextColor(getColor(R.color.trueMove))
-        val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
+        val mainTextView = frameLayout[0] as TextView
+        mainTextView.setTextColor(getColor(R.color.trueMove))
+        val (index, value) = mainTextView.getMoveInfo(mSelectedToggleButton!!)
         handleCorrectMoveOnMatrix(index, value)
         handleCorrectMoveOnGamePlay(index, value)
         mBinding.invalidateAll()
-        mSelectedTextView = null
+        mSelectedCell = null
 
         if (sudokuMatrix.isCompleted()) {
             handleWin()
             return
         }
 
-        Handler(Looper.myLooper()!!).postDelayed({textView.setTextColor(getColor(com.androidplot.R.color.ap_black))}, 2000)
+        Handler(Looper.myLooper()!!).postDelayed({mainTextView.setTextColor(getColor(com.androidplot.R.color.ap_black))}, 2000)
     }
     private fun handleCorrectMoveOnMatrix(index: Int, value: String)
     {
@@ -178,8 +175,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
     @Synchronized
-    private fun falseMoveCallback(textView: TextView)
+    private fun falseMoveCallback(frameLayout: FrameLayout)
     {
+        val textView = frameLayout[0] as TextView
+
         textView.setTextColor(getColor(R.color.falseMove))
         val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
         if (gameInfo.checkIfExistErrorCount()) {
@@ -190,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                 saveMove(Triple(index, value, false))
             }
             mBinding.invalidateAll()
-            textView.isClickable = true
+            frameLayout.isClickable = true
             mSelectedToggleButton = null
         }
         else
@@ -200,7 +199,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonRestartCallback()
     {
         gameInfo.restart()
-        chronometerCounter.clearTimer()
+        chronometerCounter.restartCounter()
         sudokuMatrix.resetCurrentMatrix()
         runOnUiThread(this::clearTableBackgroundCallback)
         runOnUiThread(this::clearToggleButtons)
@@ -222,12 +221,12 @@ class MainActivity : AppCompatActivity() {
 
         gameInfo.useHint()
         val (index, value) = sudokuMatrix.getHint()
-        val textView = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
+        val frameLayout = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as FrameLayout
         mSelectedToggleButton = mBinding.linearLayoutButtons[value.toInt() - 1] as ToggleButton
 
         runOnUiThread {
-            tableCellClickedCallback(textView)
-            trueMoveCallback(textView)
+            tableCellClickedCallback(frameLayout)
+            trueMoveCallback(frameLayout)
             mBinding.invalidateAll()
         }
     }
@@ -236,18 +235,18 @@ class MainActivity : AppCompatActivity() {
     {
         try {
             val (index, value, isTrue) = gameInfo.useUndo()
-            val textView =
-                (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as TextView
+            val frameLayout =
+                (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as FrameLayout
             sudokuMatrix.apply {
                 clearCell(index)
                 increaseNumberCount(value.toInt())
             }
             runOnUiThread {
-                mSelectedTextView?.text = " "
+                (mSelectedCell?.get(0) as TextView).text = " "
                 mBinding.apply {
-                    tableCellClicked(textView)
-                    textView.setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
-                    textView.isClickable = true
+                    tableCellClicked(frameLayout)
+                    (frameLayout[0] as TextView).setTextColor(getColor(if (isTrue) R.color.trueMove else R.color.falseMove))
+                    frameLayout.isClickable = true
                     invalidateAll()
                 }
             }
@@ -260,19 +259,20 @@ class MainActivity : AppCompatActivity() {
     private fun evaluateTheMove()
     {
         val value = mSelectedToggleButton!!.text.toString().toInt()
-        val index = resources.getResourceEntryName(mSelectedTextView!!.id).substring(8).toInt()
+        val index = resources.getResourceEntryName(mSelectedCell!!.id).substring(8).toInt()
         if (sudokuMatrix.isTrueValue(value, index))
-            runOnUiThread { trueMoveCallback(mSelectedTextView!!) }
+            runOnUiThread { trueMoveCallback(mSelectedCell!!) }
         else
-            runOnUiThread { falseMoveCallback(mSelectedTextView!!) }
+            runOnUiThread { falseMoveCallback(mSelectedCell!!) }
     }
     private fun stopGame()
     {
+        chronometerCounter.stopCounter()
+
         gameInfo.apply {
             isWin(false)
             setGameDuration(chronometerCounter.toString())
         }
-        mChronometerCounterThread.interrupt()
 
         AlertDialog.Builder(this@MainActivity)
             .setCancelable(false)
@@ -316,10 +316,8 @@ class MainActivity : AppCompatActivity() {
         threadPool.execute {
             gameInfo = GameInfo()
             sudokuMatrix.generateNewMatrix()
-            mChronometerCounterThread.interrupt()
-            chronometerCounter.clearTimer()
             initCounter()
-            mSelectedTextView = null
+            mSelectedCell = null
             mSelectedToggleButton = null
             runOnUiThread(this::clearTableBackgroundCallback)
             runOnUiThread(this::clearToggleButtons)
@@ -335,25 +333,25 @@ class MainActivity : AppCompatActivity() {
     {
         mBinding.tableLayoutMain.setTheme(this, theme)
 
-        if (mSelectedTextView != null)
-            setLineBackground(resources.getResourceEntryName(mSelectedTextView!!.id)
+        if (mSelectedCell != null)
+            setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
                 .substring(8).toInt())
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
     {
-        if (mSelectedTextView == null || gameInfo.isNoteModeActive())
+        if (mSelectedCell == null || gameInfo.isNoteModeActive())
             return
 
-        if (mSelectedTextView?.isSelected!!)
-            mSelectedTextView?.disableNoteMode(this)
+        if (mSelectedCell?.isSelected!!)
+            (mSelectedCell?.get(0) as TextView).disableNoteMode(this)
 
         mSelectedToggleButton = toggleButton
         evaluateTheMove()
     }
-    fun tableCellClicked(textView: TextView)
+    fun tableCellClicked(frameLayout: FrameLayout)
     {
-        runOnUiThread { tableCellClickedCallback(textView) }
+        runOnUiThread { tableCellClickedCallback(frameLayout) }
     }
     fun buttonBackClicked()
     {
