@@ -20,7 +20,7 @@ data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
                     var result: Boolean = false,
                     var level: Level = Level.MEDIUM,
                     @Ignore private var mActiveTheme: BoardTheme = THEME_DEFAULT,
-                    @Ignore private var mIsNoteModeActive: Boolean = false,
+                    @Volatile @Ignore private var mIsNoteModeActive: Boolean = false,
                     @Ignore private var mMoveStack: Stack<Triple<Int, String, Boolean>> = Stack()
                     ) : Serializable {
     @Ignore private var mHintMove = false
