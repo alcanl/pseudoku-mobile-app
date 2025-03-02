@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         mSelectedCell = frameLayout
         runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-            .substring(8).toInt()) }
+            .substring(11).toInt()) }
 
         if (gameInfo.isNoteModeActive())
             tableCellClickedCallbackNoteModeOn(mSelectedCell!!)
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
     {
         val mainTextView = frameLayout[0] as TextView
         mainTextView.setTextColor(getColor(R.color.trueMove))
-        val (index, value) = mainTextView.getMoveInfo(mSelectedToggleButton!!)
+        val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
         handleCorrectMoveOnMatrix(index, value)
         handleCorrectMoveOnGamePlay(index, value)
         mBinding.invalidateAll()
@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         val textView = frameLayout[0] as TextView
 
         textView.setTextColor(getColor(R.color.falseMove))
-        val (index, value) = textView.getMoveInfo(mSelectedToggleButton!!)
+        val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
         if (gameInfo.checkIfExistErrorCount()) {
             sudokuMatrix.setCell(index, value.toInt())
             gameInfo.apply {
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
     {
         mBinding.tableLayoutMain.children.forEach { view ->
             (view as TableRow).forEach {
-                (it as TextView).clearColor(this@MainActivity)
+                (it as FrameLayout).clearColor(this@MainActivity)
             }
         }
     }
@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity() {
     private fun evaluateTheMove()
     {
         val value = mSelectedToggleButton!!.text.toString().toInt()
-        val index = resources.getResourceEntryName(mSelectedCell!!.id).substring(8).toInt()
+        val index = resources.getResourceEntryName(mSelectedCell!!.id).substring(11).toInt()
         if (sudokuMatrix.isTrueValue(value, index))
             runOnUiThread { trueMoveCallback(mSelectedCell!!) }
         else
@@ -284,17 +284,17 @@ class MainActivity : AppCompatActivity() {
     private fun setLineBackground(index: Int)
     {
         var tableRow: TableRow
-        var textView: TextView
+        var frameLayout: FrameLayout
         for (i in 0..<mBinding.tableLayoutMain.size) {
             tableRow = mBinding.tableLayoutMain[i] as TableRow
             for (k in 0..<tableRow.size) {
-                textView = tableRow[k] as TextView
+                frameLayout = tableRow[k] as FrameLayout
                 if (index == i * 10 + k)
-                    textView.setSelectedColor(this)
+                    frameLayout.setSelectedColor(this)
                 else if (index % 10 == k || index / 10 == i)
-                    textView.setLineColor(this)
+                    frameLayout.setLineColor(this)
                 else
-                    textView.clearColor(this)
+                    frameLayout.clearColor(this)
             }
         }
     }
@@ -302,7 +302,7 @@ class MainActivity : AppCompatActivity() {
     {
         gameInfo.isWin(true)
         gameInfo.setGameDuration(chronometerCounter.toString())
-        applicationService.saveGameInfo(gameInfo)
+        threadPool.execute { applicationService.saveGameInfo(gameInfo) }
         AlertDialog.Builder(this)
             .setCancelable(false)
             .setPositiveButton("Yes") {_,_ -> startNewGame()}
@@ -335,7 +335,7 @@ class MainActivity : AppCompatActivity() {
 
         if (mSelectedCell != null)
             setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-                .substring(8).toInt())
+                .substring(11).toInt())
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)

@@ -51,17 +51,17 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout0"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
                         android:clickable="@{matrix.getValue(0).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
 
                         <TextView
-                            android:id="@+id/textView0"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(0)}"
@@ -70,7 +70,6 @@
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <TextView
-                            android:id="@+id/textViewHint0"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -81,17 +80,17 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
                         android:clickable="@{matrix.getValue(1).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
 
                         <TextView
-                            android:id="@+id/textView1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(1)}"
@@ -100,7 +99,6 @@
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <TextView
-                            android:id="@+id/textViewHint1"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -112,16 +110,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
                         android:clickable="@{matrix.getValue(2).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(2)}"
@@ -129,7 +127,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint2"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -141,16 +138,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
                         android:clickable="@{matrix.getValue(3).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(3)}"
@@ -158,7 +155,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -169,16 +165,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
                         android:clickable="@{matrix.getValue(4).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(4)}"
@@ -186,7 +182,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint4"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -197,16 +192,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
                         android:clickable="@{matrix.getValue(5).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView5"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(5)}"
@@ -214,7 +209,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint5"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -225,16 +219,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
                         android:clickable="@{matrix.getValue(6).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView6"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(6)}"
@@ -242,7 +236,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint6"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -253,16 +246,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout7"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:clickable="@{matrix.getValue(7).isBlank()}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView7"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(7)}"
@@ -270,7 +263,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint7"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -281,16 +273,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout8"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
                         android:clickable="@{matrix.getValue(8).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(8)}"
@@ -298,7 +290,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint8"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -315,16 +306,16 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout10"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
                         android:clickable="@{matrix.getValue(10).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView10"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(10)}"
@@ -332,7 +323,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint10"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -343,16 +333,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout11"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
                         android:clickable="@{matrix.getValue(11).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView11"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(11)}"
@@ -360,7 +350,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint11"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -371,16 +360,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout12"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:clickable="@{matrix.getValue(12).isBlank()}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView12"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(12)}"
@@ -388,7 +377,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint12"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -399,16 +387,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout13"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
                         android:clickable="@{matrix.getValue(13).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView13"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(13)}"
@@ -416,7 +404,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint13"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -427,16 +414,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout14"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
                         android:clickable="@{matrix.getValue(14).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView14"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(14)}"
@@ -444,7 +431,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint14"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -455,16 +441,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout15"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
                         android:clickable="@{matrix.getValue(15).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView15"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(15)}"
@@ -472,7 +458,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint15"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -483,16 +468,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout16"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
                         android:clickable="@{matrix.getValue(16).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView16"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(16)}"
@@ -500,7 +485,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint16"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -511,16 +495,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout17"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
                         android:clickable="@{matrix.getValue(17).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView17"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(17)}"
@@ -528,7 +512,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint17"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -539,16 +522,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout18"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
                         android:clickable="@{matrix.getValue(18).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView18"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(18)}"
@@ -556,7 +539,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint18"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -573,16 +555,16 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout20"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
                         android:clickable="@{matrix.getValue(20).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView20"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(20)}"
@@ -590,7 +572,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint20"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -601,16 +582,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout21"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
                         android:clickable="@{matrix.getValue(21).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView21"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(21)}"
@@ -618,7 +599,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint21"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -629,16 +609,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout22"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
                         android:clickable="@{matrix.getValue(22).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView22"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(22)}"
@@ -646,7 +626,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint22"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -657,16 +636,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout23"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
                         android:clickable="@{matrix.getValue(23).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(23)}"
@@ -674,7 +653,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint23"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -685,16 +663,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout24"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
                         android:clickable="@{matrix.getValue(24).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView24"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(24)}"
@@ -702,7 +680,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint24"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -713,16 +690,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout25"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
                         android:clickable="@{matrix.getValue(25).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView25"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(25)}"
@@ -730,7 +707,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint25"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -741,16 +717,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout26"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
                         android:clickable="@{matrix.getValue(26).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView26"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(26)}"
@@ -758,7 +734,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint26"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -769,16 +744,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout27"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
                         android:clickable="@{matrix.getValue(27).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView27"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(27)}"
@@ -786,7 +761,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint27"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -797,16 +771,16 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout28"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
                         android:clickable="@{matrix.getValue(28).isBlank()}"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView28"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
                             android:text="@{matrix.getValue(28)}"
@@ -814,7 +788,6 @@
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint28"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -831,24 +804,23 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout30"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(30).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView30"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(30).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(30)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint30"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -859,24 +831,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout31"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(31).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView31"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(31).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(31)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint31"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -887,24 +858,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout32"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(32).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView32"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(32).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(32)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint32"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -915,24 +885,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout33"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(33).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView33"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(33).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(33)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint33"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -943,24 +912,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout34"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(34).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView34"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(34).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(34)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint34"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -971,24 +939,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout35"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(35).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView35"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(35).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(35)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint35"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -999,24 +966,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout36"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(36).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView36"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(36).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(36)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint36"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1027,24 +993,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout37"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(37).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView37"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(37).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(37)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint37"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1055,24 +1020,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout38"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(38).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView38"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(38).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(38)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint38"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1089,24 +1053,23 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout40"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(40).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView40"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(40).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(40)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint40"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1117,24 +1080,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout41"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(41).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView41"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(41).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(41)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint41"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1145,24 +1107,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout42"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
+                        android:clickable="@{matrix.getValue(42).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView42"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
-                            android:clickable="@{matrix.getValue(42).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(42)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint42"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1173,24 +1134,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout43"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(43).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView43"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(43).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(43)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint43"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1201,24 +1161,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout44"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(44).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView44"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(44).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(44)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint44"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1229,24 +1188,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout45"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
+                        android:clickable="@{matrix.getValue(45).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView45"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
-                            android:clickable="@{matrix.getValue(45).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(45)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint45"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1257,24 +1215,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout46"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(46).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView46"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(46).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(46)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint46"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1285,24 +1242,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout47"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(47).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView47"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(47).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(47)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint47"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1313,24 +1269,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout48"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
+                        android:clickable="@{matrix.getValue(48).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView48"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
-                            android:clickable="@{matrix.getValue(48).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(48)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint48"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1346,24 +1301,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <FrameLayout
+                        android:id="@+id/frameLayout50"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(50).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView50"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(50).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(50)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint50"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1374,24 +1328,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout51"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(51).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView51"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(51).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(51)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint51"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1402,24 +1355,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout52"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(52).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView52"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(52).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(52)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint52"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1430,24 +1382,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout53"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(53).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView53"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(53).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(53)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint53"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1458,24 +1409,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout54"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(54).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView54"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(54).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(54)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint54"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1486,24 +1436,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout55"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(55).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView55"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(55).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(55)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint55"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1514,24 +1463,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout56"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(56).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView56"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(56).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(56)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint56"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1542,24 +1490,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout57"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(57).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView57"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(57).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(57)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint57"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1570,24 +1517,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout58"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(58).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView58"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(58).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(58)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint58"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1604,24 +1550,23 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout60"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(60).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView60"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(60).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(60)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint60"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1632,24 +1577,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout61"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(61).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView61"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(61).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(61)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint61"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1660,24 +1604,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout62"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(62).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView62"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(62).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(62)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint62"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1688,24 +1631,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout63"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(63).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView63"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(63).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(63)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint63"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1716,24 +1658,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout64"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(64).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView64"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(64).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(64)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint64"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1743,24 +1684,23 @@
                             tools:ignore="RtlHardcoded,SmallSp,SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                     </FrameLayout>
                     <FrameLayout
+                        android:id="@+id/frameLayout65"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(65).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView65"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(65).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(65)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint65"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1771,24 +1711,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout66"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_top"
+                        android:clickable="@{matrix.getValue(66).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView66"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_top"
-                            android:clickable="@{matrix.getValue(66).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(66)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint66"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1799,24 +1738,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout67"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_top_only"
+                        android:clickable="@{matrix.getValue(67).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView67"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_top_only"
-                            android:clickable="@{matrix.getValue(67).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(67)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint67"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1827,24 +1765,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout68"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_top"
+                        android:clickable="@{matrix.getValue(68).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView68"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_top"
-                            android:clickable="@{matrix.getValue(68).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(68)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint68"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1860,24 +1797,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <FrameLayout
+                        android:id="@+id/frameLayout70"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(70).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView70"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(70).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(70)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint70"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1888,24 +1824,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout71"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(71).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView71"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(71).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(71)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint71"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1916,24 +1851,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout72"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
+                        android:clickable="@{matrix.getValue(72).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView72"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
-                            android:clickable="@{matrix.getValue(72).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(72)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint72"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1944,24 +1878,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout73"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(73).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView73"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(73).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(73)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint73"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -1972,24 +1905,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout74"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(74).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView74"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(74).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(74)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint74"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2000,24 +1932,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout75"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_only"
+                        android:clickable="@{matrix.getValue(75).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView75"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_only"
-                            android:clickable="@{matrix.getValue(75).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(75)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint75"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2028,24 +1959,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout76"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_only"
+                        android:clickable="@{matrix.getValue(76).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView76"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_only"
-                            android:clickable="@{matrix.getValue(76).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(76)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint76"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2056,24 +1986,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout77"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_not"
+                        android:clickable="@{matrix.getValue(77).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView77"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_not"
-                            android:clickable="@{matrix.getValue(77).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(77)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint77"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2084,24 +2013,23 @@
                     </FrameLayout>
 
                     <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" >
-                    <TextView
-                        android:id="@+id/textView78"
+                        android:id="@+id/frameLayout78"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/textview_layout_border_right_only"
                         android:clickable="@{matrix.getValue(78).isBlank()}"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
                         android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
-                        android:text="@{matrix.getValue(78)}"
-                        android:textColor="@color/ap_black"
-                        android:textSize="30sp"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textViewHint78"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:text="@{matrix.getValue(78)}"
+                            android:textColor="@color/ap_black"
+                            android:textSize="30sp"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        <TextView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2118,24 +2046,23 @@
                     android:layout_weight="1">
 
                     <FrameLayout
+                        android:id="@+id/frameLayout80"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(80).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView80"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(80).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(80)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint80"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2146,24 +2073,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout81"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(81).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView81"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(81).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(81)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint81"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2174,24 +2100,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout82"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(82).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView82"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(82).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(82)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint82"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2202,24 +2127,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout83"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(83).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView83"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(83).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(83)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint83"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2230,24 +2154,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout84"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(84).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView84"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(84).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(84)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint84"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2258,24 +2181,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout85"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(85).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView85"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(85).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(85)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint85"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2286,24 +2208,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout86"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_left_bottom"
+                        android:clickable="@{matrix.getValue(86).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView86"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_left_bottom"
-                            android:clickable="@{matrix.getValue(86).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(86)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint86"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2314,24 +2235,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout87"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_bottom_only"
+                        android:clickable="@{matrix.getValue(87).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView87"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_bottom_only"
-                            android:clickable="@{matrix.getValue(87).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(87)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint87"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2342,24 +2262,23 @@
                     </FrameLayout>
 
                     <FrameLayout
+                        android:id="@+id/frameLayout88"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/textview_layout_border_right_bottom"
+                        android:clickable="@{matrix.getValue(88).isBlank()}"
+                        android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                         android:layout_weight="1" >
                         <TextView
-                            android:id="@+id/textView88"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/textview_layout_border_right_bottom"
-                            android:clickable="@{matrix.getValue(88).isBlank()}"
                             android:fontFamily="sans-serif-medium"
                             android:gravity="center"
-                            android:onClick="@{v -> viewModel.handleTableCellClick(v)}"
                             android:text="@{matrix.getValue(88)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         <TextView
-                            android:id="@+id/textViewHint88"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:fontFamily="sans-serif-medium"
@@ -2377,7 +2296,6 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:background="@color/cardview_light_background"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -2573,8 +2491,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintStart_toStartOf="parent">
 
             <FrameLayout
                 android:layout_width="60dp"

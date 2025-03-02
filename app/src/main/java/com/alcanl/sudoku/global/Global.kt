@@ -6,6 +6,7 @@ import android.graphics.drawable.LayerDrawable
 import android.view.Gravity
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TableLayout
 import android.widget.TableRow
@@ -33,26 +34,26 @@ const val WHAT_SERVICE_EX = 4
 const val WHAT_SHOW_LOADING = 5
 const val WHAT_HIDE_LOADING = 6
 
-private fun TextView.setDefaultColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
+private fun FrameLayout.setDefaultColor(context: Context, backgroundColor: Int =  com.androidplot.R.color.ap_white, textColor: Int = com.androidplot.R.color.ap_black)
 {
     val drawable = this.background.current as LayerDrawable
     (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color =
         AppCompatResources.getColorStateList(context, backgroundColor)
-    this.setTextColor(AppCompatResources.getColorStateList(context, textColor))
+    (this[0] as TextView).setTextColor(AppCompatResources.getColorStateList(context, textColor))
 }
-private fun TextView.setLightColor(context: Context, backgroundColor: Int =  R.color.colorLightThemeBackground, textColor: Int = com.androidplot.R.color.ap_white)
+private fun FrameLayout.setLightColor(context: Context, backgroundColor: Int =  R.color.colorLightThemeBackground, textColor: Int = com.androidplot.R.color.ap_white)
 {
     val drawable = this.background.current as LayerDrawable
     (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color =
         AppCompatResources.getColorStateList(context, backgroundColor)
-    this.setTextColor(AppCompatResources.getColorStateList(context, textColor))
+    (this[0] as TextView).setTextColor(AppCompatResources.getColorStateList(context, textColor))
 }
-private fun TextView.setDarkColor(context: Context, backgroundColor: Int =  R.color.colorBlacky, textColor: Int = com.androidplot.R.color.ap_white)
+private fun FrameLayout.setDarkColor(context: Context, backgroundColor: Int =  R.color.colorBlacky, textColor: Int = com.androidplot.R.color.ap_white)
 {
     val drawable = this.background.current as LayerDrawable
     (drawable.findDrawableByLayerId(R.id.textViewColor) as GradientDrawable).color =
         AppCompatResources.getColorStateList(context, backgroundColor)
-    this.setTextColor(AppCompatResources.getColorStateList(context, textColor))
+    (this[0] as TextView).setTextColor(AppCompatResources.getColorStateList(context, textColor))
 }
 private fun TextView.updateTextColor(context: Context, theme: BoardTheme)
 {
@@ -62,7 +63,7 @@ private fun TextView.updateTextColor(context: Context, theme: BoardTheme)
         else -> context.getColor(com.androidplot.R.color.ap_white)
     })
 }
-private fun TextView.setDrawableLeftAndTop(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableLeftAndTop(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -70,9 +71,9 @@ private fun TextView.setDrawableLeftAndTop(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_left_top_light
             else -> R.drawable.textview_layout_border_left_top
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableLeft(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableLeft(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -80,9 +81,9 @@ private fun TextView.setDrawableLeft(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_left_only_light
             else -> R.drawable.textview_layout_border_left_only
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableLeftAndBottom(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableLeftAndBottom(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -90,9 +91,9 @@ private fun TextView.setDrawableLeftAndBottom(context: Context, theme: BoardThem
             THEME_LIGHT -> R.drawable.textview_layout_border_left_bottom_light
             else -> R.drawable.textview_layout_border_left_bottom
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableRightAndTop(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableRightAndTop(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -100,9 +101,9 @@ private fun TextView.setDrawableRightAndTop(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_right_top_light
             else -> R.drawable.textview_layout_border_right_top
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableRight(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableRight(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -110,9 +111,9 @@ private fun TextView.setDrawableRight(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_right_only_light
             else -> R.drawable.textview_layout_border_right_only
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableRightAndBottom(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableRightAndBottom(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -120,9 +121,9 @@ private fun TextView.setDrawableRightAndBottom(context: Context, theme: BoardThe
             THEME_LIGHT -> R.drawable.textview_layout_border_right_bottom_light
             else -> R.drawable.textview_layout_border_right_bottom
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableBottom(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableBottom(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -130,9 +131,9 @@ private fun TextView.setDrawableBottom(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_bottom_only_light
             else -> R.drawable.textview_layout_border_bottom_only
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableTop(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableTop(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -140,9 +141,9 @@ private fun TextView.setDrawableTop(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_top_only_light
             else -> R.drawable.textview_layout_border_top_only
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
-private fun TextView.setDrawableNot(context: Context, theme: BoardTheme)
+private fun FrameLayout.setDrawableNot(context: Context, theme: BoardTheme)
 {
     this.background = AppCompatResources.getDrawable(context,
         when (theme) {
@@ -150,7 +151,7 @@ private fun TextView.setDrawableNot(context: Context, theme: BoardTheme)
             THEME_LIGHT -> R.drawable.textview_layout_border_not_light
             else -> R.drawable.textview_layout_border_not
         })
-    this.updateTextColor(context, theme)
+    (this[0] as TextView).updateTextColor(context, theme)
 }
 fun TextView.enableNoteMode(context: Context)
 {
@@ -166,9 +167,9 @@ fun TextView.disableNoteMode(context: Context)
     this.setTextColor(context.getColor(com.androidplot.R.color.ap_black))
     this.isSelected = false
 }
-fun TextView.getMoveInfo(toggleButton: ToggleButton) : Pair<Int, String>
+fun FrameLayout.getMoveInfo(toggleButton: ToggleButton) : Pair<Int, String>
 {
-    val index = resources.getResourceEntryName(this.id).substring(8).toInt()
+    val index = resources.getResourceEntryName(this.id).substring(11).toInt()
     val value = toggleButton.text.toString()
 
     return Pair(index, value)
@@ -181,7 +182,7 @@ fun ImageButton.setAnimation(context: Context, animationListener: AnimationListe
                 R.anim.alpha_blink_anim).also { it.setAnimationListener(animationListener) })
     }
 }
-fun TextView.setLineColor(context: Context)
+fun FrameLayout.setLineColor(context: Context)
 {
     when ((context as MainActivity).gameInfo.activeTheme()) {
         THEME_DARK -> this.setDarkColor(context, R.color.colorDarkThemeLine)
@@ -189,7 +190,7 @@ fun TextView.setLineColor(context: Context)
         THEME_DEFAULT -> this.setDefaultColor(context, R.color.line_color)
     }
 }
-fun TextView.setSelectedColor(context: Context)
+fun FrameLayout.setSelectedColor(context: Context)
 {
     when ((context as MainActivity).gameInfo.activeTheme()) {
         THEME_DARK -> this.setDarkColor(context, R.color.colorDarkThemeSelected)
@@ -197,7 +198,7 @@ fun TextView.setSelectedColor(context: Context)
         THEME_DEFAULT -> this.setDefaultColor(context, R.color.aqua)
     }
 }
-fun TextView.clearColor(context: Context)
+fun FrameLayout.clearColor(context: Context)
 {
     when ((context as MainActivity).gameInfo.activeTheme()) {
         THEME_DARK -> this.setDarkColor(context)
@@ -210,30 +211,30 @@ fun TableLayout.setTheme(context: Context, theme: BoardTheme)
     for (i in 0..< this.size) {
         val tableRow = this[i] as TableRow
         for (k in 0..< tableRow.size) {
-            val textView = tableRow[k] as TextView
+            val frameLayout = tableRow[k] as FrameLayout
             if (i % 3 == 0) {
                 if (k % 3 == 0)
-                    textView.setDrawableLeftAndTop(context, theme)
+                    frameLayout.setDrawableLeftAndTop(context, theme)
                 else if (k % 3 == 2)
-                    textView.setDrawableRightAndTop(context, theme)
+                    frameLayout.setDrawableRightAndTop(context, theme)
                 else
-                    textView.setDrawableTop(context, theme)
+                    frameLayout.setDrawableTop(context, theme)
             }
             else if (i % 3 == 2) {
                 if (k % 3 == 0)
-                    textView.setDrawableLeftAndBottom(context, theme)
+                    frameLayout.setDrawableLeftAndBottom(context, theme)
                 else if (k % 3 == 2)
-                    textView.setDrawableRightAndBottom(context, theme)
+                    frameLayout.setDrawableRightAndBottom(context, theme)
                 else
-                    textView.setDrawableBottom(context, theme)
+                    frameLayout.setDrawableBottom(context, theme)
             }
             else
                 if (k % 3 == 0)
-                    textView.setDrawableLeft(context, theme)
+                    frameLayout.setDrawableLeft(context, theme)
                 else if (k % 3 == 2)
-                    textView.setDrawableRight(context, theme)
+                    frameLayout.setDrawableRight(context, theme)
                 else
-                    textView.setDrawableNot(context, theme)
+                    frameLayout.setDrawableNot(context, theme)
         }
     }
 }
