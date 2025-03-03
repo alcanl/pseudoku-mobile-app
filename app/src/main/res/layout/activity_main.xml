@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/table_background"
+
         tools:context="com.alcanl.sudoku.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +41,7 @@
                 android:layout_height="0dp"
                 android:shrinkColumns="*"
                 android:stretchColumns="*"
+                android:background="@color/cardview_light_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2550,7 +2551,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2624,6 +2625,7 @@
             android:layout_width="0dp"
             android:layout_marginHorizontal="5dp"
             android:layout_height="95dp"
+            android:background="@color/cardview_light_background"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
