@@ -2622,6 +2622,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_height="95dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -2642,10 +2643,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/theme_blue"
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textColor="@color/ap_white"
                     android:textOff="@string/number_one"
                     android:textOn="@string/number_one"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <androidx.appcompat.widget.AppCompatToggleButton
                     android:layout_width="wrap_content"
@@ -2654,6 +2658,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_two"
                     android:textOn="@string/number_two"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -2664,6 +2670,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_three"
                     android:textOn="@string/number_three"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -2674,6 +2682,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_four"
                     android:textOn="@string/number_four"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -2684,6 +2694,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_five"
                     android:textOn="@string/number_five"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -2694,6 +2706,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_six"
                     android:textOn="@string/number_six"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -2704,6 +2718,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_seven"
                     android:textOn="@string/number_seven"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -2714,6 +2730,8 @@
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
                     android:textOff="@string/number_eight"
                     android:textOn="@string/number_eight"
+                    android:backgroundTint="@color/theme_blue"
+                    android:textColor="@color/ap_white"
                     android:textSize="30sp"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -2721,10 +2739,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/theme_blue"
                     android:onClick="@{(view)-> viewModel.handleToggleButtonClick(view)}"
+                    android:textColor="@color/ap_white"
                     android:textOff="@string/number_nine"
                     android:textOn="@string/number_nine"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -35,7 +35,8 @@
             android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDark"
@@ -50,7 +51,8 @@
             android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLight"
@@ -65,7 +67,8 @@
             android:onClick="@{(view) -> viewModelDialog.handleButtonThemeSelect(view)}"
             app:cornerRadius="50dp"
             app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
 
     <TextView
@@ -73,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/abeezee"
-        android:text="@string/texview_select_theme_text"
+        android:text="@string/textview_select_theme_text"
         android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"

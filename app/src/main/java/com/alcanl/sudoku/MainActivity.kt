@@ -134,10 +134,10 @@ class MainActivity : AppCompatActivity() {
             (mSelectedCell?.get(0) as TextView).text = ONE_SPACE_STRING
 
         mSelectedCell = frameLayout
-        lifecycleScope.launch(Dispatchers.Main) {
-            mBinding.tableLayoutMain
-                .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
-                .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this@MainActivity) }
+
+        mBinding.tableLayoutMain
+            .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
+                .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this@MainActivity)
     }
 
     @Synchronized
@@ -191,8 +191,9 @@ class MainActivity : AppCompatActivity() {
                 getIncorrectMoveScore()
                 saveMove(Triple(index, value, false))
             }
+            mBinding.invalidateAll()
             mSelectedToggleButton = null
-            handler.postDelayed({sudokuMatrix.clearCell(index); mBinding.invalidateAll()}, 2000 )
+            handler.postDelayed({ sudokuMatrix.clearCell(index); mBinding.invalidateAll() }, 2000 )
         }
         else
             stopGame()
@@ -223,7 +224,6 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.Main) {
             tableCellClickedCallback(frameLayout)
             trueMoveCallback(frameLayout)
-            mBinding.invalidateAll()
         }
     }
     @Synchronized
@@ -260,10 +260,13 @@ class MainActivity : AppCompatActivity() {
         val value = mSelectedToggleButton!!.text.toString().toInt()
         val index = resources.getResourceEntryName(mSelectedCell!!.id)
             .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()
-        if (sudokuMatrix.isTrueValue(value, index))
-            lifecycleScope.launch(Dispatchers.Main) { trueMoveCallback(mSelectedCell!!) }
-        else
-            lifecycleScope.launch(Dispatchers.Main) { falseMoveCallback(mSelectedCell!!) }
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            if (sudokuMatrix.isTrueValue(value, index))
+                trueMoveCallback(mSelectedCell!!)
+            else
+                falseMoveCallback(mSelectedCell!!)
+        }
     }
 
     private fun stopGame()

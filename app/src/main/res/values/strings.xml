@@ -27,7 +27,7 @@
     <string name="textview_password_text" translatable="true">Password</string>
     <string name="textview_do_not_have_account_text" translatable="true">Don\'t Have an Account?</string>
     <string name="textview_or_text" translatable="true">------------------or------------------</string>
-    <string name="texview_select_theme_text" translatable="true">Select Theme</string>
+    <string name="textview_select_theme_text" translatable="true">Select Theme</string>
     <string name="facebook_app_id">test</string>
     <string name="facebook_client_token">test</string>
     <string name="fb_login_protocol_scheme">fb1234</string>

@@ -1,10 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -32,26 +31,23 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "21"
     }
     dataBinding.enable = true
     buildFeatures {
         viewBinding = true
     }
     buildToolsVersion = "35.0.0"
-
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 }
 
 dependencies {
 
     val roomVersion = "2.6.1"
+    implementation("com.github.cdflynn:checkview:v1.2")
     implementation("com.github.homayoonahmadi:GroupBoxLayout:1.2.0")
     implementation("org.greenrobot:eventbus:3.3.1")
     implementation("com.github.MasayukiSuda:BubbleLayout:v1.2.2")
@@ -75,14 +71,10 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test:rules:1.6.1")
     implementation("com.google.dagger:hilt-android:2.55")
-    kapt("com.google.dagger:hilt-compiler:2.55")
+    ksp("com.google.dagger:hilt-compiler:2.55")
+    ksp("com.google.dagger:dagger-compiler:2.55")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.7.8")
     implementation("androidx.compose.material:material:1.7.8")
-}
-
-kapt {
-    correctErrorTypes = true
 }

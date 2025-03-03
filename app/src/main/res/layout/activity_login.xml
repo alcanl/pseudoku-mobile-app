@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="VisualLintBounds">
     <data>
         <import type="com.alcanl.sudoku.viewmodel.LoginActivityListenersViewModel"/>
         <variable name="viewModel" type="LoginActivityListenersViewModel" />
@@ -31,7 +32,6 @@
             app:layout_constraintVertical_bias="1.0">
 
             <ImageView
-                android:id="@+id/imageView2"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:scaleType="fitXY"
@@ -45,19 +45,21 @@
                 tools:ignore="ContentDescription" />
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="206dp"
-                android:layout_height="53dp"
+                android:id="@+id/buttonLogin"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
                 android:backgroundTint="@color/theme_blue"
                 android:fontFamily="@font/abeezee"
                 android:onClick="@{()-> viewModel.handleLoginButton()}"
                 android:text="@string/button_login_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.628" />
+                app:layout_constraintVertical_bias="0.628"
+                tools:ignore="VisualLintButtonSize" />
 
             <AutoCompleteTextView
                 android:id="@+id/textViewUsername"
@@ -74,26 +76,27 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.371"
                 tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <Button
-                android:id="@+id/button"
-                android:layout_width="206dp"
-                android:layout_height="53dp"
+                android:id="@+id/buttonSignUp"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
                 android:backgroundTint="@color/theme_blue"
                 android:fontFamily="@font/abeezee"
                 android:onClick="@{()-> viewModel.handleSignUpButton()}"
                 android:text="@string/button_signup_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.97" />
+                app:layout_constraintVertical_bias="0.97"
+                tools:ignore="VisualLintButtonSize" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -113,7 +116,6 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
@@ -125,7 +127,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.793">
@@ -181,7 +182,7 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/textViewUsername"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -193,7 +194,7 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintHorizontal_bias="0.13"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -203,7 +204,7 @@
                 android:text="@string/textview_do_not_have_account_text"
                 android:textColor="@color/ap_gray"
                 android:textSize="11sp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TextContrastCheck" />
