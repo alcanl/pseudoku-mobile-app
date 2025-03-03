@@ -12,6 +12,7 @@ import com.alcanl.sudoku.repository.entity.gameinfo.level.Level
 import java.io.Serializable
 import java.util.EmptyStackException
 import java.util.Stack
+
 @Entity("game_info")
 data class GameInfo(@PrimaryKey(autoGenerate = true) var id: Long = 0L,
                     @ColumnInfo("hint_count")var hintCount : Int = 3,
