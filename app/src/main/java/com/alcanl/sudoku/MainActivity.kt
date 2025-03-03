@@ -43,6 +43,8 @@ import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.util.EmptyStackException
 import javax.inject.Inject
 
@@ -64,6 +66,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var handler: Handler
+
+    @Inject
+    lateinit var mutex: Mutex
 
     private var mSelectedCell : FrameLayout? = null
     private var mSelectedToggleButton : ToggleButton? = null
@@ -140,19 +145,21 @@ class MainActivity : AppCompatActivity() {
                 .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this@MainActivity)
     }
 
-    @Synchronized
-    private fun trueMoveCallback(frameLayout: FrameLayout)
+    private suspend fun trueMoveCallback(frameLayout: FrameLayout)
     {
-        frameLayout.markAsTrueMove(this, handler)
-        val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
-        handleCorrectMoveOnMatrix(index, value.toInt())
-        handleCorrectMoveOnGamePlay(index, value)
-        mBinding.invalidateAll()
-        mSelectedCell = null
+        mutex.withLock {
 
-        if (sudokuMatrix.isCompleted()) {
-            handleWin()
-            return
+            frameLayout.markAsTrueMove(this, handler)
+            val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
+            handleCorrectMoveOnMatrix(index, value.toInt())
+            handleCorrectMoveOnGamePlay(index, value)
+            mBinding.invalidateAll()
+            mSelectedCell = null
+
+            if (sudokuMatrix.isCompleted()) {
+                handleWin()
+                return
+            }
         }
     }
 
@@ -178,79 +185,88 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Synchronized
-    private fun falseMoveCallback(frameLayout: FrameLayout)
+    private suspend fun falseMoveCallback(frameLayout: FrameLayout)
     {
-        frameLayout.markAsFalseMove(this)
-        val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
+        mutex.withLock {
 
-        if (gameInfo.checkIfExistErrorCount()) {
-            sudokuMatrix.setCell(index, value.toInt())
-            gameInfo.apply {
-                errorDone()
-                getIncorrectMoveScore()
-                saveMove(Triple(index, value, false))
-            }
-            mBinding.invalidateAll()
-            mSelectedToggleButton = null
-            handler.postDelayed({ sudokuMatrix.clearCell(index); mBinding.invalidateAll() }, 2000 )
-        }
-        else
-            stopGame()
-    }
+            frameLayout.markAsFalseMove(this)
+            val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
 
-    @Synchronized
-    private fun buttonRestartCallback()
-    {
-        gameInfo.restart()
-        chronometerCounter.restartCounter()
-        sudokuMatrix.resetCurrentMatrix()
-        lifecycleScope.launch(Dispatchers.Main) { mBinding.tableLayoutMain.clearTableBackground(this@MainActivity) }
-        lifecycleScope.launch(Dispatchers.Main) { mBinding.linearLayoutButtons.refreshLayout() }
-        mBinding.invalidateAll()
-    }
-
-    @Synchronized
-    private fun buttonHintCallback()
-    {
-        if (!gameInfo.checkIfExistHintCount())
-            return
-
-        gameInfo.useHint()
-        val (index, value) = sudokuMatrix.getHint()
-        val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
-        mSelectedToggleButton = mBinding.linearLayoutButtons.getSelectedToggleButton(value.toInt())
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            tableCellClickedCallback(frameLayout)
-            trueMoveCallback(frameLayout)
-        }
-    }
-    @Synchronized
-    private fun buttonUndoCallback()
-    {
-        try {
-            val (index, value, isTrue) = gameInfo.useUndo()
-            val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
-
-            sudokuMatrix.apply {
-                clearCell(index)
-                increaseNumberCount(value.toInt())
-            }
-            lifecycleScope.launch(Dispatchers.Main) {
-                mSelectedCell?.clearFrame()
-                tableCellClicked(frameLayout)
-                if (isTrue)
-                    frameLayout.markAsTrueMove(this@MainActivity, null)
-                else
-                    frameLayout.markAsFalseMove(this@MainActivity)
-
-                frameLayout.isClickable = true
+            if (gameInfo.checkIfExistErrorCount()) {
+                sudokuMatrix.setCell(index, value.toInt())
+                gameInfo.apply {
+                    errorDone()
+                    getIncorrectMoveScore()
+                    saveMove(Triple(index, value, false))
+                }
                 mBinding.invalidateAll()
+                mSelectedToggleButton = null
+                handler.postDelayed({ sudokuMatrix.clearCell(index); mBinding.invalidateAll() }, 2000 )
             }
-        } catch (_: EmptyStackException) {
+            else
+                stopGame()
+        }
+    }
+
+    private suspend fun buttonRestartCallback()
+    {
+        mutex.withLock {
+
+            gameInfo.restart()
+            chronometerCounter.restartCounter()
+            sudokuMatrix.resetCurrentMatrix()
+            lifecycleScope.launch(Dispatchers.Main) { mBinding.tableLayoutMain.clearTableBackground(this@MainActivity) }
+            lifecycleScope.launch(Dispatchers.Main) { mBinding.linearLayoutButtons.refreshLayout() }
+            mBinding.invalidateAll()
+        }
+    }
+
+    private suspend fun buttonHintCallback()
+    {
+        mutex.withLock {
+
+            if (!gameInfo.checkIfExistHintCount())
+                return
+
+            gameInfo.useHint()
+            val (index, value) = sudokuMatrix.getHint()
+            val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
+            mSelectedToggleButton = mBinding.linearLayoutButtons.getSelectedToggleButton(value.toInt())
+
             lifecycleScope.launch(Dispatchers.Main) {
-                Toast.makeText(this@MainActivity, "No Any Move Info", Toast.LENGTH_SHORT).show()
+                tableCellClickedCallback(frameLayout)
+                trueMoveCallback(frameLayout)
+            }
+        }
+    }
+
+
+    private suspend fun buttonUndoCallback()
+    {
+        mutex.withLock {
+            try {
+                val (index, value, isTrue) = gameInfo.useUndo()
+                val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
+
+                sudokuMatrix.apply {
+                    clearCell(index)
+                    increaseNumberCount(value.toInt())
+                }
+                lifecycleScope.launch(Dispatchers.Main) {
+                    mSelectedCell?.clearFrame()
+                    tableCellClicked(frameLayout)
+                    if (isTrue)
+                        frameLayout.markAsTrueMove(this@MainActivity, null)
+                    else
+                        frameLayout.markAsFalseMove(this@MainActivity)
+
+                    frameLayout.isClickable = true
+                    mBinding.invalidateAll()
+                }
+            } catch (_: EmptyStackException) {
+                lifecycleScope.launch(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, "No Any Move Info", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -303,16 +319,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Synchronized
-    private fun setThemeCallback(theme: BoardTheme)
+    private suspend fun setThemeCallback(theme: BoardTheme)
     {
-        mBinding.tableLayoutMain.setTheme(this, theme)
+        mutex.withLock {
+            mBinding.tableLayoutMain.setTheme(this, theme)
 
-        if (mSelectedCell != null)
-            mBinding.tableLayoutMain
-                .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
-                    .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this)
-
+            if (mSelectedCell != null)
+                mBinding.tableLayoutMain
+                    .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
+                        .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this)
+        }
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
