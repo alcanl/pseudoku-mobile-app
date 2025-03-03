@@ -3,17 +3,14 @@ package com.alcanl.sudoku
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import android.widget.FrameLayout
-import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import androidx.core.view.get
-import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.alcanl.android.app.sudoku.R
 import com.alcanl.android.app.sudoku.databinding.ActivityMainBinding
 import com.alcanl.sudoku.dialog.SettingsDialog
@@ -23,15 +20,16 @@ import com.alcanl.sudoku.dialog.showWinAndPlayAgainDialog
 import com.alcanl.sudoku.global.FRAME_LAYOUT_ID_START_INDEX
 import com.alcanl.sudoku.global.ONE_SPACE_STRING
 import com.alcanl.sudoku.global.extension.clearFrame
-import com.alcanl.sudoku.global.extension.clearColor
 import com.alcanl.sudoku.global.extension.clearTableBackground
 import com.alcanl.sudoku.global.extension.getMoveInfo
 import com.alcanl.sudoku.global.extension.getSelectedFrame
+import com.alcanl.sudoku.global.extension.getSelectedToggleButton
+import com.alcanl.sudoku.global.extension.hideCompletedNumber
 import com.alcanl.sudoku.global.extension.markAsFalseMove
 import com.alcanl.sudoku.global.extension.markAsTrueMove
 import com.alcanl.sudoku.global.extension.markTheNote
-import com.alcanl.sudoku.global.extension.setLineColor
-import com.alcanl.sudoku.global.extension.setSelectedColor
+import com.alcanl.sudoku.global.extension.refreshLayout
+import com.alcanl.sudoku.global.extension.setLineBackGround
 import com.alcanl.sudoku.global.extension.setTheme
 import com.alcanl.sudoku.global.theme.BoardTheme
 import com.alcanl.sudoku.global.theme.BoardTheme.*
@@ -43,16 +41,14 @@ import com.alcanl.sudoku.timer.ChronometerCounter
 import com.alcanl.sudoku.viewmodel.MainActivityListenersViewModel
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.EmptyStackException
-import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var threadPool: ExecutorService
 
     @Inject
     lateinit var chronometerCounter: ChronometerCounter
@@ -82,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         getUserInfo()
         initialize()
     }
+
     override fun onResume()
     {
         super.onResume()
@@ -91,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 resumeCounter()
         }
     }
+
     override fun onPause()
     {
         super.onPause()
@@ -100,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                 pauseCounter()
         }
     }
+
     @Suppress("DEPRECATION")
     private fun getUserInfo()
     {
@@ -108,33 +107,37 @@ class MainActivity : AppCompatActivity() {
         else
             intent.getSerializableExtra("user", User::class.java)!!
     }
+
     private fun initialize()
     {
         initBinding()
         initCounter()
         mSettingsDialog = SettingsDialog(this)
     }
-    private fun initCounter()
-    {
-        chronometerCounter.startAndVisualizeCounter(mBinding)
-    }
+
+    private fun initCounter() = chronometerCounter.startAndVisualizeCounter(mBinding)
 
     private fun initBinding()
     {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mBinding.viewModel = MainActivityListenersViewModel(this)
-        mBinding.matrix = sudokuMatrix
-        mBinding.gamePlay = gameInfo
-        mBinding.user = mUser
+        mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+            .also {
+                it.viewModel = MainActivityListenersViewModel(this@MainActivity)
+                it.matrix = sudokuMatrix
+                it.gamePlay = gameInfo
+                it.user = mUser
+            }
     }
+
     private fun tableCellClickedCallback(frameLayout: FrameLayout)
     {
         if (mSelectedCell != null && !gameInfo.checkLastMove())
             (mSelectedCell?.get(0) as TextView).text = ONE_SPACE_STRING
 
         mSelectedCell = frameLayout
-        runOnUiThread { setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-            .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()) }
+        lifecycleScope.launch(Dispatchers.Main) {
+            mBinding.tableLayoutMain
+                .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
+                .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this@MainActivity) }
     }
 
     @Synchronized
@@ -142,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     {
         frameLayout.markAsTrueMove(this, handler)
         val (index, value) = frameLayout.getMoveInfo(mSelectedToggleButton!!)
-        handleCorrectMoveOnMatrix(index, value)
+        handleCorrectMoveOnMatrix(index, value.toInt())
         handleCorrectMoveOnGamePlay(index, value)
         mBinding.invalidateAll()
         mSelectedCell = null
@@ -152,15 +155,17 @@ class MainActivity : AppCompatActivity() {
             return
         }
     }
-    private fun handleCorrectMoveOnMatrix(index: Int, value: String)
+
+    private fun handleCorrectMoveOnMatrix(index: Int, value: Int)
     {
         sudokuMatrix.apply {
-            setCell(index, value.toInt())
-            decreaseNumberCount(value.toInt())
-            if (isAvailableValueCountOver(value.toInt()))
-                mBinding.linearLayoutButtons.children.elementAt(value.toInt() - 1).visibility = View.INVISIBLE
+            setCell(index, value)
+            decreaseNumberCount(value)
+            if (isAvailableValueCountOver(value))
+                mBinding.linearLayoutButtons.hideCompletedNumber(value)
         }
     }
+
     private fun handleCorrectMoveOnGamePlay(index: Int, value: String)
     {
         gameInfo.apply {
@@ -172,6 +177,7 @@ class MainActivity : AppCompatActivity() {
                 clearHintMove()
         }
     }
+
     @Synchronized
     private fun falseMoveCallback(frameLayout: FrameLayout)
     {
@@ -191,14 +197,15 @@ class MainActivity : AppCompatActivity() {
         else
             stopGame()
     }
+
     @Synchronized
     private fun buttonRestartCallback()
     {
         gameInfo.restart()
         chronometerCounter.restartCounter()
         sudokuMatrix.resetCurrentMatrix()
-        runOnUiThread { mBinding.tableLayoutMain.clearTableBackground(this) }
-        runOnUiThread(this::clearToggleButtons)
+        lifecycleScope.launch(Dispatchers.Main) { mBinding.tableLayoutMain.clearTableBackground(this@MainActivity) }
+        lifecycleScope.launch(Dispatchers.Main) { mBinding.linearLayoutButtons.refreshLayout() }
         mBinding.invalidateAll()
     }
 
@@ -210,10 +217,10 @@ class MainActivity : AppCompatActivity() {
 
         gameInfo.useHint()
         val (index, value) = sudokuMatrix.getHint()
-        val frameLayout = (mBinding.tableLayoutMain[index / 10] as TableRow)[index % 10] as FrameLayout
-        mSelectedToggleButton = mBinding.linearLayoutButtons[value.toInt() - 1] as ToggleButton
+        val frameLayout = mBinding.tableLayoutMain.getSelectedFrame(index)
+        mSelectedToggleButton = mBinding.linearLayoutButtons.getSelectedToggleButton(value.toInt())
 
-        runOnUiThread {
+        lifecycleScope.launch(Dispatchers.Main) {
             tableCellClickedCallback(frameLayout)
             trueMoveCallback(frameLayout)
             mBinding.invalidateAll()
@@ -230,7 +237,7 @@ class MainActivity : AppCompatActivity() {
                 clearCell(index)
                 increaseNumberCount(value.toInt())
             }
-            runOnUiThread {
+            lifecycleScope.launch(Dispatchers.Main) {
                 mSelectedCell?.clearFrame()
                 tableCellClicked(frameLayout)
                 if (isTrue)
@@ -242,21 +249,23 @@ class MainActivity : AppCompatActivity() {
                 mBinding.invalidateAll()
             }
         } catch (_: EmptyStackException) {
-            runOnUiThread {
-                Toast.makeText(this, "No Any Move Info", Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity, "No Any Move Info", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
     private fun evaluateTheMove()
     {
         val value = mSelectedToggleButton!!.text.toString().toInt()
         val index = resources.getResourceEntryName(mSelectedCell!!.id)
             .substring(FRAME_LAYOUT_ID_START_INDEX).toInt()
         if (sudokuMatrix.isTrueValue(value, index))
-            runOnUiThread { trueMoveCallback(mSelectedCell!!) }
+            lifecycleScope.launch(Dispatchers.Main) { trueMoveCallback(mSelectedCell!!) }
         else
-            runOnUiThread { falseMoveCallback(mSelectedCell!!) }
+            lifecycleScope.launch(Dispatchers.Main) { falseMoveCallback(mSelectedCell!!) }
     }
+
     private fun stopGame()
     {
         chronometerCounter.stopCounter()
@@ -268,55 +277,39 @@ class MainActivity : AppCompatActivity() {
 
         showLoseAndPlayAgainDialog(this, ::startNewGame) { finish() }
     }
-    private fun setLineBackground(index: Int)
-    {
-        var tableRow: TableRow
-        var frameLayout: FrameLayout
-        for (i in 0..<mBinding.tableLayoutMain.size) {
-            tableRow = mBinding.tableLayoutMain[i] as TableRow
-            for (k in 0..<tableRow.size) {
-                frameLayout = tableRow[k] as FrameLayout
-                if (index == i * 10 + k)
-                    frameLayout.setSelectedColor(this)
-                else if (index % 10 == k || index / 10 == i)
-                    frameLayout.setLineColor(this)
-                else
-                    frameLayout.clearColor(this)
-            }
-        }
-    }
+
     private fun handleWin()
     {
         gameInfo.isWin(true)
         gameInfo.setGameDuration(chronometerCounter.toString())
-        threadPool.execute { applicationService.saveGameInfo(gameInfo) }
+        lifecycleScope.launch(Dispatchers.IO) { applicationService.saveGameInfo(gameInfo) }
         showWinAndPlayAgainDialog(this, ::startNewGame) { finish() }
     }
+
     private fun startNewGame()
     {
-        threadPool.execute {
+        lifecycleScope.launch(Dispatchers.Default) {
             gameInfo = GameInfo()
             sudokuMatrix.generateNewMatrix()
             initCounter()
             mSelectedCell = null
             mSelectedToggleButton = null
-            runOnUiThread { mBinding.tableLayoutMain.clearTableBackground(this) }
-            runOnUiThread(this::clearToggleButtons)
+            launch(Dispatchers.Main) { mBinding.tableLayoutMain.clearTableBackground(this@MainActivity) }
+            launch(Dispatchers.Main) { mBinding.linearLayoutButtons.refreshLayout() }
             mBinding.invalidateAll()
         }
     }
-    private fun clearToggleButtons()
-    {
-        mBinding.linearLayoutButtons.children.forEach { (it as ToggleButton).visibility = View.VISIBLE }
-    }
+
     @Synchronized
     private fun setThemeCallback(theme: BoardTheme)
     {
         mBinding.tableLayoutMain.setTheme(this, theme)
 
         if (mSelectedCell != null)
-            setLineBackground(resources.getResourceEntryName(mSelectedCell!!.id)
-                .substring(FRAME_LAYOUT_ID_START_INDEX).toInt())
+            mBinding.tableLayoutMain
+                .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
+                    .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this)
+
     }
 
     fun toggleButtonClicked(toggleButton: ToggleButton)
@@ -335,7 +328,7 @@ class MainActivity : AppCompatActivity() {
 
     fun tableCellClicked(frameLayout: FrameLayout)
     {
-        runOnUiThread { tableCellClickedCallback(frameLayout) }
+        lifecycleScope.launch(Dispatchers.Main) { tableCellClickedCallback(frameLayout) }
     }
 
     fun buttonBackClicked()
@@ -348,10 +341,7 @@ class MainActivity : AppCompatActivity() {
         mSettingsDialog = SettingsDialog(this).apply { show() }
     }
 
-    fun buttonUndoClicked()
-    {
-        threadPool.execute(this::buttonUndoCallback)
-    }
+    fun buttonUndoClicked() = lifecycleScope.launch(Dispatchers.Default) { buttonUndoCallback() }
 
     fun buttonNoteClicked()
     {
@@ -364,20 +354,15 @@ class MainActivity : AppCompatActivity() {
                 R.string.textview_note_mode_inactive_text)
     }
 
-    fun buttonHintClicked()
-    {
-        threadPool.execute(this::buttonHintCallback)
-    }
+    fun buttonHintClicked() = lifecycleScope.launch(Dispatchers.Default) { buttonHintCallback() }
 
     fun buttonUserClicked()
     {
         mUserDialog = UserDialog(this).apply { show() }
     }
 
-    fun buttonRestartClicked()
-    {
-        threadPool.execute(this::buttonRestartCallback)
-    }
+    fun buttonRestartClicked() = lifecycleScope.launch(Dispatchers.Default) { buttonRestartCallback() }
+
 
     fun buttonSetThemeClicked(button: MaterialButton)
     {
@@ -387,6 +372,6 @@ class MainActivity : AppCompatActivity() {
             THEME_DARK.toString() -> gameInfo.setBoardTheme(THEME_DARK)
             THEME_LIGHT.toString() -> gameInfo.setBoardTheme(THEME_LIGHT)
         }
-        runOnUiThread { setThemeCallback(gameInfo.activeTheme()) }
+        lifecycleScope.launch(Dispatchers.Main) { setThemeCallback(gameInfo.activeTheme()) }
     }
 }
