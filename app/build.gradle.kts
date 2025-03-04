@@ -4,6 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("kotlinx-serialization")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -47,6 +48,8 @@ android {
 dependencies {
 
     val roomVersion = "2.6.1"
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation("com.github.cdflynn:checkview:v1.2")
     implementation("com.github.homayoonahmadi:GroupBoxLayout:1.2.0")
     implementation("org.greenrobot:eventbus:3.3.1")
