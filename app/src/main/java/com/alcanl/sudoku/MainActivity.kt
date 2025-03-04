@@ -322,12 +322,15 @@ class MainActivity : AppCompatActivity() {
     private suspend fun setThemeCallback(theme: BoardTheme)
     {
         mutex.withLock {
-            mBinding.tableLayoutMain.setTheme(this, theme)
 
-            if (mSelectedCell != null)
-                mBinding.tableLayoutMain
-                    .setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
-                        .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this)
+            mBinding.apply {
+                constraintLayoutMain.setTheme(this@MainActivity, theme)
+                tableLayoutMain.setTheme(this@MainActivity, theme)
+
+                if (mSelectedCell != null)
+                    tableLayoutMain.setLineBackGround(resources.getResourceEntryName(mSelectedCell!!.id)
+                            .substring(FRAME_LAYOUT_ID_START_INDEX).toInt(), this@MainActivity)
+            }
         }
     }
 

@@ -17,9 +17,10 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:background="@color/cardview_light_background"
         tools:context="com.alcanl.sudoku.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,11 +30,12 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutNumbers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader">
 
             <TableLayout
                 android:id="@+id/tableLayoutMain"
@@ -41,7 +43,7 @@
                 android:layout_height="0dp"
                 android:shrinkColumns="*"
                 android:stretchColumns="*"
-                android:background="@color/cardview_light_background"
+                android:background="@color/cardview_dark_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2538,10 +2540,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/constraintLayoutHeader"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:background="@color/cardview_light_background"
+            android:background="@color/cardview_shadow_end_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -2621,12 +2623,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/constraintLayoutNumbers"
             android:layout_width="0dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="95dp"
             android:background="@color/cardview_light_background"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutFooter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -2636,6 +2638,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2752,10 +2756,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
+            android:id="@+id/constraintLayoutFooter"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:background="@color/ap_white"
+            android:background="@color/cardview_shadow_end_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -2786,6 +2790,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
+                    android:textColor="@color/ap_black"
                     android:text="@string/textview_undo_text"
                     android:textSize="11sp" />
 
@@ -2817,6 +2822,7 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_hint_text"
+                    android:textColor="@color/ap_black"
                     android:textSize="11sp" />
 
                 <TextView
@@ -2850,6 +2856,7 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_restart_text"
+                    android:textColor="@color/ap_black"
                     android:textSize="11sp" />
 
                 <ImageButton
@@ -2879,6 +2886,7 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginTop="25dp"
                     android:text="@string/textview_note_text"
+                    android:textColor="@color/ap_black"
                     android:textSize="11sp" />
 
                 <ImageButton
@@ -2916,7 +2924,7 @@
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader">
 
             <TextView
                 android:layout_width="wrap_content"
