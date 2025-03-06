@@ -8,6 +8,7 @@
         <import type="com.alcanl.sudoku.service.SudokuMatrix"/>
         <import type="com.alcanl.sudoku.repository.entity.gameinfo.GameInfo"/>
         <import type="com.alcanl.sudoku.repository.entity.User"/>
+        <import type="com.alcanl.android.app.sudoku.R"/>
         <variable name="user" type="com.alcanl.sudoku.repository.entity.User" />
         <variable name="gamePlay" type="GameInfo" />
         <variable name="timer" type="String" />
@@ -689,7 +690,7 @@
                             android:text="@{matrix.getValue(22)}"
                             android:textColor="@color/ap_black"
                             android:textSize="30sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck" />
                         <!--suppress AndroidDomInspection -->
                         <TextView
                             android:layout_width="15dp"
@@ -2906,7 +2907,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="1dp"
                     android:layout_marginEnd="1dp"
-                    android:text="@string/textview_note_mode_inactive_text"
+                    android:text="@{gamePlay.isNoteModeActive() ? context.getString(R.string.textview_note_mode_active_text) : context.getString(R.string.textview_note_mode_inactive_text)}"
                     android:textAlignment="center"
                     android:textColor="@color/ap_black"
                     android:textSize="8sp"

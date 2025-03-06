@@ -48,7 +48,6 @@ import kotlinx.coroutines.sync.withLock
 import java.util.EmptyStackException
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -369,11 +368,7 @@ class MainActivity : AppCompatActivity() {
     {
         val onOrOff = !gameInfo.isNoteModeActive()
         gameInfo.setNoteMode(onOrOff)
-        mBinding.textViewNoteMode.text = getText(
-            if (onOrOff)
-                R.string.textview_note_mode_active_text
-            else
-                R.string.textview_note_mode_inactive_text)
+        mBinding.invalidateAll()
     }
 
     fun buttonHintClicked() = lifecycleScope.launch(Dispatchers.Default) { buttonHintCallback() }
