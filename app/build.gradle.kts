@@ -4,7 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("kotlinx-serialization")
-    id("com.google.gms.google-services")
+    //id("com.google.gms.google-services")
 }
 
 android {
